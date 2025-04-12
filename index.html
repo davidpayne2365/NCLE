@@ -75,12 +75,14 @@
         }
         
         .video-title {
-            padding: 0.8rem;
-            font-size: 1.2rem;
+            padding: 1rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #2c3e50;
             background-color: white;
             border-bottom: 1px solid #eee;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .video-wrapper {
@@ -378,23 +380,31 @@
         function updateUI() {
             slider.style.transform = `translateX(-${currentIndex * 100}%)`;
             pageIndicator.textContent = `${currentIndex + 1} / ${totalSlides}`;
-            prevButton.disabled = currentIndex === 0;
-            nextButton.disabled = currentIndex === totalSlides - 1;
+            
+            // Remove disabled state from buttons as we now have circular navigation
+            prevButton.disabled = false;
+            nextButton.disabled = false;
         }
         
         // Handle navigation button clicks
         prevButton.addEventListener('click', () => {
             if (currentIndex > 0) {
                 currentIndex--;
-                updateUI();
+            } else {
+                // Wrap around to the last slide
+                currentIndex = totalSlides - 1;
             }
+            updateUI();
         });
         
         nextButton.addEventListener('click', () => {
             if (currentIndex < totalSlides - 1) {
                 currentIndex++;
-                updateUI();
+            } else {
+                // Wrap around to the first slide
+                currentIndex = 0;
             }
+            updateUI();
         });
         
         // Touch swipe handling
@@ -418,18 +428,24 @@
                 // Swiped left - go to next slide
                 if (currentIndex < totalSlides - 1) {
                     currentIndex++;
-                    updateUI();
-                    countSwipe();
+                } else {
+                    // Wrap around to the first slide
+                    currentIndex = 0;
                 }
+                updateUI();
+                countSwipe();
             }
             
             if (touchEndX > touchStartX + swipeThreshold) {
                 // Swiped right - go to previous slide
                 if (currentIndex > 0) {
                     currentIndex--;
-                    updateUI();
-                    countSwipe();
+                } else {
+                    // Wrap around to the last slide
+                    currentIndex = totalSlides - 1;
                 }
+                updateUI();
+                countSwipe();
             }
         }
         
@@ -446,11 +462,21 @@
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft' && currentIndex > 0) {
-                currentIndex--;
+            if (e.key === 'ArrowLeft') {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    // Wrap around to the last slide
+                    currentIndex = totalSlides - 1;
+                }
                 updateUI();
-            } else if (e.key === 'ArrowRight' && currentIndex < totalSlides - 1) {
-                currentIndex++;
+            } else if (e.key === 'ArrowRight') {
+                if (currentIndex < totalSlides - 1) {
+                    currentIndex++;
+                } else {
+                    // Wrap around to the first slide
+                    currentIndex = 0;
+                }
                 updateUI();
             }
         });
