@@ -6,6 +6,20 @@
     <meta name="theme-color" content="#4b6cb7">
     <meta name="description" content="NCLE Exam Prep - Comprehensive video resources for NCLE certification">
     <title>NCLE Exam Prep</title>
+    
+    <!-- Inline manifest data -->
+    <link rel="manifest" href="data:application/json;charset=utf-8,{&quot;name&quot;:&quot;NCLE Exam Prep&quot;,&quot;short_name&quot;:&quot;NCLE Prep&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#f8f9fa&quot;,&quot;theme_color&quot;:&quot;#4b6cb7&quot;,&quot;description&quot;:&quot;Comprehensive video resources for NCLE certification&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI5NiIgcnk9Ijk2IiBmaWxsPSIjNGI2Y2I3Ii8+PHBhdGggZD0iTTI1NC44MiwxNjNhNiw2LDAsMCwxLTYtNlYxMTVhNiw2LDAsMCwxLDEyLDBWMTU3QTYsNiwwLDAsMSwyNTQuODIsMTYzWiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0yNTQuODIsNDAwYTYsNiwwLDAsMS02LTZWMzUyYTYsNiwwLDAsMSwxMiwwdjQyQTYsNiwwLDAsMSwyNTQuODIsNDAwWiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0zOTcsMjU2Ljc3SDM1NWE2LDYsMCwwLDEsMC0xMmg0MmE2LDYsMCwwLDEsMCwxMloiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTYwLDI1Ni43N0gxMThhNiw2LDAsMCwxLDAtMTJoNDJhNiw2LDAsMCwxLDAsMTJaIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI3NywzNTEuNTRIMjM0YTQyLjI4LDQyLjI4LDAsMCwxLTQyLjIzLTQyLjIzVjIwMi42OUExOC4yMiwxOC4yMiwwLDAsMSwyMTAsMTg0LjQ2aDkzLjk0YTE4LjIyLDE4LjIyLDAsMCwxLDE4LjIzLDE4LjIzVjMwOS4zMUE0Mi4yOCw0Mi4yOCwwLDAsMSwyNzcsMzUxLjU0Wk0yMTAsMTk2LjQ2YTYuMjQsNi4yNCwwLDAsMC02LjIzLDYuMjNWMzA5LjMxQTMwLjI2LDMwLjI2LDAsMCwwLDIzNCwzMzkuNTRoNDNhMzAuMjcsMzAuMjcsMCwwLDAsMzAuMjQtMzAuMjNWMjAyLjY5YTYuMjQsNi4yNCwwLDAsMC02LjIzLTYuMjNaIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI3NC4yNSwzMDYuODJIMjM1LjdWMjA1aDM4LjU1Wm0tMjYuNTUtMTJoMTQuNTVWMjE3SDI0Ny43WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==&quot;,&quot;sizes&quot;:&quot;512x512&quot;,&quot;type&quot;:&quot;image/svg+xml&quot;,&quot;purpose&quot;:&quot;any&quot;}]}">
+    
+    <!-- Inline service worker -->
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:application/javascript;charset=utf-8,self.addEventListener(%22install%22%2Cfunction(e)%7Be.waitUntil(caches.open(%22ncle-cache-v1%22).then(function(cache)%7Breturn%20cache.addAll(%5B%22.%2F%22%5D)%7D))%7D)%3Bself.addEventListener(%22fetch%22%2Cfunction(e)%7Be.respondWith(caches.match(e.request).then(function(response)%7Breturn%20response%7C%7Cfetch(e.request)%7D))%7D)%3B')
+                .then(() => console.log('Service worker registered successfully'))
+                .catch(err => console.error('Service worker registration failed:', err));
+        }
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -146,7 +160,7 @@
         <div class="video-section">
             <div class="video-title">Introduction to NCLE Certification</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="Introduction to NCLE Certification" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_1?playsinline=1&enablejsapi=1" title="Introduction to NCLE Certification" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -154,7 +168,7 @@
         <div class="video-section">
             <div class="video-title">Ophthalmic Optics Fundamentals</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Ophthalmic Optics Fundamentals" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_2?playsinline=1&enablejsapi=1" title="Ophthalmic Optics Fundamentals" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -162,7 +176,7 @@
         <div class="video-section">
             <div class="video-title">Contact Lens Materials and Designs</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Contact Lens Materials and Designs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_3?playsinline=1&enablejsapi=1" title="Contact Lens Materials and Designs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -170,7 +184,7 @@
         <div class="video-section">
             <div class="video-title">Contact Lens Fitting Techniques</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Contact Lens Fitting Techniques" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_4?playsinline=1&enablejsapi=1" title="Contact Lens Fitting Techniques" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -178,7 +192,7 @@
         <div class="video-section">
             <div class="video-title">Corneal Anatomy and Physiology</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_5" title="Corneal Anatomy and Physiology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_5?playsinline=1&enablejsapi=1" title="Corneal Anatomy and Physiology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -186,7 +200,7 @@
         <div class="video-section">
             <div class="video-title">Soft Contact Lens Verification</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_6" title="Soft Contact Lens Verification" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_6?playsinline=1&enablejsapi=1" title="Soft Contact Lens Verification" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -194,7 +208,7 @@
         <div class="video-section">
             <div class="video-title">RGP Contact Lens Verification</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_7" title="RGP Contact Lens Verification" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_7?playsinline=1&enablejsapi=1" title="RGP Contact Lens Verification" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -202,7 +216,7 @@
         <div class="video-section">
             <div class="video-title">Contact Lens Care Systems</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_8" title="Contact Lens Care Systems" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_8?playsinline=1&enablejsapi=1" title="Contact Lens Care Systems" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -210,7 +224,7 @@
         <div class="video-section">
             <div class="video-title">Managing Contact Lens Complications</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_9" title="Managing Contact Lens Complications" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_9?playsinline=1&enablejsapi=1" title="Managing Contact Lens Complications" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -218,7 +232,7 @@
         <div class="video-section">
             <div class="video-title">Specialty Contact Lenses</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_10" title="Specialty Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_10?playsinline=1&enablejsapi=1" title="Specialty Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -226,7 +240,7 @@
         <div class="video-section">
             <div class="video-title">Toric Contact Lenses</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_11" title="Toric Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_11?playsinline=1&enablejsapi=1" title="Toric Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -234,7 +248,7 @@
         <div class="video-section">
             <div class="video-title">Multifocal Contact Lenses</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_12" title="Multifocal Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_12?playsinline=1&enablejsapi=1" title="Multifocal Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -242,7 +256,7 @@
         <div class="video-section">
             <div class="video-title">Keratoconus and Scleral Lenses</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_13" title="Keratoconus and Scleral Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_13?playsinline=1&enablejsapi=1" title="Keratoconus and Scleral Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -250,7 +264,7 @@
         <div class="video-section">
             <div class="video-title">Pediatric Contact Lens Fitting</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_14" title="Pediatric Contact Lens Fitting" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_14?playsinline=1&enablejsapi=1" title="Pediatric Contact Lens Fitting" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -258,7 +272,7 @@
         <div class="video-section">
             <div class="video-title">Contact Lens Practice Management</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_15" title="Contact Lens Practice Management" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_15?playsinline=1&enablejsapi=1" title="Contact Lens Practice Management" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -266,7 +280,7 @@
         <div class="video-section">
             <div class="video-title">Orthokeratology Fundamentals</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_16" title="Orthokeratology Fundamentals" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_16?playsinline=1&enablejsapi=1" title="Orthokeratology Fundamentals" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -274,7 +288,7 @@
         <div class="video-section">
             <div class="video-title">Refractive Surgery and Contact Lenses</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_17" title="Refractive Surgery and Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_17?playsinline=1&enablejsapi=1" title="Refractive Surgery and Contact Lenses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -282,7 +296,7 @@
         <div class="video-section">
             <div class="video-title">NCLE Exam Strategy and Tips</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_18" title="NCLE Exam Strategy and Tips" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_18?playsinline=1&enablejsapi=1" title="NCLE Exam Strategy and Tips" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -290,7 +304,7 @@
         <div class="video-section">
             <div class="video-title">NCLE Practice Questions Review</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_19" title="NCLE Practice Questions Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_19?playsinline=1&enablejsapi=1" title="NCLE Practice Questions Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -298,7 +312,7 @@
         <div class="video-section">
             <div class="video-title">Final NCLE Exam Preparation</div>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_20" title="Final NCLE Exam Preparation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_20?playsinline=1&enablejsapi=1" title="Final NCLE Exam Preparation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -309,74 +323,69 @@
     </footer>
 
     <script>
-        // This script enables YouTube videos to be be played when the app is minimized or screen is locked 
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoFrames = document.querySelectorAll('iframe');
-            
-            // Add parameters to enable background play where possible
-            videoFrames.forEach(frame => {
-                // Add playsinline attribute which helps on iOS
-                let src = frame.src;
-                if (!src.includes('playsinline')) {
-                    src = src + (src.includes('?') ? '&' : '?') + 'playsinline=1';
-                }
+        // Handle install button behavior
+        let deferredPrompt;
+        const installButton = document.getElementById('install-button');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 76+ from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install button
+            installButton.style.display = 'block';
+        });
+        
+        installButton.addEventListener('click', () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
                 
-                // Adding other helpful parameters
-                if (!src.includes('enablejsapi')) {
-                    src = src + '&enablejsapi=1';
-                }
-                
-                frame.src = src;
-            });
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                    installButton.style.display = 'none';
+                });
+            }
         });
 
-        // Progressive Web App installation
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                // Create a service worker on the fly
-                const swData = new Blob([`
-                    // Simple service worker for PWA functionality
-                    const CACHE_NAME = 'ncle-exam-prep-v1';
-                    
-                    self.addEventListener('install', (event) => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME).then((cache) => {
-                                return cache.addAll([
-                                    './',
-                                ]);
-                            })
-                        );
-                    });
-                    
-                    self.addEventListener('fetch', (event) => {
-                        event.respondWith(
-                            caches.match(event.request).then((response) => {
-                                return response || fetch(event.request);
-                            })
-                        );
-                    });
-                `], {type: 'application/javascript'});
-                
-                const swUrl = URL.createObjectURL(swData);
-                navigator.serviceWorker.register(swUrl)
-                    .then(() => console.log('Service Worker registered'))
-                    .catch(error => console.error('Service Worker registration failed:', error));
-            });
+        // Add to the home screen for Safari on iOS
+        const isIos = () => {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            return /iphone|ipad|ipod/.test(userAgent);
+        };
+        
+        const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+        
+        // Checks if should display install popup notification for iOS
+        if (isIos() && !isInStandaloneMode()) {
+            // Here you can show an iOS-specific message about adding to home screen
+            const iosPrompt = document.createElement('div');
+            iosPrompt.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0,0,0,0.8);
+                color: white;
+                border-radius: 8px;
+                padding: 15px;
+                text-align: center;
+                max-width: 90%;
+                z-index: 999;
+            `;
+            iosPrompt.innerHTML = 'To install this app on your iPhone: tap <span style="font-size:20px;">⎙</span> then "Add to Home Screen"';
+            document.body.appendChild(iosPrompt);
+            
+            setTimeout(() => {
+                iosPrompt.remove();
+            }, 15000);
         }
-
-        // Inline manifest data
-        const manifestData = {
-            "name": "NCLE Exam Prep",
-            "short_name": "NCLE Prep",
-            "start_url": ".",
-            "display": "standalone",
-            "background_color": "#f8f9fa",
-            "theme_color": "#4b6cb7",
-            "description": "Comprehensive video resources for NCLE certification",
-            "icons": [
-                {
-                    "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI5NiIgcnk9Ijk2IiBmaWxsPSIjNGI2Y2I3Ii8+PHBhdGggZD0iTTI1NC44MiwxNjNhNiw2LDAsMCwxLTYtNlYxMTVhNiw2LDAsMCwxLDEyLDBWMTU3QTYsNiwwLDAsMSwyNTQuODIsMTYzWiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0yNTQuODIsNDAwYTYsNiwwLDAsMS02LTZWMzUyYTYsNiwwLDAsMSwxMiwwdjQyQTYsNiwwLDAsMSwyNTQuODIsNDAwWiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0zOTcsMjU2Ljc3SDM1NWE2LDYsMCwwLDEsMC0xMmg0MmE2LDYsMCwwLDEsMCwxMloiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTYwLDI1Ni43N0gxMThhNiw2LDAsMCwxLDAtMTJoNDJhNiw2LDAsMCwxLDAsMTJaIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI3NywzNTEuNTRIMjM0YTQyLjI4LDQyLjI4LDAsMCwxLTQyLjIzLTQyLjIzVjIwMi42OUExOC4yMiwxOC4yMiwwLDAsMSwyMTAsMTg0LjQ2aDkzLjk0YTE4LjIyLDE4LjIyLDAsMCwxLDE4LjIzLDE4LjIzVjMwOS4zMUE0Mi4yOCw0Mi4yOCwwLDAsMSwyNzcsMzUxLjU0Wk0yMTAsMTk2LjQ2YTYuMjQsNi4yNCwwLDAsMC02LjIzLDYuMjNWMzA5LjMxQTMwLjI2LDMwLjI2LDAsMCwwLDIzNCwzMzkuNTRoNDNhMzAuMjcsMzAuMjcsMCwwLDAsMzAuMjQtMzAuMjNWMjAyLjY5YTYuMjQsNi4yNCwwLDAsMC02LjIzLTYuMjNaIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI3NC4yNSwzMDYuODJIMjM1LjdWMjA1aDM4LjU1Wm0tMjYuNTUtMTJoMTQuNTVWMjE3SDI0Ny43WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==",
-                    "sizes": "512x512",
-                    "type": "image/svg+xml",
-                    "purpose": "any"
-                }
+    </script>
+</body>
+</html>
