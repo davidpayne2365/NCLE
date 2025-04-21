@@ -1090,44 +1090,62 @@
                 // Create a unique ID for the video
                 const videoId = 'video_' + Date.now();
                 
-                // Compress video URL if needed
-                const videoUrl = compressDataUrl(videoPreview.src);
+                // Store the video as a Blob URL
+                const videoUrl = videoPreview.src;
                 
-                // Add video to storage
-                const newVideo = {
-                    id: videoId,
-                    username: currentUser.username,
-                    userId: currentUser.id,
-                    caption: caption,
-                    url: videoUrl,
-                    timestamp: Date.now(),
-                    likes: [],
-                    comments: []
-                };
-                
-                // Add to videos array
-                videos.push(newVideo);
-                
-                // Save to local storage
-                const saveSuccess = saveToStorage('tiktok_videos', videos);
-                
-                if (saveSuccess) {
-                    console.log('Video saved successfully. Total videos:', videos.length);
-                    
-                    // Reset form
-                    captionInput.value = '';
-                    closeModal();
-                    
-                    // Re-render feed
-                    emptyFeed.style.display = 'none';
-                    renderFeed();
-                } else {
-                    uploadError.textContent = 'Failed to save video. The video might be too large.';
-                }
+                // Convert to Blob and store as Blob
+                fetch(videoUrl)
+                    .then(res => res.blob())
+                    .then(blob => {
+                        // Create a video reader
+                        const reader = new FileReader();
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = function() {
+                            const base64data = reader.result;
+                            
+                            // Add video to storage
+                            const newVideo = {
+                                id: videoId,
+                                username: currentUser.username,
+                                userId: currentUser.id,
+                                caption: caption,
+                                url: base64data, // Store as base64 string
+                                timestamp: Date.now(),
+                                likes: [],
+                                comments: []
+                            };
+                            
+                            // Add to videos array
+                            videos.push(newVideo);
+                            
+                            // Save to local storage
+                            const saveSuccess = saveToStorage('tiktok_videos', videos);
+                            
+                            if (saveSuccess) {
+                                console.log('Video saved successfully. Total videos:', videos.length);
+                                
+                                // Reset form
+                                captionInput.value = '';
+                                closeModal();
+                                
+                                // Re-render feed
+                                emptyFeed.style.display = 'none';
+                                renderFeed();
+                            } else {
+                                uploadError.textContent = 'Failed to save video. The video might be too large.';
+                            }
+                            
+                            hideLoader();
+                        };
+                    })
+                    .catch(err => {
+                        console.error('Error converting video:', err);
+                        uploadError.textContent = 'Error processing video: ' + err.message;
+                        hideLoader();
+                    });
             } catch (error) {
                 console.error('Error posting video:', error);
                 uploadError.textContent = 'Error posting video: ' + error.message;
-            } finally {
                 hideLoader();
             }
         }
