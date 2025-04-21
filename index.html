@@ -164,28 +164,76 @@
         
         let currentIndex = 0;
         const totalSlides = slides.length;
+        let players = [];
+        
+        // Create YouTube players
+        function onYouTubeIframeAPIReady() {
+            const iframes = document.querySelectorAll('iframe');
+            
+            iframes.forEach((iframe, index) => {
+                const videoId = getYouTubeVideoId(iframe.src);
+                
+                // Replace iframe with a div that the YouTube API can use
+                const playerDiv = document.createElement('div');
+                playerDiv.id = 'player-' + index;
+                iframe.parentNode.replaceChild(playerDiv, iframe);
+                
+                // Create YouTube player
+                const player = new YT.Player('player-' + index, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        'playsinline': 1,
+                        'rel': 0,
+                        'autoplay': index === 0 ? 1 : 0,
+                        'mute': index === 0 ? 1 : 0, // Must mute for autoplay to work on mobile
+                        'listType': 'playlist',
+                        'list': 'PLbkyEcKUyrE0SIyg58tNlSj6nlclFO_ne'
+                    },
+                    events: {
+                        'onReady': (event) => {
+                            if (index === 0) {
+                                event.target.playVideo(); // Auto-play the first video
+                            }
+                        }
+                    }
+                });
+                
+                players.push(player);
+            });
+        }
+        
+        // Extract YouTube video ID from URL
+        function getYouTubeVideoId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+        
+        // Load YouTube API
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
         // Update the UI based on current slide
         function updateUI() {
             slider.style.transform = `translateX(-${currentIndex * 100}%)`;
             
-            // Pause all videos when changing slides
-            pauseAllVideos();
-        }
-        
-        // Function to pause all videos
-        function pauseAllVideos() {
-            const iframes = document.querySelectorAll('iframe');
-            iframes.forEach(iframe => {
-                // Create a new src attribute with autoplay disabled
-                const currentSrc = iframe.src;
-                
-                try {
-                    // Post a message to the iframe to stop the video
-                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                } catch (e) {
-                    // If that fails, reload the iframe
-                    iframe.src = currentSrc;
+            // Stop all videos and play current video
+            players.forEach((player, index) => {
+                if (index === currentIndex) {
+                    // Play current video
+                    if (player && typeof player.playVideo === 'function') {
+                        player.unMute();
+                        player.playVideo();
+                    }
+                } else {
+                    // Pause other videos
+                    if (player && typeof player.pauseVideo === 'function') {
+                        player.pauseVideo();
+                    }
                 }
             });
         }
@@ -265,7 +313,7 @@
             }
         });
         
-        // Initialize swipe to be visible for 5 seconds on page load
+        // Initialize swipe hints to be visible
         setTimeout(() => {
             if (swipeCount === 0) {
                 swipeHints.forEach(hint => {
@@ -274,9 +322,6 @@
                 });
             }
         }, 5000);
-        
-        // Initialize
-        updateUI();
     </script>
 </body>
 </html>
