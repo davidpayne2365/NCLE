@@ -3,325 +3,1232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fullscreen Video Player</title>
-    
+    <title>TikTok Clone</title>
     <style>
+        :root {
+            --primary: #fe2c55;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f1f1f2;
+            --dark-gray: #8a8a8a;
+        }
+        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
         
         body {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-        }
-        
-        .video-container {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .slider {
-            width: 100%;
-            height: 100%;
+            background-color: var(--black);
+            color: var(--white);
+            height: 100vh;
             display: flex;
-            transition: transform 0.3s ease-out;
+            flex-direction: column;
         }
         
-        .slide {
-            min-width: 100%;
+        .app-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
             height: 100%;
             display: flex;
             flex-direction: column;
             position: relative;
+            overflow: hidden;
         }
         
-        .video-wrapper {
-            flex-grow: 1;
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            background-color: var(--black);
+            z-index: 10;
+        }
+        
+        .header .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .header .user-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Feed */
+        .feed {
+            flex: 1;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+        }
+        
+        .video-container {
+            height: calc(100vh - 140px);
+            scroll-snap-align: start;
             position: relative;
-            width: 100%;
-            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .video-wrapper iframe {
+        .video-player {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: 0;
+            object-fit: cover;
+            z-index: 1;
+            background-color: #333;
         }
         
-        /* Swipe indicators - visible briefly when the app loads */
-        .swipe-hint {
+        .video-info {
+            padding: 15px;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+        
+        .username {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .caption {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .video-actions {
             position: absolute;
-            top: 50%;
+            right: 15px;
+            bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .action-button {
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        
+        .action-button.heart {
+            color: white;
+        }
+        
+        .action-button.heart.active {
+            color: var(--primary);
+        }
+        
+        .action-count {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        /* Bottom Nav */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            background-color: var(--black);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .nav-item .icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        /* Upload Modal */
+        .upload-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .upload-modal.active {
+            display: flex;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .upload-preview {
+            width: 100%;
+            max-width: 400px;
+            height: 60vh;
+            background-color: #333;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        
+        .upload-form {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .upload-button, .post-button {
+            padding: 12px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .caption-input {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: none;
+        }
+        
+        /* Comment Section */
+        .comment-section {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60vh;
+            background-color: var(--black);
+            z-index: 50;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .comment-section.active {
+            display: flex;
+        }
+        
+        .comment-header {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .comment-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .comment-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .comment-avatar {
+            width: 36px;
+            height: 36px;
+            background-color: var(--gray);
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-weight: bold;
+        }
+        
+        .comment-content {
+            flex: 1;
+        }
+        
+        .comment-user {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .comment-text {
+            opacity: 0.8;
+        }
+        
+        .comment-input-container {
+            padding: 15px;
+            display: flex;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comment-input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 20px;
+            border: none;
+            margin-right: 10px;
+        }
+        
+        .comment-send {
+            padding: 12px 15px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .video-recording {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .recording-active {
+            display: block;
+        }
+        
+        .camera-preview {
+            width: 100%;
+            max-width: 400px;
+            height: 60vh;
+            background-color: #333;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        
+        .record-actions {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .record-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+        
+        .profile-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--black);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .profile-modal.active {
+            display: flex;
+        }
+        
+        .profile-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background-color: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-weight: bold;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-username {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .profile-videos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            width: 100%;
+        }
+        
+        .profile-video {
+            aspect-ratio: 1/1.3;
+            background-color: #333;
+            position: relative;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .views-count {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .error-message {
+            color: var(--primary);
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
             justify-content: center;
             align-items: center;
-            z-index: 10;
-            animation: pulse 1.5s infinite;
-            opacity: 0.7;
+            z-index: 200;
         }
         
-        .swipe-left {
-            left: 15px;
+        .loader-container.active {
+            display: flex;
         }
         
-        .swipe-right {
-            right: 15px;
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--white);
+            border-bottom-color: var(--primary);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        /* For arrow icons */
-        .arrow {
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            display: inline-block;
-            padding: 3px;
-        }
-        
-        .arrow-right {
-            transform: rotate(-45deg);
-        }
-        
-        .arrow-left {
-            transform: rotate(135deg);
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <div class="slider" id="slider">
-            <!-- First Video - NCLE UNDERSTANDING "K" READINGS -->
-            <div class="slide">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/jeZDUsNzSbU?list=PLbkyEcKUyrE0SIyg58tNlSj6nlclFO_ne" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-            
-            <!-- Second Video - NCLE ASTIGMATISM MADE EASY #1 -->
-            <div class="slide">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/aY2SyPlIedA?list=PLbkyEcKUyrE0SIyg58tNlSj6nlclFO_ne" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-            
-            <!-- Third Video - NCLE ASTIGMATISM MADE EASY #2 -->
-            <div class="slide">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/ZSatPyL6St4?list=PLbkyEcKUyrE0SIyg58tNlSj6nlclFO_ne" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-            
-            <!-- Fourth Video - NCLE ASTIGMATISM MADE EASY #3 -->
-            <div class="slide">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/753-MLcHGXM?list=PLbkyEcKUyrE0SIyg58tNlSj6nlclFO_ne" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-            
-            <!-- Fifth Video - THE ABO & NCLE SECRET -->
-            <div class="slide">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/yG8pRgGwgeU?list=PLbkyEcKUyrE0SIyg58tNlSj6nlclFO_ne" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-            
-            <!-- Add more video slides as needed -->
-            
-            <!-- Add more video slides as needed -->
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">TikTok Clone</div>
+            <div class="user-icon" id="userIcon">U</div>
         </div>
         
-        <!-- Swipe hints that will disappear after a few swipes -->
-        <div class="swipe-hint swipe-left"><i class="arrow arrow-left"></i></div>
-        <div class="swipe-hint swipe-right"><i class="arrow arrow-right"></i></div>
+        <!-- Feed -->
+        <div class="feed" id="feed">
+            <!-- Videos will be loaded here -->
+            <div class="empty-feed" style="height: 80vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 20px;">
+                <h2>No videos yet</h2>
+                <p style="margin-top: 10px; opacity: 0.7;">Create your first video by clicking the + button below</p>
+            </div>
+        </div>
+        
+        <!-- Bottom Nav -->
+        <div class="bottom-nav">
+            <div class="nav-item active" data-page="home">
+                <div class="icon">🏠</div>
+                <div>Home</div>
+            </div>
+            <div class="nav-item" data-page="discover">
+                <div class="icon">🔍</div>
+                <div>Discover</div>
+            </div>
+            <div class="nav-item" id="uploadButton">
+                <div class="icon" style="font-size: 30px;">+</div>
+            </div>
+            <div class="nav-item" data-page="inbox">
+                <div class="icon">📬</div>
+                <div>Inbox</div>
+            </div>
+            <div class="nav-item" data-page="profile">
+                <div class="icon">👤</div>
+                <div>Profile</div>
+            </div>
+        </div>
     </div>
-
+    
+    <!-- Upload Modal -->
+    <div class="upload-modal" id="uploadModal">
+        <div class="close-modal" id="closeUploadModal">✕</div>
+        <h2 style="margin-bottom: 20px;">Create a new video</h2>
+        
+        <div id="uploadControls">
+            <div class="upload-form">
+                <button class="upload-button" id="selectFileButton">Select video file</button>
+                <button class="upload-button" id="recordVideoButton">Record video</button>
+                <input type="file" id="videoFileInput" accept="video/*" style="display: none">
+            </div>
+        </div>
+        
+        <div id="recordingControls" style="display: none; width: 100%; max-width: 400px;">
+            <video class="camera-preview" id="cameraPreview" autoplay muted></video>
+            <div class="record-actions">
+                <button class="upload-button" id="startRecordingButton">Start Recording</button>
+                <button class="upload-button" id="stopRecordingButton" style="display: none;">Stop Recording</button>
+            </div>
+            <div class="video-recording" id="recordingIndicator">
+                Recording... <span id="recordingTime">0:00</span>
+            </div>
+        </div>
+        
+        <div id="previewControls" style="display: none; width: 100%; max-width: 400px;">
+            <video class="upload-preview" id="videoPreview" controls></video>
+            <div class="upload-form">
+                <input type="text" class="caption-input" id="captionInput" placeholder="Write a caption...">
+                <button class="post-button" id="postButton">Post</button>
+            </div>
+        </div>
+        
+        <div class="error-message" id="uploadError"></div>
+    </div>
+    
+    <!-- Comment Section -->
+    <div class="comment-section" id="commentSection">
+        <div class="comment-header">
+            <h3>Comments</h3>
+            <div class="close-modal" id="closeCommentSection">✕</div>
+        </div>
+        <div class="comment-list" id="commentList">
+            <!-- Comments will be loaded here -->
+        </div>
+        <div class="comment-input-container">
+            <input type="text" class="comment-input" id="commentInput" placeholder="Add a comment...">
+            <button class="comment-send" id="commentSendButton">Send</button>
+        </div>
+    </div>
+    
+    <!-- Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-header">
+            <div class="close-modal" id="closeProfileModal">✕</div>
+            <button class="upload-button" id="logoutButton" style="margin: 0;">Logout</button>
+        </div>
+        
+        <div class="profile-info">
+            <div class="profile-avatar" id="profileAvatar">U</div>
+            <div class="profile-username" id="profileUsername">Username</div>
+        </div>
+        
+        <div class="profile-stats">
+            <div class="stat-item">
+                <div class="stat-value" id="followingCount">0</div>
+                <div class="stat-label">Following</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="followersCount">0</div>
+                <div class="stat-label">Followers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="likesCount">0</div>
+                <div class="stat-label">Likes</div>
+            </div>
+        </div>
+        
+        <div class="profile-videos" id="profileVideos">
+            <!-- User videos will be loaded here -->
+        </div>
+    </div>
+    
+    <!-- Loader -->
+    <div class="loader-container" id="loaderContainer">
+        <div class="loader"></div>
+    </div>
+    
     <script>
-        // Setup slider functionality
-        const slider = document.getElementById('slider');
-        const slides = document.querySelectorAll('.slide');
-        const swipeHints = document.querySelectorAll('.swipe-hint');
+        // Global variables
+        let currentUser = null;
+        let videos = [];
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let recordingInterval = null;
+        let recordingTime = 0;
+        let currentVideoId = null;
         
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-        let players = [];
+        // DOM Elements
+        const feed = document.getElementById('feed');
+        const uploadModal = document.getElementById('uploadModal');
+        const uploadButton = document.getElementById('uploadButton');
+        const closeUploadModal = document.getElementById('closeUploadModal');
+        const videoFileInput = document.getElementById('videoFileInput');
+        const selectFileButton = document.getElementById('selectFileButton');
+        const recordVideoButton = document.getElementById('recordVideoButton');
+        const uploadControls = document.getElementById('uploadControls');
+        const recordingControls = document.getElementById('recordingControls');
+        const previewControls = document.getElementById('previewControls');
+        const cameraPreview = document.getElementById('cameraPreview');
+        const videoPreview = document.getElementById('videoPreview');
+        const captionInput = document.getElementById('captionInput');
+        const postButton = document.getElementById('postButton');
+        const uploadError = document.getElementById('uploadError');
+        const startRecordingButton = document.getElementById('startRecordingButton');
+        const stopRecordingButton = document.getElementById('stopRecordingButton');
+        const recordingIndicator = document.getElementById('recordingIndicator');
+        const recordingTimeDisplay = document.getElementById('recordingTime');
+        const commentSection = document.getElementById('commentSection');
+        const closeCommentSection = document.getElementById('closeCommentSection');
+        const commentList = document.getElementById('commentList');
+        const commentInput = document.getElementById('commentInput');
+        const commentSendButton = document.getElementById('commentSendButton');
+        const userIcon = document.getElementById('userIcon');
+        const profileModal = document.getElementById('profileModal');
+        const closeProfileModal = document.getElementById('closeProfileModal');
+        const profileAvatar = document.getElementById('profileAvatar');
+        const profileUsername = document.getElementById('profileUsername');
+        const followingCount = document.getElementById('followingCount');
+        const followersCount = document.getElementById('followersCount');
+        const likesCount = document.getElementById('likesCount');
+        const profileVideos = document.getElementById('profileVideos');
+        const logoutButton = document.getElementById('logoutButton');
+        const loaderContainer = document.getElementById('loaderContainer');
+        const emptyFeed = document.querySelector('.empty-feed');
+        const navItems = document.querySelectorAll('.nav-item');
         
-        // Create YouTube players
-        function onYouTubeIframeAPIReady() {
-            const iframes = document.querySelectorAll('iframe');
+        // Initialize the app
+        function initApp() {
+            // Check if user is logged in
+            const storedUser = localStorage.getItem('tiktok_user');
+            if (storedUser) {
+                currentUser = JSON.parse(storedUser);
+                userIcon.textContent = currentUser.username.charAt(0).toUpperCase();
+            } else {
+                // Create random username if not logged in
+                const randomId = Math.floor(Math.random() * 10000);
+                currentUser = {
+                    id: `user_${randomId}`,
+                    username: `user${randomId}`,
+                    following: 0,
+                    followers: 0,
+                    likes: 0
+                };
+                localStorage.setItem('tiktok_user', JSON.stringify(currentUser));
+                userIcon.textContent = currentUser.username.charAt(0).toUpperCase();
+            }
             
-            iframes.forEach((iframe, index) => {
-                const videoId = getYouTubeVideoId(iframe.src);
+            // Load videos from local storage
+            const storedVideos = localStorage.getItem('tiktok_videos');
+            if (storedVideos) {
+                videos = JSON.parse(storedVideos);
+                renderFeed();
+            }
+            
+            // Set up event listeners
+            setupEventListeners();
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Upload video
+            uploadButton.addEventListener('click', openUploadModal);
+            closeUploadModal.addEventListener('click', closeModal);
+            selectFileButton.addEventListener('click', () => videoFileInput.click());
+            videoFileInput.addEventListener('change', handleFileSelect);
+            recordVideoButton.addEventListener('click', setupCamera);
+            postButton.addEventListener('click', postVideo);
+            
+            // Recording
+            startRecordingButton.addEventListener('click', startRecording);
+            stopRecordingButton.addEventListener('click', stopRecording);
+            
+            // Comments
+            closeCommentSection.addEventListener('click', () => {
+                commentSection.classList.remove('active');
+            });
+            commentSendButton.addEventListener('click', postComment);
+            
+            // Profile
+            userIcon.addEventListener('click', openProfileModal);
+            closeProfileModal.addEventListener('click', () => {
+                profileModal.classList.remove('active');
+            });
+            logoutButton.addEventListener('click', logout);
+            
+            // Nav items
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (item.dataset.page === 'profile') {
+                        openProfileModal();
+                    }
+                    
+                    navItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+        }
+        
+        // Render the feed with videos
+        function renderFeed() {
+            // Clear feed
+            feed.innerHTML = '';
+            
+            if (videos.length === 0) {
+                feed.appendChild(emptyFeed);
+                return;
+            }
+            
+            // Sort videos by date (newest first)
+            const sortedVideos = [...videos].sort((a, b) => b.timestamp - a.timestamp);
+            
+            // Add videos to feed
+            sortedVideos.forEach(video => {
+                const videoContainer = document.createElement('div');
+                videoContainer.className = 'video-container';
                 
-                // Replace iframe with a div that the YouTube API can use
-                const playerDiv = document.createElement('div');
-                playerDiv.id = 'player-' + index;
-                iframe.parentNode.replaceChild(playerDiv, iframe);
+                const videoElement = document.createElement('video');
+                videoElement.className = 'video-player';
+                videoElement.src = video.url;
+                videoElement.setAttribute('loop', '');
+                videoElement.setAttribute('data-id', video.id);
                 
-                // Create YouTube player
-                const player = new YT.Player('player-' + index, {
-                    height: '100%',
-                    width: '100%',
-                    videoId: videoId,
-                    playerVars: {
-                        'playsinline': 1,
-                        'rel': 0,
-                        'autoplay': index === 0 ? 1 : 0,
-                        'mute': index === 0 ? 1 : 0, // Must mute for autoplay to work on mobile
-                        'listType': 'playlist',
-                        'list': 'PLbkyEcKUyrE0SIyg58tNlSj6nlclFO_ne'
-                    },
-                    events: {
-                        'onReady': (event) => {
-                            if (index === 0) {
-                                event.target.playVideo(); // Auto-play the first video
-                            }
+                const videoInfo = document.createElement('div');
+                videoInfo.className = 'video-info';
+                
+                const username = document.createElement('div');
+                username.className = 'username';
+                username.textContent = video.username;
+                
+                const caption = document.createElement('div');
+                caption.className = 'caption';
+                caption.textContent = video.caption;
+                
+                const videoActions = document.createElement('div');
+                videoActions.className = 'video-actions';
+                
+                const heartButton = document.createElement('div');
+                heartButton.className = `action-button heart ${video.likes.includes(currentUser.id) ? 'active' : ''}`;
+                heartButton.innerHTML = '❤️';
+                heartButton.setAttribute('data-id', video.id);
+                heartButton.addEventListener('click', () => toggleLike(video.id));
+                
+                const likeCount = document.createElement('div');
+                likeCount.className = 'action-count';
+                likeCount.textContent = video.likes.length;
+                
+                const commentButton = document.createElement('div');
+                commentButton.className = 'action-button';
+                commentButton.innerHTML = '💬';
+                commentButton.addEventListener('click', () => openComments(video.id));
+                
+                const commentCount = document.createElement('div');
+                commentCount.className = 'action-count';
+                commentCount.textContent = video.comments.length;
+                
+                videoInfo.appendChild(username);
+                videoInfo.appendChild(caption);
+                
+                heartButton.appendChild(likeCount);
+                commentButton.appendChild(commentCount);
+                
+                videoActions.appendChild(heartButton);
+                videoActions.appendChild(commentButton);
+                
+                videoContainer.appendChild(videoElement);
+                videoContainer.appendChild(videoInfo);
+                videoContainer.appendChild(videoActions);
+                
+                feed.appendChild(videoContainer);
+                
+                // Add intersection observer for videos
+                observeVideo(videoElement);
+            });
+        }
+        
+        // Observe video elements to autoplay when in view
+        function observeVideo(videoElement) {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        videoElement.play();
+                    } else {
+                        videoElement.pause();
+                    }
+                });
+            }, { threshold: 0.6 });
+            
+            observer.observe(videoElement);
+        }
+        
+        // Open upload modal
+        function openUploadModal() {
+            uploadModal.classList.add('active');
+            uploadControls.style.display = 'block';
+            recordingControls.style.display = 'none';
+            previewControls.style.display = 'none';
+            uploadError.textContent = '';
+        }
+        
+        // Close modal
+        function closeModal() {
+            uploadModal.classList.remove('active');
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+            
+            if (cameraPreview.srcObject) {
+                const tracks = cameraPreview.srcObject.getTracks();
+                tracks.forEach(track => track.stop());
+                cameraPreview.srcObject = null;
+            }
+            
+            clearInterval(recordingInterval);
+            recordingTime = 0;
+            recordingTimeDisplay.textContent = '0:00';
+            recordingIndicator.classList.remove('recording-active');
+            recordedChunks = [];
+        }
+        
+        // Handle file selection
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            if (!file.type.startsWith('video/')) {
+                uploadError.textContent = 'Please select a video file';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                videoPreview.src = event.target.result;
+                uploadControls.style.display = 'none';
+                previewControls.style.display = 'block';
+                captionInput.value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // Set up camera for recording
+        function setupCamera() {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                uploadError.textContent = 'Your browser does not support video recording';
+                return;
+            }
+            
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(stream => {
+                    cameraPreview.srcObject = stream;
+                    uploadControls.style.display = 'none';
+                    recordingControls.style.display = 'block';
+                    
+                    // Set up media recorder
+                    mediaRecorder = new MediaRecorder(stream);
+                    
+                    mediaRecorder.ondataavailable = function(e) {
+                        if (e.data.size > 0) {
+                            recordedChunks.push(e.data);
+                        }
+                    };
+                    
+                    mediaRecorder.onstop = function() {
+                        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                        const url = URL.createObjectURL(blob);
+                        videoPreview.src = url;
+                        
+                        recordingControls.style.display = 'none';
+                        previewControls.style.display = 'block';
+                        
+                        // Stop all tracks
+                        const tracks = cameraPreview.srcObject.getTracks();
+                        tracks.forEach(track => track.stop());
+                        cameraPreview.srcObject = null;
+                        
+                        clearInterval(recordingInterval);
+                        recordingTime = 0;
+                        recordingTimeDisplay.textContent = '0:00';
+                        recordingIndicator.classList.remove('recording-active');
+                    };
+                })
+                .catch(err => {
+                    uploadError.textContent = 'Failed to access camera: ' + err.message;
+                });
+        }
+        
+        // Start recording
+        function startRecording() {
+            if (!mediaRecorder) return;
+            
+            recordedChunks = [];
+            mediaRecorder.start(1000);
+            startRecordingButton.style.display = 'none';
+            stopRecordingButton.style.display = 'block';
+            recordingIndicator.classList.add('recording-active');
+            
+            // Update recording time
+            recordingTime = 0;
+            recordingInterval = setInterval(() => {
+                recordingTime++;
+                const minutes = Math.floor(recordingTime / 60);
+                const seconds = recordingTime % 60;
+                recordingTimeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Limit recording to 60 seconds
+                if (recordingTime >= 60) {
+                    stopRecording();
+                }
+            }, 1000);
+        }
+        
+        // Stop recording
+        function stopRecording() {
+            if (!mediaRecorder) return;
+            
+            if (mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+            
+            startRecordingButton.style.display = 'block';
+            stopRecordingButton.style.display = 'none';
+        }
+        
+        // Post video
+        function postVideo() {
+            const caption = captionInput.value.trim();
+            if (!caption) {
+                uploadError.textContent = 'Please add a caption';
+                return;
+            }
+            
+            showLoader();
+            
+            // Create a unique ID for the video
+            const videoId = 'video_' + Date.now();
+            
+            // Add video to storage
+            const newVideo = {
+                id: videoId,
+                username: currentUser.username,
+                userId: currentUser.id,
+                caption: caption,
+                url: videoPreview.src,
+                timestamp: Date.now(),
+                likes: [],
+                comments: []
+            };
+            
+            // Add to videos array
+            videos.push(newVideo);
+            
+            // Save to local storage
+            localStorage.setItem('tiktok_videos', JSON.stringify(videos));
+            
+            // Reset form
+            captionInput.value = '';
+            closeModal();
+            
+            // Re-render feed
+            renderFeed();
+            hideLoader();
+        }
+        
+        // Toggle like on a video
+        function toggleLike(videoId) {
+            const videoIndex = videos.findIndex(video => video.id === videoId);
+            if (videoIndex === -1) return;
+            
+            const likeIndex = videos[videoIndex].likes.indexOf(currentUser.id);
+            
+            if (likeIndex === -1) {
+                // Add like
+                videos[videoIndex].likes.push(currentUser.id);
+            } else {
+                // Remove like
+                videos[videoIndex].likes.splice(likeIndex, 1);
+            }
+            
+            // Update local storage
+            localStorage.setItem('tiktok_videos', JSON.stringify(videos));
+            
+            // Update UI
+            const heartButton = document.querySelector(`.heart[data-id="${videoId}"]`);
+            const likeCount = heartButton.querySelector('.action-count');
+            
+            likeCount.textContent = videos[videoIndex].likes.length;
+            
+            if (likeIndex === -1) {
+                heartButton.classList.add('active');
+            } else {
+                heartButton.classList.remove('active');
+            }
+            
+            // Update user's total likes
+            updateUserLikes();
+        }
+        
+        // Open comments section
+        function openComments(videoId) {
+            currentVideoId = videoId;
+            commentSection.classList.add('active');
+            
+            // Find video
+            const video = videos.find(v => v.id === videoId);
+            if (!video) return;
+            
+            // Clear comment list
+            commentList.innerHTML = '';
+            
+            // Add comments
+            video.comments.forEach(comment => {
+                addCommentToUI(comment);
+            });
+            
+            // Clear input
+            commentInput.value = '';
+        }
+        
+        // Post a comment
+        function postComment() {
+            if (!currentVideoId) return;
+            
+            const commentText = commentInput.value.trim();
+            if (!commentText) return;
+            
+            // Find video
+            const videoIndex = videos.findIndex(v => v.id === currentVideoId);
+            if (videoIndex === -1) return;
+            
+            // Create comment object
+            const newComment = {
+                id: 'comment_' + Date.now(),
+                userId: currentUser.id,
+                username: currentUser.username,
+                text: commentText,
+                timestamp: Date.now()
+            };
+            
+            // Add to video comments
+            videos[videoIndex].comments.push(newComment);
+            
+            // Update local storage
+            localStorage.setItem('tiktok_videos', JSON.stringify(videos));
+            
+            // Add to UI
+            addCommentToUI(newComment);
+            
+            // Update comment count in feed
+            const commentButton = document.querySelector(`.video-container:has(video[data-id="${currentVideoId}"]) .video-actions .action-button:nth-child(2)`);
+            if (commentButton) {
+                const commentCount = commentButton.querySelector('.action-count');
+                if (commentCount) {
+                    commentCount.textContent = videos[videoIndex].comments.length;
+                }
+            }
+            
+            // Clear input
+            commentInput.value = '';
+        }
+        
+        // Add comment to UI
+        function addCommentToUI(comment) {
+            const commentItem = document.createElement('div');
+            commentItem.className = 'comment-item';
+            
+            const commentAvatar = document.createElement('div');
+            commentAvatar.className = 'comment-avatar';
+            commentAvatar.textContent = comment.username.charAt(0).toUpperCase();
+            
+            const commentContent = document.createElement('div');
+            commentContent.className = 'comment-content';
+            
+            const commentUser = document.createElement('div');
+            commentUser.className = 'comment-user';
+            commentUser.textContent = comment.username;
+            
+            const commentText = document.createElement('div');
+            commentText.className = 'comment-text';
+            commentText.textContent = comment.text;
+            
+            commentContent.appendChild(commentUser);
+            commentContent.appendChild(commentText);
+            
+            commentItem.appendChild(commentAvatar);
+            commentItem.appendChild(commentContent);
+            
+            commentList.appendChild(commentItem);
+        }
+        
+        // Open profile modal
+        function openProfileModal() {
+            profileModal.classList.add('active');
+            
+            // Set profile info
+            profileAvatar.textContent = currentUser.username.charAt(0).toUpperCase();
+            profileUsername.textContent = currentUser.username;
+            followingCount.textContent = currentUser.following;
+            followersCount.textContent = currentUser.followers;
+            likesCount.textContent = currentUser.likes;
+            
+            // Clear profile videos
+            profileVideos.innerHTML = '';
+            
+            // Filter videos by user
+            const userVideos = videos.filter(video => video.userId === currentUser.id);
+            
+            // Sort by date (newest first)
+            const sortedVideos = [...userVideos].sort((a, b) => b.timestamp - a.timestamp);
+            
+            // Add videos to profile
+            sortedVideos.forEach(video => {
+                const videoElement = document.createElement('div');
+                videoElement.className = 'profile-video';
+                
+                const videoImg = document.createElement('video');
+                videoImg.className = 'video-thumbnail';
+                videoImg.src = video.url;
+                
+                const viewsCount = document.createElement('div');
+                viewsCount.className = 'views-count';
+                viewsCount.innerHTML = `❤️ ${video.likes.length}`;
+                
+                videoElement.appendChild(videoImg);
+                videoElement.appendChild(viewsCount);
+                
+                profileVideos.appendChild(videoElement);
+            });
+        }
+        
+        // Update user's total likes
+        function updateUserLikes() {
+            const userVideos = videos.filter(video => video.userId === currentUser.id);
+            const totalLikes = userVideos.reduce((total, video) => total + video.likes.length, 0);
+            
+            currentUser.likes = totalLikes;
+            localStorage.setItem('tiktok_user', JSON.stringify(currentUser));
+        }
+        
+        // Logout
+        function logout() {
+            localStorage.removeItem('tiktok_user');
+            window.location.reload();
+        }
+        
+        // Show loader
+        function showLoader() {
+            loaderContainer.classList.add('active');
+        }
+        
+        // Hide loader
+        function hideLoader() {
+            loaderContainer.classList.remove('active');
+        }
+        
+        // Fix for :has selector support
+        if (!CSS.supports('selector(:has(*))')) {
+            document.querySelectorAll('.video-container').forEach(container => {
+                const videoElement = container.querySelector('video');
+                if (videoElement && videoElement.getAttribute('data-id') === currentVideoId) {
+                    const commentButton = container.querySelector('.video-actions .action-button:nth-child(2)');
+                    if (commentButton) {
+                        const commentCount = commentButton.querySelector('.action-count');
+                        if (commentCount) {
+                            commentCount.textContent = videos[videoIndex].comments.length;
                         }
                     }
-                });
-                
-                players.push(player);
-            });
-        }
-        
-        // Extract YouTube video ID from URL
-        function getYouTubeVideoId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
-        }
-        
-        // Load YouTube API
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        
-        // Update the UI based on current slide
-        function updateUI() {
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            
-            // Stop all videos and play current video
-            players.forEach((player, index) => {
-                if (index === currentIndex) {
-                    // Play current video
-                    if (player && typeof player.playVideo === 'function') {
-                        player.unMute();
-                        player.playVideo();
-                    }
-                } else {
-                    // Pause other videos
-                    if (player && typeof player.pauseVideo === 'function') {
-                        player.pauseVideo();
-                    }
                 }
             });
         }
         
-        // Touch swipe handling
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let swipeCount = 0;
-        
-        // Add touch events to the entire document for a more TikTok-like experience
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, false);
-        
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
-        
-        function handleSwipe() {
-            const swipeThreshold = 50; // Minimum pixel distance for a swipe
-            
-            if (touchEndX < touchStartX - swipeThreshold) {
-                // Swiped left - go to next slide
-                if (currentIndex < totalSlides - 1) {
-                    currentIndex++;
-                } else {
-                    // Wrap around to the first slide
-                    currentIndex = 0;
-                }
-                updateUI();
-                countSwipe();
-            }
-            
-            if (touchEndX > touchStartX + swipeThreshold) {
-                // Swiped right - go to previous slide
-                if (currentIndex > 0) {
-                    currentIndex--;
-                } else {
-                    // Wrap around to the last slide
-                    currentIndex = totalSlides - 1;
-                }
-                updateUI();
-                countSwipe();
-            }
-        }
-        
-        // Handle swipe hint removal after a few swipes
-        function countSwipe() {
-            swipeCount++;
-            if (swipeCount >= 3) {
-                // Remove swipe hints after 3 swipes
-                swipeHints.forEach(hint => {
-                    hint.style.display = 'none';
-                });
-            }
-        }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                } else {
-                    // Wrap around to the last slide
-                    currentIndex = totalSlides - 1;
-                }
-                updateUI();
-            } else if (e.key === 'ArrowRight') {
-                if (currentIndex < totalSlides - 1) {
-                    currentIndex++;
-                } else {
-                    // Wrap around to the first slide
-                    currentIndex = 0;
-                }
-                updateUI();
-            }
-        });
-        
-        // Initialize swipe hints to be visible
-        setTimeout(() => {
-            if (swipeCount === 0) {
-                swipeHints.forEach(hint => {
-                    hint.style.opacity = '0';
-                    hint.style.transition = 'opacity 1s';
-                });
-            }
-        }, 5000);
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
