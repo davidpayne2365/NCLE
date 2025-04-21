@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCLE Contact Lens Exam Interactive Quiz</title>
+    <title>NCLE Contact Lens Exam Quiz</title>
     <style>
         :root {
             --primary-color: #1a5f7a;
@@ -32,19 +32,11 @@
             margin: 0 auto;
         }
         
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
         h1 {
             font-size: 1.8rem;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
         }
         
         h2 {
@@ -68,21 +60,6 @@
             padding: 20px;
             margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .domain-selector {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        select {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: white;
-            width: 100%;
-            max-width: 400px;
         }
         
         .question-container {
@@ -207,17 +184,11 @@
             display: block;
         }
         
-        .concept-box {
-            background-color: var(--accent-color);
-            border-left: 4px solid var(--primary-color);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .concept-box h3 {
-            color: var(--primary-color);
-            margin-bottom: 8px;
+        .start-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 12px 30px;
+            font-size: 1.1rem;
         }
         
         @media screen and (max-width: 600px) {
@@ -241,40 +212,14 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>NCLE Contact Lens Exam Interactive Quiz</h1>
-        <p>Test your knowledge of contact lens principles and prepare for the NCLE certification exam</p>
-    </header>
+    <h1>NCLE Contact Lens Exam Quiz</h1>
     
     <main>
-        <div class="domain-selector">
-            <h2>Select a Domain to Study</h2>
-            <select id="domain-select">
-                <option value="all">All Domains</option>
-                <option value="domain1">Domain I: Ocular Anatomy, Physiology, and Pathology</option>
-                <option value="domain2">Domain II: Refractive Errors</option>
-                <option value="domain3">Domain III: Instrumentation for Measurement and Observation</option>
-                <option value="domain4">Domain IV: Prefitting</option>
-                <option value="domain5">Domain V: Diagnostic Fitting</option>
-                <option value="domain6">Domain VI: Dispensing</option>
-                <option value="domain7">Domain VII: Follow-up</option>
-                <option value="domain8">Domain VIII: Regulatory and Administrative</option>
-            </select>
-        </div>
-        
         <div class="quiz-container">
             <div id="start-screen" class="show">
-                <h2>Welcome to the NCLE Exam Quiz!</h2>
-                <p>This interactive quiz will help you prepare for the National Contact Lens Examiners (NCLE) certification exam by testing your knowledge across all eight domains of the exam.</p>
-                
-                <div class="concept-box">
-                    <h3>About the NCLE Exam</h3>
-                    <p>The Contact Lens Registry Examination (CLRE) is a comprehensive assessment that validates your knowledge and skills in fitting, dispensing, and ensuring the safe use of contact lenses. The exam consists of 125 multiple-choice questions to be completed in 2 hours.</p>
-                </div>
-                
-                <p>Select a specific domain from the dropdown menu above or keep "All Domains" selected to test your knowledge across the entire exam content. Each question includes detailed explanations to help you learn as you go.</p>
-                
-                <button id="start-btn">Start Quiz</button>
+                <h2>Ready for a Quick Quiz?</h2>
+                <p>This quiz contains 25 random questions to test your knowledge of contact lens principles.</p>
+                <button id="start-btn" class="start-btn">Start Quiz</button>
             </div>
             
             <div id="quiz-screen" class="hide">
@@ -295,14 +240,14 @@
                 </div>
                 
                 <div class="progress-container">
-                    <p class="progress-text" id="progress-text">Question 1 of 10</p>
+                    <p class="progress-text" id="progress-text">Question 1 of 25</p>
                     <div class="progress-bar">
                         <div class="progress" id="progress-bar"></div>
                     </div>
                 </div>
                 
                 <div class="score-container" id="score-container">
-                    Score: <span id="score">0</span>/<span id="total">0</span>
+                    Score: <span id="score">0</span>/<span id="total">25</span>
                 </div>
             </div>
             
@@ -311,673 +256,610 @@
                 <p>You've completed the quiz! Here's how you did:</p>
                 
                 <div class="score-container">
-                    <p>Final Score: <span id="final-score">0</span>/<span id="final-total">0</span></p>
+                    <p>Final Score: <span id="final-score">0</span>/<span id="final-total">25</span></p>
                     <p>Percentage: <span id="percentage">0</span>%</p>
                 </div>
                 
-                <div class="concept-box">
-                    <h3>Keep Learning</h3>
-                    <p>Continue to study the domains where you scored lower. For the NCLE exam, it's important to understand both the theoretical concepts and their practical applications in contact lens fitting and care.</p>
-                </div>
-                
                 <div class="buttons">
-                    <button id="restart-btn">Restart Quiz</button>
-                    <button id="new-domain-btn">Select New Domain</button>
+                    <button id="restart-btn">Take Quiz Again</button>
                 </div>
             </div>
         </div>
     </main>
     
     <script>
-        // Quiz Questions Database organized by domain
-        const quizQuestions = {
-            domain1: [
-                {
-                    question: "Which layer of the cornea is responsible for most of the cornea's refractive power?",
-                    options: [
-                        "Epithelium",
-                        "Bowman's membrane",
-                        "Stroma",
-                        "Descemet's membrane"
-                    ],
-                    answer: 0,
-                    explanation: "The epithelium is the anterior (front) layer of the cornea and provides about two-thirds of the cornea's total refractive power. This is important for contact lens fitting as lenses rest on this layer, and any epithelial damage can affect vision and lens comfort."
-                },
-                {
-                    question: "What is the average horizontal visible iris diameter (HVID) in adults?",
-                    options: [
-                        "8.0 mm",
-                        "10.0 mm",
-                        "11.8 mm",
-                        "12.5 mm"
-                    ],
-                    answer: 2,
-                    explanation: "The average horizontal visible iris diameter (HVID) in adults is around 11.8 mm. This measurement is crucial for selecting the appropriate diameter for contact lenses, especially rigid gas permeable (RGP) lenses."
-                },
-                {
-                    question: "Which of the following is NOT a layer of the tear film?",
-                    options: [
-                        "Lipid layer",
-                        "Aqueous layer",
-                        "Mucin layer",
-                        "Protein layer"
-                    ],
-                    answer: 3,
-                    explanation: "The tear film consists of three layers: the lipid (oily) outer layer that prevents evaporation, the aqueous (watery) middle layer that hydrates the cornea, and the mucin inner layer that helps the tear film adhere to the corneal surface. There is no distinct protein layer in the tear film, although proteins are found within the aqueous layer."
-                },
-                {
-                    question: "Which ocular structure produces aqueous humor?",
-                    options: [
-                        "Iris",
-                        "Ciliary body",
-                        "Trabecular meshwork",
-                        "Lens"
-                    ],
-                    answer: 1,
-                    explanation: "The ciliary body produces aqueous humor, which maintains intraocular pressure and provides nutrients to the lens and cornea. Understanding aqueous humor production and drainage is important when considering patients with glaucoma for contact lens wear."
-                },
-                {
-                    question: "What is the normal corneal thickness at the center?",
-                    options: [
-                        "0.3 mm",
-                        "0.5 mm",
-                        "0.7 mm",
-                        "1.0 mm"
-                    ],
-                    answer: 1,
-                    explanation: "The normal corneal thickness at the center is approximately 0.5 mm (or 500 microns). Corneal thickness is an important measurement when evaluating patients for certain types of contact lenses, especially in patients with conditions like keratoconus."
-                },
-                {
-                    question: "Which condition is characterized by corneal thinning and steepening that results in an irregular, cone-shaped cornea?",
-                    options: [
-                        "Keratitis",
-                        "Keratoconus",
-                        "Corneal dystrophy",
-                        "Pinguecula"
-                    ],
-                    answer: 1,
-                    explanation: "Keratoconus is characterized by progressive corneal thinning and steepening, resulting in an irregular, cone-shaped cornea. This condition often requires specialty contact lenses like rigid gas permeable lenses, hybrid lenses, or scleral lenses for proper vision correction."
-                },
-                {
-                    question: "Which glands in the eyelids produce the oily component of tears?",
-                    options: [
-                        "Meibomian glands",
-                        "Lacrimal glands",
-                        "Goblet cells",
-                        "Glands of Zeis"
-                    ],
-                    answer: 0,
-                    explanation: "Meibomian glands are sebaceous glands located in the tarsal plates of the eyelids that produce the oily (lipid) component of tears. This oil helps prevent tear evaporation and is crucial for maintaining a stable tear film, which is essential for comfortable contact lens wear."
-                },
-                {
-                    question: "Which of the following is a sign of giant papillary conjunctivitis (GPC)?",
-                    options: [
-                        "Flat, clear cornea",
-                        "Large papillae under the upper eyelid",
-                        "Yellow discharge from the eye",
-                        "Reduced tear production"
-                    ],
-                    answer: 1,
-                    explanation: "Giant papillary conjunctivitis (GPC) is characterized by large papillae (bumps) under the upper eyelid. It's often associated with contact lens wear, especially soft lenses, and can cause symptoms like itching, mucous discharge, and reduced lens comfort."
-                }
-            ],
-            domain2: [
-                {
-                    question: "What is the refractive error in which light focuses behind the retina called?",
-                    options: [
-                        "Myopia",
-                        "Hyperopia",
-                        "Astigmatism",
-                        "Presbyopia"
-                    ],
-                    answer: 1,
-                    explanation: "Hyperopia (farsightedness) occurs when light focuses behind the retina, causing difficulty with near vision. For contact lens correction, plus-powered lenses are used to bring the focal point forward onto the retina."
-                },
-                {
-                    question: "A contact lens prescription of -2.50D indicates which refractive error?",
-                    options: [
-                        "Moderate myopia",
-                        "Mild hyperopia",
-                        "Severe astigmatism",
-                        "Presbyopia"
-                    ],
-                    answer: 0,
-                    explanation: "A contact lens prescription of -2.50D indicates moderate myopia (nearsightedness). Minus-powered lenses are used to correct myopia by moving the focal point back onto the retina."
-                },
-                {
-                    question: "Which condition requires toric contact lenses for proper correction?",
-                    options: [
-                        "Simple myopia",
-                        "Simple hyperopia",
-                        "Astigmatism",
-                        "Presbyopia"
-                    ],
-                    answer: 2,
-                    explanation: "Astigmatism requires toric contact lenses for proper correction. Toric lenses have different powers in different meridians to correct the irregularly curved cornea characteristic of astigmatism."
-                },
-                {
-                    question: "What does the 'add' power in a multifocal contact lens prescription refer to?",
-                    options: [
-                        "The power needed to correct astigmatism",
-                        "The additional power needed for near vision",
-                        "The total spherical power of the lens",
-                        "The power needed to correct myopia"
-                    ],
-                    answer: 1,
-                    explanation: "The 'add' power in a multifocal contact lens prescription refers to the additional plus power needed for near vision. This is necessary for correcting presbyopia, the age-related loss of near focusing ability."
-                },
-                {
-                    question: "What is the vertex distance?",
-                    options: [
-                        "The distance between the pupil and the lens",
-                        "The distance between the back surface of a contact lens and the cornea",
-                        "The distance between the back surface of a spectacle lens and the front surface of the cornea",
-                        "The distance between the two eyes"
-                    ],
-                    answer: 2,
-                    explanation: "Vertex distance is the distance between the back surface of a spectacle lens and the front surface of the cornea (approximately 12-14mm). When converting spectacle prescriptions to contact lens prescriptions, vertex distance must be considered for powers stronger than ±4.00D."
-                },
-                {
-                    question: "Which term describes the condition where the corneal astigmatism and refractive astigmatism are different?",
-                    options: [
-                        "Residual astigmatism",
-                        "Regular astigmatism",
-                        "Lenticular astigmatism",
-                        "Oblique astigmatism"
-                    ],
-                    answer: 0,
-                    explanation: "Residual astigmatism refers to the condition where corneal astigmatism and refractive astigmatism are different. This occurs when some of the astigmatism originates from the crystalline lens rather than just the cornea, which affects contact lens fitting strategies."
-                },
-                {
-                    question: "What is the typical power change for every 1mm movement of a -3.00D contact lens?",
-                    options: [
-                        "0.15D",
-                        "0.25D",
-                        "0.50D",
-                        "0.75D"
-                    ],
-                    answer: 0,
-                    explanation: "The typical power change for every 1mm movement of a -3.00D contact lens is approximately 0.15D. This is why proper lens centration is important, especially with higher powers where small movements can cause more significant visual changes."
-                }
-            ],
-            domain3: [
-                {
-                    question: "Which instrument is used to measure corneal curvature?",
-                    options: [
-                        "Slit lamp",
-                        "Keratometer",
-                        "Tonometer",
-                        "Ophthalmoscope"
-                    ],
-                    answer: 1,
-                    explanation: "A keratometer (also known as an ophthalmometer) is used to measure the curvature of the anterior corneal surface. These measurements are critical for determining the base curve of rigid contact lenses and for detecting and measuring corneal astigmatism."
-                },
-                {
-                    question: "What does a corneal topographer measure?",
-                    options: [
-                        "Corneal thickness",
-                        "Intraocular pressure",
-                        "Three-dimensional corneal shape",
-                        "Tear film stability"
-                    ],
-                    answer: 2,
-                    explanation: "A corneal topographer measures the three-dimensional shape of the cornea. It creates detailed maps showing corneal elevation, curvature, and power across the entire corneal surface, which is especially useful for fitting specialty contact lenses for irregular corneas."
-                },
-                {
-                    question: "What is the primary use of a slit lamp in contact lens practice?",
-                    options: [
-                        "To measure corneal curvature",
-                        "To determine the refractive error",
-                        "To examine the anterior segment of the eye",
-                        "To measure intraocular pressure"
-                    ],
-                    answer: 2,
-                    explanation: "The primary use of a slit lamp in contact lens practice is to examine the anterior segment of the eye. It allows for detailed examination of the cornea, conjunctiva, tear film, eyelids, and contact lens fit on the eye with high magnification."
-                },
-                {
-                    question: "What is the function of a lensometer (focimeter)?",
-                    options: [
-                        "To measure the base curve of a contact lens",
-                        "To measure the power and optical center of a lens",
-                        "To determine tear film quality",
-                        "To measure pupil size"
-                    ],
-                    answer: 1,
-                    explanation: "A lensometer (focimeter) is used to measure the power and optical center of a lens. In contact lens practice, it can be used to verify the power of soft contact lenses that have been removed from the eye and placed on a special contact lens holder."
-                },
-                {
-                    question: "Which test evaluates tear film stability?",
-                    options: [
-                        "Schirmer test",
-                        "Tear break-up time (TBUT)",
-                        "Fluorescein staining",
-                        "Phenol red thread test"
-                    ],
-                    answer: 1,
-                    explanation: "Tear break-up time (TBUT) evaluates tear film stability by measuring how long it takes for dry spots to appear in the tear film after a blink. This is important when evaluating patients for contact lenses, as poor tear stability can lead to discomfort and dryness with lens wear."
-                },
-                {
-                    question: "What is the purpose of using fluorescein dye with contact lens patients?",
-                    options: [
-                        "To measure intraocular pressure",
-                        "To evaluate the fit of rigid contact lenses",
-                        "To determine corneal thickness",
-                        "To measure pupil size"
-                    ],
-                    answer: 1,
-                    explanation: "Fluorescein dye is used to evaluate the fit of rigid contact lenses by visualizing the tear layer between the lens and cornea. It can also reveal corneal epithelial defects or abrasions, which might contraindicate contact lens wear until healed."
-                },
-                {
-                    question: "What does an optical coherence tomographer (OCT) measure in relation to contact lens fitting?",
-                    options: [
-                        "Corneal curvature only",
-                        "Tear film thickness only",
-                        "Cross-sectional images of anterior eye structures",
-                        "Pupil diameter in different lighting conditions"
-                    ],
-                    answer: 2,
-                    explanation: "An optical coherence tomographer (OCT) creates high-resolution cross-sectional images of anterior eye structures. For contact lens fitting, it can be used to evaluate lens clearance with scleral lenses, assess corneal thickness, and examine the tear lens between the contact lens and cornea."
-                }
-            ],
-            domain4: [
-                {
-                    question: "What information should be gathered during the case history for a new contact lens patient?",
-                    options: [
-                        "Only previous contact lens experience",
-                        "Only ocular and medical history",
-                        "Only lifestyle and occupational needs",
-                        "All of the above"
-                    ],
-                    answer: 3,
-                    explanation: "A comprehensive case history for a new contact lens patient should include previous contact lens experience, ocular and medical history, medications, allergies, and lifestyle and occupational needs. This information helps determine the most appropriate lens type and wearing schedule."
-                },
-                {
-                    question: "Which of the following contraindications for contact lens wear is considered absolute?",
-                    options: [
-                        "Mild dry eye",
-                        "Active corneal infection",
-                        "Mild astigmatism",
-                        "Allergic conjunctivitis"
-                    ],
-                    answer: 1,
-                    explanation: "An active corneal infection is an absolute contraindication for contact lens wear. Wearing contact lenses during an active infection can exacerbate the condition and potentially lead to serious complications like corneal ulcers."
-                },
-                {
-                    question: "What is the primary purpose of assessing tear film quality before fitting contact lenses?",
-                    options: [
-                        "To determine lens power",
-                        "To evaluate potential comfort and lens wettability",
-                        "To measure corneal curvature",
-                        "To check for color vision deficiencies"
-                    ],
-                    answer: 1,
-                    explanation: "Assessing tear film quality before fitting contact lenses is primarily done to evaluate potential comfort and lens wettability. Poor tear quality or quantity can lead to discomfort, dryness, and deposits on the lens, affecting the success of contact lens wear."
-                },
-                {
-                    question: "Which measurement is most important when selecting the diameter of a rigid gas permeable (RGP) lens?",
-                    options: [
-                        "Horizontal visible iris diameter (HVID)",
-                        "Vertical palpebral aperture",
-                        "Pupil size",
-                        "Lens power"
-                    ],
-                    answer: 0,
-                    explanation: "The horizontal visible iris diameter (HVID) is most important when selecting the diameter of a rigid gas permeable (RGP) lens. Generally, RGP lenses are fit smaller than the HVID to allow for movement and tear exchange while maintaining centration."
-                },
-                {
-                    question: "What is the most appropriate initial base curve selection for a spherical soft contact lens?",
-                    options: [
-                        "0.5mm flatter than the flattest keratometry reading",
-                        "Equal to the average keratometry reading",
-                        "0.5mm steeper than the steepest keratometry reading",
-                        "Based on the manufacturer's fitting guide for the specific lens"
-                    ],
-                    answer: 3,
-                    explanation: "The most appropriate initial base curve selection for a spherical soft contact lens should be based on the manufacturer's fitting guide for the specific lens. Different lens materials and designs have different optimal fitting relationships to the cornea."
-                },
-                {
-                    question: "Which of the following would indicate a patient might benefit from daily disposable contact lenses?",
-                    options: [
-                        "History of poor compliance with lens care",
-                        "Desire for occasional wear only",
-                        "Mild allergies or seasonal allergies",
-                        "All of the above"
-                    ],
-                    answer: 3,
-                    explanation: "All of these factors would indicate a patient might benefit from daily disposable contact lenses. Daily disposables eliminate the need for lens care solutions (addressing compliance issues), are convenient for occasional wear, and provide a fresh lens daily (beneficial for patients with allergies)."
-                },
-                {
-                    question: "What is the typical amount of oxygen transmission needed to avoid corneal edema during daily wear?",
-                    options: [
-                        "At least 24 Dk/t",
-                        "At least 35 Dk/t",
-                        "At least 87 Dk/t",
-                        "At least 125 Dk/t"
-                    ],
-                    answer: 0,
-                    explanation: "For daily wear contact lenses, a minimum oxygen transmissibility (Dk/t) value of approximately 24 is typically needed to avoid corneal edema. For extended or overnight wear, much higher values (87 Dk/t or greater) are recommended to maintain corneal health."
-                }
-            ],
-            domain5: [
-                {
-                    question: "What does an 'alignment fit' of an RGP lens mean?",
-                    options: [
-                        "The lens base curve is steeper than the corneal curvature",
-                        "The lens base curve matches the corneal curvature",
-                        "The lens base curve is flatter than the corneal curvature",
-                        "The lens is positioning off-center"
-                    ],
-                    answer: 1,
-                    explanation: "An 'alignment fit' of an RGP lens means the lens base curve matches the corneal curvature. This typically produces even fluorescein pattern across the cornea, with the lens weight supported evenly across the corneal surface."
-                },
-                {
-                    question: "What fluorescein pattern indicates a steep-fitting RGP lens?",
-                    options: [
-                        "Central pooling with peripheral touch",
-                        "Central touch with peripheral pooling",
-                        "Even fluorescein distribution",
-                        "No fluorescein pattern visible"
-                    ],
-                    answer: 0,
-                    explanation: "A steep-fitting RGP lens (where the base curve is steeper than the cornea) creates a fluorescein pattern with central pooling (appears bright green) and peripheral touch or bearing (appears darker). This indicates inadequate central lens clearance."
-                },
-                {
-                    question: "What does 'apical clearance' refer to in RGP lens fitting?",
-                    options: [
-                        "The lens touches the corneal apex",
-                        "The lens clears the corneal apex",
-                        "The lens is centered on the pupil",
-                        "The lens moves excessively with each blink"
-                    ],
-                    answer: 1,
-                    explanation: "Apical clearance refers to when the RGP lens clears (doesn't touch) the corneal apex (the highest point of the cornea). This fitting approach is sometimes used for keratoconus patients to avoid mechanical pressure on the apex of the cone."
-                },
-                {
-                    question: "What is the ideal amount of movement for a well-fitted soft contact lens?",
-                    options: [
-                        "No movement",
-                        "0.5-1.0 mm with each blink",
-                        "2.0-3.0 mm with each blink",
-                        "Complete rotation with each blink"
-                    ],
-                    answer: 1,
-                    explanation: "A well-fitted soft contact lens should move approximately 0.5-1.0 mm with each blink. This amount of movement allows for proper tear exchange while maintaining comfort and stable vision. Insufficient movement can lead to corneal hypoxia, while excessive movement causes discomfort and fluctuating vision."
-                },
-                {
-                    question: "What is the primary consideration when fitting a toric soft contact lens?",
-                    options: [
-                        "Base curve only",
-                        "Lens diameter only",
-                        "Lens power only",
-                        "Rotational stability"
-                    ],
-                    answer: 3,
-                    explanation: "Rotational stability is the primary consideration when fitting toric soft contact lenses. Since toric lenses correct astigmatism, the lens must maintain proper orientation to align the cylindrical correction with the patient's astigmatic axis. Various stabilization methods (prism ballast, peri-ballast, dual thin zones) help achieve this stability."
-                },
-                {
-                    question: "What is a characteristic of a loose-fitting soft lens?",
-                    options: [
-                        "Excessive movement with blinking",
-                        "Edge standoff",
-                        "Conjunctival indentation",
-                        "Both A and B"
-                    ],
-                    answer: 3,
-                    explanation: "A loose-fitting soft lens exhibits both excessive movement with blinking and edge standoff (the edge of the lens lifts away from the eye). These signs indicate the lens is too flat or too large for the eye, which can cause discomfort, poor vision, and lens dislodgement."
-                },
-                {
-                    question: "What is the best way to evaluate the fit of a multifocal soft contact lens?",
-                    options: [
-                        "Assess lens movement only",
-                        "Check distance vision only",
-                        "Check near vision only",
-                        "Evaluate lens centration, movement, and visual performance at multiple distances"
-                    ],
-                    answer: 3,
-                    explanation: "The best way to evaluate the fit of a multifocal soft contact lens is to assess lens centration, movement, and visual performance at multiple distances. Proper centration is critical for simultaneous vision designs, as decentration can significantly affect the balance between distance and near vision."
-                }
-            ],
-            domain6: [
-                {
-                    question: "What is the most appropriate instruction to give a new contact lens wearer about insertion and removal times?",
-                    options: [
-                        "Insert the lenses upon waking and remove them just before sleeping",
-                        "Insert the lenses after breakfast and remove them before dinner",
-                        "Gradually build up wearing time as recommended by the practitioner",
-                        "Wear the lenses only when necessary"
-                    ],
-                    answer: 2,
-                    explanation: "New contact lens wearers should gradually build up wearing time as recommended by the practitioner. This adaptation period allows the cornea to adjust to reduced oxygen availability and the eyelids to adapt to the presence of the lens. A typical schedule might start with 4 hours on day one and increase by 2 hours daily until reaching the prescribed wearing time."
-                },
-                {
-                    question: "Which statement about contact lens solution compatibility is correct?",
-                    options: [
-                        "All multipurpose solutions can be used with all types of contact lenses",
-                        "Hydrogen peroxide systems require a neutralization step before lens insertion",
-                        "Saline solution alone is sufficient for disinfecting lenses",
-                        "Rigid lens solutions can be used for soft lenses in emergencies"
-                    ],
-                    answer: 1,
-                    explanation: "Hydrogen peroxide systems require a neutralization step before lens insertion. Without neutralization, hydrogen peroxide (typically 3%) will cause severe burning and corneal damage. Neutralization occurs either by using a special case with a platinum disc or by adding a neutralizing tablet."
-                },
-                {
-                    question: "What is the appropriate way to store contact lenses when not being worn?",
-                    options: [
-                        "In tap water",
-                        "In saline solution",
-                        "In a clean, closed case with fresh solution",
-                        "Dry in a contact lens case"
-                    ],
-                    answer: 2,
-                    explanation: "Contact lenses should be stored in a clean, closed case with fresh solution when not being worn. The solution should be changed each time the lenses are stored, and the case should be cleaned and air-dried regularly to prevent microbial contamination."
-                },
-                {
-                    question: "What is the proper hand washing procedure before handling contact lenses?",
-                    options: [
-                        "Rinse with water only",
-                        "Use antibacterial soap, rinse thoroughly, and dry with a lint-free towel",
-                        "Use any available soap and dry hands on clothing",
-                        "Clean hands with alcohol-based hand sanitizer"
-                    ],
-                    answer: 1,
-                    explanation: "Proper hand washing before handling contact lenses involves using antibacterial soap, rinsing thoroughly, and drying with a lint-free towel. This reduces the risk of transferring microorganisms and debris to the lens and eye. Alcohol-based hand sanitizers can transfer to the lens and cause eye irritation."
-                },
-                {
-                    question: "What should be emphasized when teaching a new RGP lens wearer about lens care?",
-                    options: [
-                        "RGP lenses rarely need cleaning",
-                        "RGP lenses should be rubbed and rinsed daily to remove deposits",
-                        "RGP lenses can be stored dry overnight",
-                        "RGP lenses should be replaced monthly"
-                    ],
-                    answer: 1,
-                    explanation: "RGP lenses should be rubbed and rinsed daily to remove deposits. Unlike some soft lenses, RGP lenses are not disposable and can accumulate lipid and protein deposits over time. Daily cleaning with a surfactant cleaner, followed by rinsing and soaking in conditioning/disinfecting solution, is essential for comfort and lens longevity."
-                },
-                {
-                    question: "What should a patient do if a soft contact lens feels uncomfortable upon insertion?",
-                    options: [
-                        "Continue wearing it until the discomfort subsides",
-                        "Apply eye drops while wearing the lens",
-                        "Remove the lens, rinse with solution, and reinsert",
-                        "Switch to glasses for the rest of the day"
-                    ],
-                    answer: 2,
-                    explanation: "If a soft contact lens feels uncomfortable upon insertion, the patient should remove the lens, rinse it with fresh solution, and reinsert it. Discomfort may be caused by debris, an inside-out lens, or a damaged lens. If discomfort persists after reinsertion, the lens should be removed and the eye care practitioner consulted."
-                },
-                {
-                    question: "What is the correct way to verify the orientation of a soft contact lens before insertion?",
-                    options: [
-                        "Place the lens on a fingertip and look at its profile",
-                        "Check the tint pattern",
-                        "Look for laser markings",
-                        "Feel the edge thickness"
-                    ],
-                    answer: 0,
-                    explanation: "The correct way to verify the orientation of a soft contact lens before insertion is to place it on a fingertip and look at its profile. A properly oriented lens will have edges that turn slightly upward, resembling a bowl. An inside-out lens will have edges that flare outward and may appear more flat or irregularly shaped."
-                }
-            ],
-            domain7: [
-                {
-                    question: "How soon after initial dispensing should the first follow-up visit be scheduled for a new contact lens wearer?",
-                    options: [
-                        "The same day",
-                        "Within 1-2 weeks",
-                        "After 1 month",
-                        "After 3 months"
-                    ],
-                    answer: 1,
-                    explanation: "The first follow-up visit for a new contact lens wearer should typically be scheduled within 1-2 weeks after initial dispensing. This timeframe allows assessment of the patient's adaptation to the lenses, evaluation of the fit and vision after regular wear, and addressing any compliance or comfort issues early in the wearing experience."
-                },
-                {
-                    question: "What is the primary purpose of corneal topography at follow-up visits?",
-                    options: [
-                        "To evaluate changes in corneal curvature and look for warpage",
-                        "To determine if a prescription change is needed",
-                        "To check for corneal edema",
-                        "To evaluate tear film quality"
-                    ],
-                    answer: 0,
-                    explanation: "The primary purpose of corneal topography at follow-up visits is to evaluate changes in corneal curvature and look for corneal warpage or molding. This is particularly important for RGP lens wearers or those with overnight orthokeratology lenses, as these can induce changes to the corneal shape."
-                },
-                {
-                    question: "Which grading scale is commonly used to evaluate contact lens complications?",
-                    options: [
-                        "Snellen scale",
-                        "VARK scale",
-                        "Efron or CCLRU grading scales",
-                        "LogMAR scale"
-                    ],
-                    answer: 2,
-                    explanation: "The Efron or CCLRU (Cornea and Contact Lens Research Unit) grading scales are commonly used to evaluate contact lens complications. These standardized scales (typically 0-4) help practitioners assess and document the severity of conditions like conjunctival hyperemia, corneal staining, tarsal conjunctival changes, and limbal redness."
-                },
-                {
-                    question: "What finding at a follow-up visit would necessitate discontinuation of contact lens wear?",
-                    options: [
-                        "Grade 1 corneal staining",
-                        "Mild lens deposits",
-                        "Corneal infiltrates with pain and redness",
-                        "Slight lens decentration"
-                    ],
-                    answer: 2,
-                    explanation: "Corneal infiltrates with pain and redness would necessitate discontinuation of contact lens wear. This presentation suggests a possible microbial keratitis or severe inflammatory response, which requires immediate discontinuation of lens wear and often requires treatment with antibiotics or other medications."
-                },
-                {
-                    question: "How should you manage a patient who presents with a tight-fitting soft contact lens at a follow-up visit?",
-                    options: [
-                        "Increase wearing time to stretch the lens",
-                        "Switch to a flatter base curve or different material",
-                        "Increase lens power",
-                        "Recommend more frequent replacement"
-                    ],
-                    answer: 1,
-                    explanation: "A patient with a tight-fitting soft contact lens should be refitted with a flatter base curve or different lens material with better oxygen permeability. Tight lenses restrict movement and tear exchange, which can lead to corneal hypoxia, neovascularization, and discomfort. Different materials may also reduce binding or adherence to the cornea."
-                },
-                {
-                    question: "What is the recommended follow-up schedule for an established contact lens wearer with no problems?",
-                    options: [
-                        "Every month",
-                        "Every 3-4 months",
-                        "Every 6-12 months",
-                        "Only when experiencing problems"
-                    ],
-                    answer: 2,
-                    explanation: "For established contact lens wearers with no problems, a follow-up schedule of every 6-12 months is generally recommended. This allows for regular assessment of ocular health, lens fit, vision, and compliance, even when patients are asymptomatic, as some contact lens complications can develop without noticeable symptoms."
-                },
-                {
-                    question: "What is the most common cause of deposit formation on silicone hydrogel contact lenses?",
-                    options: [
-                        "Calcium from hard water",
-                        "Protein deposits from tears",
-                        "Lipid deposits from tears",
-                        "Preservatives from lens solutions"
-                    ],
-                    answer: 2,
-                    explanation: "Lipid deposits from tears are the most common cause of deposit formation on silicone hydrogel contact lenses. Due to the hydrophobic nature of silicone, these lenses tend to attract lipids from the tear film. These deposits can reduce comfort, affect vision, and potentially lead to inflammatory reactions if not properly cleaned."
-                }
-            ],
-            domain8: [
-                {
-                    question: "According to FDA regulations, contact lenses are classified as:",
-                    options: [
-                        "Cosmetics",
-                        "Over-the-counter medical devices",
-                        "Prescription medical devices",
-                        "Vision correction appliances"
-                    ],
-                    answer: 2,
-                    explanation: "According to FDA regulations, contact lenses are classified as prescription medical devices. This classification applies to all contact lenses, including plano (non-prescription) cosmetic lenses. As prescription devices, contact lenses require a valid prescription and proper fitting by a licensed eye care professional."
-                },
-                {
-                    question: "What is required for a valid contact lens prescription?",
-                    options: [
-                        "Lens power only",
-                        "Base curve and diameter only",
-                        "Power, base curve, diameter, lens material/brand, and expiration date",
-                        "Patient's name and prescriber's signature only"
-                    ],
-                    answer: 2,
-                    explanation: "A valid contact lens prescription must include lens power, base curve, diameter, lens material or brand, and an expiration date, along with the patient's name and prescriber's information and signature. This comprehensive information ensures the contact lenses are properly fitted to the patient's specific ocular needs."
-                },
-                {
-                    question: "What is the maximum expiration period for a contact lens prescription under the Fairness to Contact Lens Consumers Act (FCLCA)?",
-                    options: [
-                        "6 months",
-                        "1 year",
-                        "2 years",
-                        "Varies by state law"
-                    ],
-                    answer: 3,
-                    explanation: "The maximum expiration period for a contact lens prescription varies by state law under the Fairness to Contact Lens Consumers Act (FCLCA). While the FCLCA requires prescribers to provide patients with their prescriptions, it defers to state laws regarding expiration dates, which typically range from 1-2 years."
-                },
-                {
-                    question: "What information must be documented in a patient's record when dispensing contact lenses?",
-                    options: [
-                        "Lens parameters only",
-                        "Patient training only",
-                        "Lens parameters, care system, wearing schedule, and follow-up visits",
-                        "Payment information only"
-                    ],
-                    answer: 2,
-                    explanation: "When dispensing contact lenses, practitioners must document the lens parameters (power, base curve, diameter, material), care system recommended, wearing schedule instructions, and scheduled follow-up visits. Comprehensive documentation is essential for continuity of care and may have legal importance in case of complications."
-                },
-                {
-                    question: "What action is required if a patient experiences a serious contact lens-related adverse event?",
-                    options: [
-                        "Only note it in the patient's record",
-                        "Report it to the FDA through the MedWatch program",
-                        "Only inform the contact lens manufacturer",
-                        "No reporting is necessary"
-                    ],
-                    answer: 1,
-                    explanation: "Serious contact lens-related adverse events should be reported to the FDA through the MedWatch program. This mandatory reporting helps identify potential safety issues with contact lenses or care products and can lead to better product safety and patient outcomes through appropriate FDA actions."
-                },
-                {
-                    question: "What does HIPAA require regarding patient contact lens information?",
-                    options: [
-                        "Information can be freely shared with any retailer",
-                        "Information can only be shared with written patient authorization",
-                        "Information cannot be shared under any circumstances",
-                        "Only lens parameters can be shared"
-                    ],
-                    answer: 1,
-                    explanation: "HIPAA (Health Insurance Portability and Accountability Act) requires that patient contact lens information, like all protected health information, can only be shared with written patient authorization. Exceptions exist for treatment, payment, and healthcare operations, but sharing with retailers typically requires specific patient consent."
-                },
-                {
-                    question: "Which organization establishes manufacturing standards for contact lenses in the United States?",
-                    options: [
-                        "American National Standards Institute (ANSI)",
-                        "International Organization for Standardization (ISO)",
-                        "Both ANSI and ISO",
-                        "Centers for Disease Control (CDC)"
-                    ],
-                    answer: 2,
-                    explanation: "Both the American National Standards Institute (ANSI) and the International Organization for Standardization (ISO) establish manufacturing standards for contact lenses in the United States. These standards ensure consistency in lens parameters, quality, and performance across manufacturers, enhancing safety for contact lens wearers."
-                }
-            ]
-        };
+        // Quiz Questions Database - all domains combined
+        const quizQuestions = [
+            // Domain 1: Ocular Anatomy, Physiology, and Pathology
+            {
+                question: "Which layer of the cornea is responsible for most of the cornea's refractive power?",
+                options: [
+                    "Epithelium",
+                    "Bowman's membrane",
+                    "Stroma",
+                    "Descemet's membrane"
+                ],
+                answer: 0,
+                explanation: "The epithelium is the anterior (front) layer of the cornea and provides about two-thirds of the cornea's total refractive power. This is important for contact lens fitting as lenses rest on this layer, and any epithelial damage can affect vision and lens comfort."
+            },
+            {
+                question: "What is the average horizontal visible iris diameter (HVID) in adults?",
+                options: [
+                    "8.0 mm",
+                    "10.0 mm",
+                    "11.8 mm",
+                    "12.5 mm"
+                ],
+                answer: 2,
+                explanation: "The average horizontal visible iris diameter (HVID) in adults is around 11.8 mm. This measurement is crucial for selecting the appropriate diameter for contact lenses, especially rigid gas permeable (RGP) lenses."
+            },
+            {
+                question: "Which of the following is NOT a layer of the tear film?",
+                options: [
+                    "Lipid layer",
+                    "Aqueous layer",
+                    "Mucin layer",
+                    "Protein layer"
+                ],
+                answer: 3,
+                explanation: "The tear film consists of three layers: the lipid (oily) outer layer that prevents evaporation, the aqueous (watery) middle layer that hydrates the cornea, and the mucin inner layer that helps the tear film adhere to the corneal surface. There is no distinct protein layer in the tear film, although proteins are found within the aqueous layer."
+            },
+            {
+                question: "Which ocular structure produces aqueous humor?",
+                options: [
+                    "Iris",
+                    "Ciliary body",
+                    "Trabecular meshwork",
+                    "Lens"
+                ],
+                answer: 1,
+                explanation: "The ciliary body produces aqueous humor, which maintains intraocular pressure and provides nutrients to the lens and cornea. Understanding aqueous humor production and drainage is important when considering patients with glaucoma for contact lens wear."
+            },
+            {
+                question: "What is the normal corneal thickness at the center?",
+                options: [
+                    "0.3 mm",
+                    "0.5 mm",
+                    "0.7 mm",
+                    "1.0 mm"
+                ],
+                answer: 1,
+                explanation: "The normal corneal thickness at the center is approximately 0.5 mm (or 500 microns). Corneal thickness is an important measurement when evaluating patients for certain types of contact lenses, especially in patients with conditions like keratoconus."
+            },
+            {
+                question: "Which condition is characterized by corneal thinning and steepening that results in an irregular, cone-shaped cornea?",
+                options: [
+                    "Keratitis",
+                    "Keratoconus",
+                    "Corneal dystrophy",
+                    "Pinguecula"
+                ],
+                answer: 1,
+                explanation: "Keratoconus is characterized by progressive corneal thinning and steepening, resulting in an irregular, cone-shaped cornea. This condition often requires specialty contact lenses like rigid gas permeable lenses, hybrid lenses, or scleral lenses for proper vision correction."
+            },
+            {
+                question: "Which glands in the eyelids produce the oily component of tears?",
+                options: [
+                    "Meibomian glands",
+                    "Lacrimal glands",
+                    "Goblet cells",
+                    "Glands of Zeis"
+                ],
+                answer: 0,
+                explanation: "Meibomian glands are sebaceous glands located in the tarsal plates of the eyelids that produce the oily (lipid) component of tears. This oil helps prevent tear evaporation and is crucial for maintaining a stable tear film, which is essential for comfortable contact lens wear."
+            },
+            {
+                question: "Which of the following is a sign of giant papillary conjunctivitis (GPC)?",
+                options: [
+                    "Flat, clear cornea",
+                    "Large papillae under the upper eyelid",
+                    "Yellow discharge from the eye",
+                    "Reduced tear production"
+                ],
+                answer: 1,
+                explanation: "Giant papillary conjunctivitis (GPC) is characterized by large papillae (bumps) under the upper eyelid. It's often associated with contact lens wear, especially soft lenses, and can cause symptoms like itching, mucous discharge, and reduced lens comfort."
+            },
+            
+            // Domain 2: Refractive Errors
+            {
+                question: "What is the refractive error in which light focuses behind the retina called?",
+                options: [
+                    "Myopia",
+                    "Hyperopia",
+                    "Astigmatism",
+                    "Presbyopia"
+                ],
+                answer: 1,
+                explanation: "Hyperopia (farsightedness) occurs when light focuses behind the retina, causing difficulty with near vision. For contact lens correction, plus-powered lenses are used to bring the focal point forward onto the retina."
+            },
+            {
+                question: "A contact lens prescription of -2.50D indicates which refractive error?",
+                options: [
+                    "Moderate myopia",
+                    "Mild hyperopia",
+                    "Severe astigmatism",
+                    "Presbyopia"
+                ],
+                answer: 0,
+                explanation: "A contact lens prescription of -2.50D indicates moderate myopia (nearsightedness). Minus-powered lenses are used to correct myopia by moving the focal point back onto the retina."
+            },
+            {
+                question: "Which condition requires toric contact lenses for proper correction?",
+                options: [
+                    "Simple myopia",
+                    "Simple hyperopia",
+                    "Astigmatism",
+                    "Presbyopia"
+                ],
+                answer: 2,
+                explanation: "Astigmatism requires toric contact lenses for proper correction. Toric lenses have different powers in different meridians to correct the irregularly curved cornea characteristic of astigmatism."
+            },
+            {
+                question: "What does the 'add' power in a multifocal contact lens prescription refer to?",
+                options: [
+                    "The power needed to correct astigmatism",
+                    "The additional power needed for near vision",
+                    "The total spherical power of the lens",
+                    "The power needed to correct myopia"
+                ],
+                answer: 1,
+                explanation: "The 'add' power in a multifocal contact lens prescription refers to the additional plus power needed for near vision. This is necessary for correcting presbyopia, the age-related loss of near focusing ability."
+            },
+            {
+                question: "What is the vertex distance?",
+                options: [
+                    "The distance between the pupil and the lens",
+                    "The distance between the back surface of a contact lens and the cornea",
+                    "The distance between the back surface of a spectacle lens and the front surface of the cornea",
+                    "The distance between the two eyes"
+                ],
+                answer: 2,
+                explanation: "Vertex distance is the distance between the back surface of a spectacle lens and the front surface of the cornea (approximately 12-14mm). When converting spectacle prescriptions to contact lens prescriptions, vertex distance must be considered for powers stronger than ±4.00D."
+            },
+            {
+                question: "Which term describes the condition where the corneal astigmatism and refractive astigmatism are different?",
+                options: [
+                    "Residual astigmatism",
+                    "Regular astigmatism",
+                    "Lenticular astigmatism",
+                    "Oblique astigmatism"
+                ],
+                answer: 0,
+                explanation: "Residual astigmatism refers to the condition where corneal astigmatism and refractive astigmatism are different. This occurs when some of the astigmatism originates from the crystalline lens rather than just the cornea, which affects contact lens fitting strategies."
+            },
+            {
+                question: "What is the typical power change for every 1mm movement of a -3.00D contact lens?",
+                options: [
+                    "0.15D",
+                    "0.25D",
+                    "0.50D",
+                    "0.75D"
+                ],
+                answer: 0,
+                explanation: "The typical power change for every 1mm movement of a -3.00D contact lens is approximately 0.15D. This is why proper lens centration is important, especially with higher powers where small movements can cause more significant visual changes."
+            },
+            
+            // Domain 3: Instrumentation for Measurement and Observation
+            {
+                question: "Which instrument is used to measure corneal curvature?",
+                options: [
+                    "Slit lamp",
+                    "Keratometer",
+                    "Tonometer",
+                    "Ophthalmoscope"
+                ],
+                answer: 1,
+                explanation: "A keratometer (also known as an ophthalmometer) is used to measure the curvature of the anterior corneal surface. These measurements are critical for determining the base curve of rigid contact lenses and for detecting and measuring corneal astigmatism."
+            },
+            {
+                question: "What does a corneal topographer measure?",
+                options: [
+                    "Corneal thickness",
+                    "Intraocular pressure",
+                    "Three-dimensional corneal shape",
+                    "Tear film stability"
+                ],
+                answer: 2,
+                explanation: "A corneal topographer measures the three-dimensional shape of the cornea. It creates detailed maps showing corneal elevation, curvature, and power across the entire corneal surface, which is especially useful for fitting specialty contact lenses for irregular corneas."
+            },
+            {
+                question: "What is the primary use of a slit lamp in contact lens practice?",
+                options: [
+                    "To measure corneal curvature",
+                    "To determine the refractive error",
+                    "To examine the anterior segment of the eye",
+                    "To measure intraocular pressure"
+                ],
+                answer: 2,
+                explanation: "The primary use of a slit lamp in contact lens practice is to examine the anterior segment of the eye. It allows for detailed examination of the cornea, conjunctiva, tear film, eyelids, and contact lens fit on the eye with high magnification."
+            },
+            {
+                question: "What is the function of a lensometer (focimeter)?",
+                options: [
+                    "To measure the base curve of a contact lens",
+                    "To measure the power and optical center of a lens",
+                    "To determine tear film quality",
+                    "To measure pupil size"
+                ],
+                answer: 1,
+                explanation: "A lensometer (focimeter) is used to measure the power and optical center of a lens. In contact lens practice, it can be used to verify the power of soft contact lenses that have been removed from the eye and placed on a special contact lens holder."
+            },
+            {
+                question: "Which test evaluates tear film stability?",
+                options: [
+                    "Schirmer test",
+                    "Tear break-up time (TBUT)",
+                    "Fluorescein staining",
+                    "Phenol red thread test"
+                ],
+                answer: 1,
+                explanation: "Tear break-up time (TBUT) evaluates tear film stability by measuring how long it takes for dry spots to appear in the tear film after a blink. This is important when evaluating patients for contact lenses, as poor tear stability can lead to discomfort and dryness with lens wear."
+            },
+            {
+                question: "What is the purpose of using fluorescein dye with contact lens patients?",
+                options: [
+                    "To measure intraocular pressure",
+                    "To evaluate the fit of rigid contact lenses",
+                    "To determine corneal thickness",
+                    "To measure pupil size"
+                ],
+                answer: 1,
+                explanation: "Fluorescein dye is used to evaluate the fit of rigid contact lenses by visualizing the tear layer between the lens and cornea. It can also reveal corneal epithelial defects or abrasions, which might contraindicate contact lens wear until healed."
+            },
+            {
+                question: "What does an optical coherence tomographer (OCT) measure in relation to contact lens fitting?",
+                options: [
+                    "Corneal curvature only",
+                    "Tear film thickness only",
+                    "Cross-sectional images of anterior eye structures",
+                    "Pupil diameter in different lighting conditions"
+                ],
+                answer: 2,
+                explanation: "An optical coherence tomographer (OCT) creates high-resolution cross-sectional images of anterior eye structures. For contact lens fitting, it can be used to evaluate lens clearance with scleral lenses, assess corneal thickness, and examine the tear lens between the contact lens and cornea."
+            },
+            
+            // Domain 4: Prefitting
+            {
+                question: "What information should be gathered during the case history for a new contact lens patient?",
+                options: [
+                    "Only previous contact lens experience",
+                    "Only ocular and medical history",
+                    "Only lifestyle and occupational needs",
+                    "All of the above"
+                ],
+                answer: 3,
+                explanation: "A comprehensive case history for a new contact lens patient should include previous contact lens experience, ocular and medical history, medications, allergies, and lifestyle and occupational needs. This information helps determine the most appropriate lens type and wearing schedule."
+            },
+            {
+                question: "Which of the following contraindications for contact lens wear is considered absolute?",
+                options: [
+                    "Mild dry eye",
+                    "Active corneal infection",
+                    "Mild astigmatism",
+                    "Allergic conjunctivitis"
+                ],
+                answer: 1,
+                explanation: "An active corneal infection is an absolute contraindication for contact lens wear. Wearing contact lenses during an active infection can exacerbate the condition and potentially lead to serious complications like corneal ulcers."
+            },
+            {
+                question: "What is the primary purpose of assessing tear film quality before fitting contact lenses?",
+                options: [
+                    "To determine lens power",
+                    "To evaluate potential comfort and lens wettability",
+                    "To measure corneal curvature",
+                    "To check for color vision deficiencies"
+                ],
+                answer: 1,
+                explanation: "Assessing tear film quality before fitting contact lenses is primarily done to evaluate potential comfort and lens wettability. Poor tear quality or quantity can lead to discomfort, dryness, and deposits on the lens, affecting the success of contact lens wear."
+            },
+            {
+                question: "Which measurement is most important when selecting the diameter of a rigid gas permeable (RGP) lens?",
+                options: [
+                    "Horizontal visible iris diameter (HVID)",
+                    "Vertical palpebral aperture",
+                    "Pupil size",
+                    "Lens power"
+                ],
+                answer: 0,
+                explanation: "The horizontal visible iris diameter (HVID) is most important when selecting the diameter of a rigid gas permeable (RGP) lens. Generally, RGP lenses are fit smaller than the HVID to allow for movement and tear exchange while maintaining centration."
+            },
+            {
+                question: "What is the most appropriate initial base curve selection for a spherical soft contact lens?",
+                options: [
+                    "0.5mm flatter than the flattest keratometry reading",
+                    "Equal to the average keratometry reading",
+                    "0.5mm steeper than the steepest keratometry reading",
+                    "Based on the manufacturer's fitting guide for the specific lens"
+                ],
+                answer: 3,
+                explanation: "The most appropriate initial base curve selection for a spherical soft contact lens should be based on the manufacturer's fitting guide for the specific lens. Different lens materials and designs have different optimal fitting relationships to the cornea."
+            },
+            {
+                question: "Which of the following would indicate a patient might benefit from daily disposable contact lenses?",
+                options: [
+                    "History of poor compliance with lens care",
+                    "Desire for occasional wear only",
+                    "Mild allergies or seasonal allergies",
+                    "All of the above"
+                ],
+                answer: 3,
+                explanation: "All of these factors would indicate a patient might benefit from daily disposable contact lenses. Daily disposables eliminate the need for lens care solutions (addressing compliance issues), are convenient for occasional wear, and provide a fresh lens daily (beneficial for patients with allergies)."
+            },
+            {
+                question: "What is the typical amount of oxygen transmission needed to avoid corneal edema during daily wear?",
+                options: [
+                    "At least 24 Dk/t",
+                    "At least 35 Dk/t",
+                    "At least 87 Dk/t",
+                    "At least 125 Dk/t"
+                ],
+                answer: 0,
+                explanation: "For daily wear contact lenses, a minimum oxygen transmissibility (Dk/t) value of approximately 24 is typically needed to avoid corneal edema. For extended or overnight wear, much higher values (87 Dk/t or greater) are recommended to maintain corneal health."
+            },
+            
+            // Domain 5: Diagnostic Fitting
+            {
+                question: "What does an 'alignment fit' of an RGP lens mean?",
+                options: [
+                    "The lens base curve is steeper than the corneal curvature",
+                    "The lens base curve matches the corneal curvature",
+                    "The lens base curve is flatter than the corneal curvature",
+                    "The lens is positioning off-center"
+                ],
+                answer: 1,
+                explanation: "An 'alignment fit' of an RGP lens means the lens base curve matches the corneal curvature. This typically produces even fluorescein pattern across the cornea, with the lens weight supported evenly across the corneal surface."
+            },
+            {
+                question: "What fluorescein pattern indicates a steep-fitting RGP lens?",
+                options: [
+                    "Central pooling with peripheral touch",
+                    "Central touch with peripheral pooling",
+                    "Even fluorescein distribution",
+                    "No fluorescein pattern visible"
+                ],
+                answer: 0,
+                explanation: "A steep-fitting RGP lens (where the base curve is steeper than the cornea) creates a fluorescein pattern with central pooling (appears bright green) and peripheral touch or bearing (appears darker). This indicates inadequate central lens clearance."
+            },
+            {
+                question: "What does 'apical clearance' refer to in RGP lens fitting?",
+                options: [
+                    "The lens touches the corneal apex",
+                    "The lens clears the corneal apex",
+                    "The lens is centered on the pupil",
+                    "The lens moves excessively with each blink"
+                ],
+                answer: 1,
+                explanation: "Apical clearance refers to when the RGP lens clears (doesn't touch) the corneal apex (the highest point of the cornea). This fitting approach is sometimes used for keratoconus patients to avoid mechanical pressure on the apex of the cone."
+            },
+            {
+                question: "What is the ideal amount of movement for a well-fitted soft contact lens?",
+                options: [
+                    "No movement",
+                    "0.5-1.0 mm with each blink",
+                    "2.0-3.0 mm with each blink",
+                    "Complete rotation with each blink"
+                ],
+                answer: 1,
+                explanation: "A well-fitted soft contact lens should move approximately 0.5-1.0 mm with each blink. This amount of movement allows for proper tear exchange while maintaining comfort and stable vision. Insufficient movement can lead to corneal hypoxia, while excessive movement causes discomfort and fluctuating vision."
+            },
+            {
+                question: "What is the primary consideration when fitting a toric soft contact lens?",
+                options: [
+                    "Base curve only",
+                    "Lens diameter only",
+                    "Lens power only",
+                    "Rotational stability"
+                ],
+                answer: 3,
+                explanation: "Rotational stability is the primary consideration when fitting toric soft contact lenses. Since toric lenses correct astigmatism, the lens must maintain proper orientation to align the cylindrical correction with the patient's astigmatic axis. Various stabilization methods (prism ballast, peri-ballast, dual thin zones) help achieve this stability."
+            },
+            {
+                question: "What is a characteristic of a loose-fitting soft lens?",
+                options: [
+                    "Excessive movement with blinking",
+                    "Edge standoff",
+                    "Conjunctival indentation",
+                    "Both A and B"
+                ],
+                answer: 3,
+                explanation: "A loose-fitting soft lens exhibits both excessive movement with blinking and edge standoff (the edge of the lens lifts away from the eye). These signs indicate the lens is too flat or too large for the eye, which can cause discomfort, poor vision, and lens dislodgement."
+            },
+            {
+                question: "What is the best way to evaluate the fit of a multifocal soft contact lens?",
+                options: [
+                    "Assess lens movement only",
+                    "Check distance vision only",
+                    "Check near vision only",
+                    "Evaluate lens centration, movement, and visual performance at multiple distances"
+                ],
+                answer: 3,
+                explanation: "The best way to evaluate the fit of a multifocal soft contact lens is to assess lens centration, movement, and visual performance at multiple distances. Proper centration is critical for simultaneous vision designs, as decentration can significantly affect the balance between distance and near vision."
+            },
+            
+            // Domain 6: Dispensing
+            {
+                question: "What is the most appropriate instruction to give a new contact lens wearer about insertion and removal times?",
+                options: [
+                    "Insert the lenses upon waking and remove them just before sleeping",
+                    "Insert the lenses after breakfast and remove them before dinner",
+                    "Gradually build up wearing time as recommended by the practitioner",
+                    "Wear the lenses only when necessary"
+                ],
+                answer: 2,
+                explanation: "New contact lens wearers should gradually build up wearing time as recommended by the practitioner. This adaptation period allows the cornea to adjust to reduced oxygen availability and the eyelids to adapt to the presence of the lens. A typical schedule might start with 4 hours on day one and increase by 2 hours daily until reaching the prescribed wearing time."
+            },
+            {
+                question: "Which statement about contact lens solution compatibility is correct?",
+                options: [
+                    "All multipurpose solutions can be used with all types of contact lenses",
+                    "Hydrogen peroxide systems require a neutralization step before lens insertion",
+                    "Saline solution alone is sufficient for disinfecting lenses",
+                    "Rigid lens solutions can be used for soft lenses in emergencies"
+                ],
+                answer: 1,
+                explanation: "Hydrogen peroxide systems require a neutralization step before lens insertion. Without neutralization, hydrogen peroxide (typically 3%) will cause severe burning and corneal damage. Neutralization occurs either by using a special case with a platinum disc or by adding a neutralizing tablet."
+            },
+            {
+                question: "What is the appropriate way to store contact lenses when not being worn?",
+                options: [
+                    "In tap water",
+                    "In saline solution",
+                    "In a clean, closed case with fresh solution",
+                    "Dry in a contact lens case"
+                ],
+                answer: 2,
+                explanation: "Contact lenses should be stored in a clean, closed case with fresh solution when not being worn. The solution should be changed each time the lenses are stored, and the case should be cleaned and air-dried regularly to prevent microbial contamination."
+            },
+            {
+                question: "What is the proper hand washing procedure before handling contact lenses?",
+                options: [
+                    "Rinse with water only",
+                    "Use antibacterial soap, rinse thoroughly, and dry with a lint-free towel",
+                    "Use any available soap and dry hands on clothing",
+                    "Clean hands with alcohol-based hand sanitizer"
+                ],
+                answer: 1,
+                explanation: "Proper hand washing before handling contact lenses involves using antibacterial soap, rinsing thoroughly, and drying with a lint-free towel. This reduces the risk of transferring microorganisms and debris to the lens and eye. Alcohol-based hand sanitizers can transfer to the lens and cause eye irritation."
+            },
+            {
+                question: "What should be emphasized when teaching a new RGP lens wearer about lens care?",
+                options: [
+                    "RGP lenses rarely need cleaning",
+                    "RGP lenses should be rubbed and rinsed daily to remove deposits",
+                    "RGP lenses can be stored dry overnight",
+                    "RGP lenses should be replaced monthly"
+                ],
+                answer: 1,
+                explanation: "RGP lenses should be rubbed and rinsed daily to remove deposits. Unlike some soft lenses, RGP lenses are not disposable and can accumulate lipid and protein deposits over time. Daily cleaning with a surfactant cleaner, followed by rinsing and soaking in conditioning/disinfecting solution, is essential for comfort and lens longevity."
+            },
+            {
+                question: "What should a patient do if a soft contact lens feels uncomfortable upon insertion?",
+                options: [
+                    "Continue wearing it until the discomfort subsides",
+                    "Apply eye drops while wearing the lens",
+                    "Remove the lens, rinse with solution, and reinsert",
+                    "Switch to glasses for the rest of the day"
+                ],
+                answer: 2,
+                explanation: "If a soft contact lens feels uncomfortable upon insertion, the patient should remove the lens, rinse it with fresh solution, and reinsert it. Discomfort may be caused by debris, an inside-out lens, or a damaged lens. If discomfort persists after reinsertion, the lens should be removed and the eye care practitioner consulted."
+            },
+            {
+                question: "What is the correct way to verify the orientation of a soft contact lens before insertion?",
+                options: [
+                    "Place the lens on a fingertip and look at its profile",
+                    "Check the tint pattern",
+                    "Look for laser markings",
+                    "Feel the edge thickness"
+                ],
+                answer: 0,
+                explanation: "The correct way to verify the orientation of a soft contact lens before insertion is to place it on a fingertip and look at its profile. A properly oriented lens will have edges that turn slightly upward, resembling a bowl. An inside-out lens will have edges that flare outward and may appear more flat or irregularly shaped."
+            },
+            
+            // Domain 7: Follow-up
+            {
+                question: "How soon after initial dispensing should the first follow-up visit be scheduled for a new contact lens wearer?",
+                options: [
+                    "The same day",
+                    "Within 1-2 weeks",
+                    "After 1 month",
+                    "After 3 months"
+                ],
+                answer: 1,
+                explanation: "The first follow-up visit for a new contact lens wearer should typically be scheduled within 1-2 weeks after initial dispensing. This timeframe allows assessment of the patient's adaptation to the lenses, evaluation of the fit and vision after regular wear, and addressing any compliance or comfort issues early in the wearing experience."
+            },
+            {
+                question: "What is the primary purpose of corneal topography at follow-up visits?",
+                options: [
+                    "To evaluate changes in corneal curvature and look for warpage",
+                    "To determine if a prescription change is needed",
+                    "To check for corneal edema",
+                    "To evaluate tear film quality"
+                ],
+                answer: 0,
+                explanation: "The primary purpose of corneal topography at follow-up visits is to evaluate changes in corneal curvature and look for corneal warpage or molding. This is particularly important for RGP lens wearers or those with overnight orthokeratology lenses, as these can induce changes to the corneal shape."
+            },
+            {
+                question: "Which grading scale is commonly used to evaluate contact lens complications?",
+                options: [
+                    "Snellen scale",
+                    "VARK scale",
+                    "Efron or CCLRU grading scales",
+                    "LogMAR scale"
+                ],
+                answer: 2,
+                explanation: "The Efron or CCLRU (Cornea and Contact Lens Research Unit) grading scales are commonly used to evaluate contact lens complications. These standardized scales (typically 0-4) help practitioners assess and document the severity of conditions like conjunctival hyperemia, corneal staining, tarsal conjunctival changes, and limbal redness."
+            },
+            {
+                question: "What finding at a follow-up visit would necessitate discontinuation of contact lens wear?",
+                options: [
+                    "Grade 1 corneal staining",
+                    "Mild lens deposits",
+                    "Corneal infiltrates with pain and redness",
+                    "Slight lens decentration"
+                ],
+                answer: 2,
+                explanation: "Corneal infiltrates with pain and redness would necessitate discontinuation of contact lens wear. This presentation suggests a possible microbial keratitis or severe inflammatory response, which requires immediate discontinuation of lens wear and often requires treatment with antibiotics or other medications."
+            },
+            {
+                question: "How should you manage a patient who presents with a tight-fitting soft contact lens at a follow-up visit?",
+                options: [
+                    "Increase wearing time to stretch the lens",
+                    "Switch to a flatter base curve or different material",
+                    "Increase lens power",
+                    "Recommend more frequent replacement"
+                ],
+                answer: 1,
+                explanation: "A patient with a tight-fitting soft contact lens should be refitted with a flatter base curve or different lens material with better oxygen permeability. Tight lenses restrict movement and tear exchange, which can lead to corneal hypoxia, neovascularization, and discomfort. Different materials may also reduce binding or adherence to the cornea."
+            },
+            {
+                question: "What is the recommended follow-up schedule for an established contact lens wearer with no problems?",
+                options: [
+                    "Every month",
+                    "Every 3-4 months",
+                    "Every 6-12 months",
+                    "Only when experiencing problems"
+                ],
+                answer: 2,
+                explanation: "For established contact lens wearers with no problems, a follow-up schedule of every 6-12 months is generally recommended. This allows for regular assessment of ocular health, lens fit, vision, and compliance, even when patients are asymptomatic, as some contact lens complications can develop without noticeable symptoms."
+            },
+            
+            // Domain 8: Regulatory and Administrative
+            {
+                question: "According to FDA regulations, contact lenses are classified as:",
+                options: [
+                    "Cosmetics",
+                    "Over-the-counter medical devices",
+                    "Prescription medical devices",
+                    "Vision correction appliances"
+                ],
+                answer: 2,
+                explanation: "According to FDA regulations, contact lenses are classified as prescription medical devices. This classification applies to all contact lenses, including plano (non-prescription) cosmetic lenses. As prescription devices, contact lenses require a valid prescription and proper fitting by a licensed eye care professional."
+            },
+            {
+                question: "What is required for a valid contact lens prescription?",
+                options: [
+                    "Lens power only",
+                    "Base curve and diameter only",
+                    "Power, base curve, diameter, lens material/brand, and expiration date",
+                    "Patient's name and prescriber's signature only"
+                ],
+                answer: 2,
+                explanation: "A valid contact lens prescription must include lens power, base curve, diameter, lens material or brand, and an expiration date, along with the patient's name and prescriber's information and signature. This comprehensive information ensures the contact lenses are properly fitted to the patient's specific ocular needs."
+            },
+            {
+                question: "What is the maximum expiration period for a contact lens prescription under the Fairness to Contact Lens Consumers Act (FCLCA)?",
+                options: [
+                    "6 months",
+                    "1 year",
+                    "2 years",
+                    "Varies by state law"
+                ],
+                answer: 3,
+                explanation: "The maximum expiration period for a contact lens prescription varies by state law under the Fairness to Contact Lens Consumers Act (FCLCA). While the FCLCA requires prescribers to provide patients with their prescriptions, it defers to state laws regarding expiration dates, which typically range from 1-2 years."
+            }
+        ];
         
         // Initialize variables
-        let currentDomain = "all";
         let questions = [];
         let currentQuestionIndex = 0;
         let score = 0;
@@ -985,7 +867,6 @@
         let answeredQuestions = [];
         
         // DOM elements
-        const domainSelect = document.getElementById("domain-select");
         const startScreen = document.getElementById("start-screen");
         const quizScreen = document.getElementById("quiz-screen");
         const resultsScreen = document.getElementById("results-screen");
@@ -993,7 +874,6 @@
         const prevBtn = document.getElementById("prev-btn");
         const nextBtn = document.getElementById("next-btn");
         const restartBtn = document.getElementById("restart-btn");
-        const newDomainBtn = document.getElementById("new-domain-btn");
         const questionText = document.getElementById("question-text");
         const optionsList = document.getElementById("options-list");
         const explanationBox = document.getElementById("explanation-box");
@@ -1007,43 +887,15 @@
         const percentageDisplay = document.getElementById("percentage");
         
         // Event listeners
-        domainSelect.addEventListener("change", handleDomainChange);
         startBtn.addEventListener("click", startQuiz);
         prevBtn.addEventListener("click", showPreviousQuestion);
         nextBtn.addEventListener("click", showNextQuestion);
         restartBtn.addEventListener("click", restartQuiz);
-        newDomainBtn.addEventListener("click", goToStart);
         
         // Functions
-        function handleDomainChange() {
-            currentDomain = domainSelect.value;
-        }
-        
         function startQuiz() {
-            // Gather questions based on selected domain
-            questions = [];
-            
-            if (currentDomain === "all") {
-                // Select random questions from each domain
-                Object.keys(quizQuestions).forEach(domain => {
-                    const domainQuestions = quizQuestions[domain];
-                    // Select 3 random questions from each domain
-                    const selectedQuestions = getRandomQuestions(domainQuestions, 3);
-                    questions = questions.concat(selectedQuestions);
-                });
-            } else {
-                // Get all questions from the selected domain
-                questions = [...quizQuestions[currentDomain]];
-                // Shuffle the questions
-                shuffleArray(questions);
-                // Limit to 10 questions if there are more
-                if (questions.length > 10) {
-                    questions = questions.slice(0, 10);
-                }
-            }
-            
-            // Shuffle the final question set
-            shuffleArray(questions);
+            // Get 25 random questions from the pool
+            questions = getRandomQuestions(quizQuestions, 25);
             
             // Reset quiz state
             currentQuestionIndex = 0;
@@ -1207,7 +1059,8 @@
         }
         
         function restartQuiz() {
-            // Reset quiz state
+            // Reset quiz state and select new random questions
+            questions = getRandomQuestions(quizQuestions, 25);
             currentQuestionIndex = 0;
             score = 0;
             answeredQuestions = Array(questions.length).fill(false);
@@ -1225,14 +1078,6 @@
             loadQuestion();
         }
         
-        function goToStart() {
-            // Show start screen
-            resultsScreen.classList.remove("show");
-            resultsScreen.classList.add("hide");
-            startScreen.classList.remove("hide");
-            startScreen.classList.add("show");
-        }
-        
         // Helper functions
         function getRandomQuestions(array, count) {
             const shuffled = [...array];
@@ -1246,6 +1091,12 @@
                 [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
+        }
+        
+        // Function to add new questions (for future use)
+        function addNewQuestions(newQuestions) {
+            // This function can be used later to add more questions to the quiz
+            quizQuestions.push(...newQuestions);
         }
     </script>
 </body>
