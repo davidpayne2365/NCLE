@@ -3,1439 +3,1250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Clone</title>
+    <title>NCLE Contact Lens Exam Interactive Quiz</title>
     <style>
         :root {
-            --primary: #fe2c55;
-            --black: #000000;
-            --white: #ffffff;
-            --gray: #f1f1f2;
-            --dark-gray: #8a8a8a;
+            --primary-color: #1a5f7a;
+            --secondary-color: #57c4e5;
+            --accent-color: #d1f1fa;
+            --text-color: #333;
+            --background-color: #f9feff;
+            --correct-color: #4caf50;
+            --incorrect-color: #f44336;
+            --neutral-color: #f0f0f0;
         }
         
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: var(--black);
-            color: var(--white);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .app-container {
-            max-width: 500px;
-            width: 100%;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
             margin: 0 auto;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
         }
         
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
-            top: 0;
-            background-color: var(--black);
-            z-index: 10;
-        }
-        
-        .header .logo {
-            font-weight: bold;
-            font-size: 24px;
-            color: var(--primary);
-        }
-        
-        .header .user-icon {
-            width: 32px;
-            height: 32px;
-            background-color: var(--gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--black);
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        /* Feed */
-        .feed {
-            flex: 1;
-            overflow-y: auto;
-            scroll-snap-type: y mandatory;
-        }
-        
-        .video-container {
-            height: calc(100vh - 140px);
-            scroll-snap-align: start;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .video-player {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            background-color: #333;
-        }
-        
-        .video-info {
-            padding: 15px;
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-        }
-        
-        .username {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .caption {
-            margin-bottom: 15px;
-            opacity: 0.8;
-        }
-        
-        .video-actions {
-            position: absolute;
-            right: 15px;
-            bottom: 100px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2;
-        }
-        
-        .action-button {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-        
-        .action-button.heart {
-            color: white;
-        }
-        
-        .action-button.heart.active {
-            color: var(--primary);
-        }
-        
-        .action-count {
-            font-size: 12px;
-            margin-top: 5px;
-        }
-        
-        /* Bottom Nav */
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            background-color: var(--black);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--white);
-            cursor: pointer;
-            font-size: 12px;
-        }
-        
-        .nav-item .icon {
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-        
-        .nav-item.active {
-            color: var(--primary);
-        }
-        
-        /* Upload Modal */
-        .upload-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 100;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .upload-modal.active {
-            display: flex;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        .upload-preview {
-            width: 100%;
-            max-width: 400px;
-            height: 60vh;
-            background-color: #333;
+        header {
+            text-align: center;
             margin-bottom: 20px;
-            object-fit: cover;
-        }
-        
-        .upload-form {
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .upload-button, .post-button {
-            padding: 12px;
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .caption-input {
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: none;
-        }
-        
-        /* Comment Section */
-        .comment-section {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 60vh;
-            background-color: var(--black);
-            z-index: 50;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            display: none;
-            flex-direction: column;
-        }
-        
-        .comment-section.active {
-            display: flex;
-        }
-        
-        .comment-header {
             padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .comment-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
         
-        .comment-item {
-            display: flex;
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        
+        p {
             margin-bottom: 15px;
         }
         
-        .comment-avatar {
-            width: 36px;
-            height: 36px;
-            background-color: var(--gray);
-            border-radius: 50%;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--black);
-            font-weight: bold;
-        }
-        
-        .comment-content {
-            flex: 1;
-        }
-        
-        .comment-user {
-            font-weight: bold;
-            margin-bottom: 3px;
-        }
-        
-        .comment-text {
-            opacity: 0.8;
-        }
-        
-        .comment-input-container {
-            padding: 15px;
-            display: flex;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .comment-input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 20px;
-            border: none;
-            margin-right: 10px;
-        }
-        
-        .comment-send {
-            padding: 12px 15px;
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-        
-        .video-recording {
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 4px;
-            margin-top: 10px;
-            display: none;
-        }
-        
-        .recording-active {
-            display: block;
-        }
-        
-        .camera-preview {
-            width: 100%;
-            max-width: 400px;
-            height: 60vh;
-            background-color: #333;
-            margin-bottom: 20px;
-            object-fit: cover;
-        }
-        
-        .record-actions {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        .record-button {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            border: 6px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-        }
-        
-        .profile-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--black);
-            z-index: 100;
-            display: none;
-            flex-direction: column;
-            align-items: center;
+        .quiz-container {
+            background-color: white;
+            border-radius: 8px;
             padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
-        .profile-modal.active {
-            display: flex;
-        }
-        
-        .profile-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            background-color: var(--gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--black);
-            font-weight: bold;
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-        
-        .profile-username {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .profile-stats {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-bottom: 30px;
-        }
-        
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .stat-value {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        
-        .profile-videos {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            width: 100%;
-        }
-        
-        .profile-video {
-            aspect-ratio: 1/1.3;
-            background-color: #333;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        
-        .video-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .profile-video:hover .video-overlay {
-            display: flex;
-        }
-        
-        .delete-video {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 12px;
-            margin-top: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            touch-action: manipulation;
-        }
-        
-        .views-count {
-            position: absolute;
-            bottom: 5px;
-            left: 5px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .error-message {
-            color: var(--primary);
-            margin-top: 10px;
+        .domain-selector {
+            margin-bottom: 20px;
             text-align: center;
         }
         
-        .loader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            max-width: 400px;
+        }
+        
+        .question-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--accent-color);
+        }
+        
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .options {
+            list-style-type: none;
+        }
+        
+        .option {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .option:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .option.selected {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .option.correct {
+            background-color: var(--correct-color);
+            color: white;
+        }
+        
+        .option.incorrect {
+            background-color: var(--incorrect-color);
+            color: white;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--neutral-color);
             display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
         }
         
-        .loader-container.active {
+        .explanation h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .buttons {
             display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
         }
         
-        .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid var(--white);
-            border-bottom-color: var(--primary);
-            border-radius: 50%;
-            animation: rotate 1s linear infinite;
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .progress-text {
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .score-container {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .concept-box {
+            background-color: var(--accent-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .concept-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">TikTok Clone</div>
-            <div class="user-icon" id="userIcon">U</div>
-        </div>
-        
-        <!-- Feed -->
-        <div class="feed" id="feed">
-            <!-- Videos will be loaded here -->
-            <div class="empty-feed" style="height: 80vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 20px;">
-                <h2>No videos yet</h2>
-                <p style="margin-top: 10px; opacity: 0.7;">Create your first video by clicking the + button below</p>
-            </div>
-        </div>
-        
-        <!-- Bottom Nav -->
-        <div class="bottom-nav">
-            <div class="nav-item active" data-page="home">
-                <div class="icon">🏠</div>
-                <div>Home</div>
-            </div>
-            <div class="nav-item" id="uploadButton">
-                <div class="icon" style="font-size: 30px;">+</div>
-            </div>
-            <div class="nav-item" data-page="profile">
-                <div class="icon">👤</div>
-                <div>Profile</div>
-            </div>
-        </div>
-    </div>
+    <header>
+        <h1>NCLE Contact Lens Exam Interactive Quiz</h1>
+        <p>Test your knowledge of contact lens principles and prepare for the NCLE certification exam</p>
+    </header>
     
-    <!-- Upload Modal -->
-    <div class="upload-modal" id="uploadModal">
-        <div class="close-modal" id="closeUploadModal">✕</div>
-        <h2 style="margin-bottom: 20px;">Create a new video</h2>
-        
-        <div id="uploadControls">
-            <div class="upload-form">
-                <button class="upload-button" id="selectFileButton">Select video file</button>
-                <button class="upload-button" id="recordVideoButton">Record video</button>
-                <input type="file" id="videoFileInput" accept="video/*" style="display: none">
-            </div>
+    <main>
+        <div class="domain-selector">
+            <h2>Select a Domain to Study</h2>
+            <select id="domain-select">
+                <option value="all">All Domains</option>
+                <option value="domain1">Domain I: Ocular Anatomy, Physiology, and Pathology</option>
+                <option value="domain2">Domain II: Refractive Errors</option>
+                <option value="domain3">Domain III: Instrumentation for Measurement and Observation</option>
+                <option value="domain4">Domain IV: Prefitting</option>
+                <option value="domain5">Domain V: Diagnostic Fitting</option>
+                <option value="domain6">Domain VI: Dispensing</option>
+                <option value="domain7">Domain VII: Follow-up</option>
+                <option value="domain8">Domain VIII: Regulatory and Administrative</option>
+            </select>
         </div>
         
-        <div id="recordingControls" style="display: none; width: 100%; max-width: 400px;">
-            <video class="camera-preview" id="cameraPreview" autoplay muted></video>
-            <div class="record-actions">
-                <button class="upload-button" id="startRecordingButton">Start Recording</button>
-                <button class="upload-button" id="stopRecordingButton" style="display: none;">Stop Recording</button>
+        <div class="quiz-container">
+            <div id="start-screen" class="show">
+                <h2>Welcome to the NCLE Exam Quiz!</h2>
+                <p>This interactive quiz will help you prepare for the National Contact Lens Examiners (NCLE) certification exam by testing your knowledge across all eight domains of the exam.</p>
+                
+                <div class="concept-box">
+                    <h3>About the NCLE Exam</h3>
+                    <p>The Contact Lens Registry Examination (CLRE) is a comprehensive assessment that validates your knowledge and skills in fitting, dispensing, and ensuring the safe use of contact lenses. The exam consists of 125 multiple-choice questions to be completed in 2 hours.</p>
+                </div>
+                
+                <p>Select a specific domain from the dropdown menu above or keep "All Domains" selected to test your knowledge across the entire exam content. Each question includes detailed explanations to help you learn as you go.</p>
+                
+                <button id="start-btn">Start Quiz</button>
             </div>
-            <div class="video-recording" id="recordingIndicator">
-                Recording... <span id="recordingTime">0:00</span>
+            
+            <div id="quiz-screen" class="hide">
+                <div class="question-container">
+                    <p class="question" id="question-text">Question text will appear here</p>
+                    <ul class="options" id="options-list">
+                        <!-- Options will be added dynamically -->
+                    </ul>
+                    <div class="explanation" id="explanation-box">
+                        <h3>Explanation:</h3>
+                        <p id="explanation-text"></p>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button id="prev-btn" disabled>Previous</button>
+                    <button id="next-btn" disabled>Next</button>
+                </div>
+                
+                <div class="progress-container">
+                    <p class="progress-text" id="progress-text">Question 1 of 10</p>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="score-container" id="score-container">
+                    Score: <span id="score">0</span>/<span id="total">0</span>
+                </div>
+            </div>
+            
+            <div id="results-screen" class="hide">
+                <h2>Quiz Results</h2>
+                <p>You've completed the quiz! Here's how you did:</p>
+                
+                <div class="score-container">
+                    <p>Final Score: <span id="final-score">0</span>/<span id="final-total">0</span></p>
+                    <p>Percentage: <span id="percentage">0</span>%</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Keep Learning</h3>
+                    <p>Continue to study the domains where you scored lower. For the NCLE exam, it's important to understand both the theoretical concepts and their practical applications in contact lens fitting and care.</p>
+                </div>
+                
+                <div class="buttons">
+                    <button id="restart-btn">Restart Quiz</button>
+                    <button id="new-domain-btn">Select New Domain</button>
+                </div>
             </div>
         </div>
-        
-        <div id="previewControls" style="display: none; width: 100%; max-width: 400px;">
-            <video class="upload-preview" id="videoPreview" controls></video>
-            <div class="upload-form">
-                <input type="text" class="caption-input" id="captionInput" placeholder="Write a caption...">
-                <button class="post-button" id="postButton">Post</button>
-            </div>
-        </div>
-        
-        <div class="error-message" id="uploadError"></div>
-    </div>
-    
-    <!-- Comment Section -->
-    <div class="comment-section" id="commentSection">
-        <div class="comment-header">
-            <h3>Comments</h3>
-            <div class="close-modal" id="closeCommentSection">✕</div>
-        </div>
-        <div class="comment-list" id="commentList">
-            <!-- Comments will be loaded here -->
-        </div>
-        <div class="comment-input-container">
-            <input type="text" class="comment-input" id="commentInput" placeholder="Add a comment...">
-            <button class="comment-send" id="commentSendButton">Send</button>
-        </div>
-    </div>
-    
-    <!-- Profile Modal -->
-    <div class="profile-modal" id="profileModal">
-        <div class="profile-header">
-            <div class="close-modal" id="closeProfileModal">✕</div>
-            <button class="upload-button" id="logoutButton" style="margin: 0;">Logout</button>
-        </div>
-        
-        <div class="profile-info">
-            <div class="profile-avatar" id="profileAvatar">U</div>
-            <div class="profile-username" id="profileUsername">Username</div>
-        </div>
-        
-        <div class="profile-stats">
-            <div class="stat-item">
-                <div class="stat-value" id="followingCount">0</div>
-                <div class="stat-label">Following</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="followersCount">0</div>
-                <div class="stat-label">Followers</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="likesCount">0</div>
-                <div class="stat-label">Likes</div>
-            </div>
-        </div>
-        
-        <div class="profile-videos" id="profileVideos">
-            <!-- User videos will be loaded here -->
-        </div>
-    </div>
-    
-    <!-- Loader -->
-    <div class="loader-container" id="loaderContainer">
-        <div class="loader"></div>
-    </div>
+    </main>
     
     <script>
-        // Global variables
-        let currentUser = null;
-        let videos = [];
-        let mediaRecorder = null;
-        let recordedChunks = [];
-        let recordingInterval = null;
-        let recordingTime = 0;
-        let currentVideoId = null;
-        
-        // Check browser storage support
-        function checkStorageSupport() {
-            try {
-                localStorage.setItem('test', 'test');
-                localStorage.removeItem('test');
-                return true;
-            } catch (e) {
-                console.error('localStorage not supported:', e);
-                return false;
-            }
-        }
-        
-        // Helper function to compress video data URLs (simple approach)
-        function compressDataUrl(dataUrl) {
-            // This is a very basic approach - in a real app you'd want to use proper compression
-            // For now, just return the original URL but log the size
-            const sizeInMB = (dataUrl.length * 2) / (1024 * 1024);
-            console.log(`Video size: approximately ${sizeInMB.toFixed(2)} MB`);
-            
-            // Check if size is too large
-            if (sizeInMB > 5) {
-                console.warn('Warning: Video size exceeds 5MB, may have storage issues');
-            }
-            
-            return dataUrl;
-        }
-        
-        // Storage helper functions
-        function saveToStorage(key, data) {
-            try {
-                const jsonData = JSON.stringify(data);
-                localStorage.setItem(key, jsonData);
-                return true;
-            } catch (error) {
-                console.error(`Error saving to storage (${key}):`, error);
-                if (error.name === 'QuotaExceededError' || error.toString().includes('quota')) {
-                    alert('Storage limit exceeded. Try shorter videos or delete some existing ones.');
+        // Quiz Questions Database organized by domain
+        const quizQuestions = {
+            domain1: [
+                {
+                    question: "Which layer of the cornea is responsible for most of the cornea's refractive power?",
+                    options: [
+                        "Epithelium",
+                        "Bowman's membrane",
+                        "Stroma",
+                        "Descemet's membrane"
+                    ],
+                    answer: 0,
+                    explanation: "The epithelium is the anterior (front) layer of the cornea and provides about two-thirds of the cornea's total refractive power. This is important for contact lens fitting as lenses rest on this layer, and any epithelial damage can affect vision and lens comfort."
+                },
+                {
+                    question: "What is the average horizontal visible iris diameter (HVID) in adults?",
+                    options: [
+                        "8.0 mm",
+                        "10.0 mm",
+                        "11.8 mm",
+                        "12.5 mm"
+                    ],
+                    answer: 2,
+                    explanation: "The average horizontal visible iris diameter (HVID) in adults is around 11.8 mm. This measurement is crucial for selecting the appropriate diameter for contact lenses, especially rigid gas permeable (RGP) lenses."
+                },
+                {
+                    question: "Which of the following is NOT a layer of the tear film?",
+                    options: [
+                        "Lipid layer",
+                        "Aqueous layer",
+                        "Mucin layer",
+                        "Protein layer"
+                    ],
+                    answer: 3,
+                    explanation: "The tear film consists of three layers: the lipid (oily) outer layer that prevents evaporation, the aqueous (watery) middle layer that hydrates the cornea, and the mucin inner layer that helps the tear film adhere to the corneal surface. There is no distinct protein layer in the tear film, although proteins are found within the aqueous layer."
+                },
+                {
+                    question: "Which ocular structure produces aqueous humor?",
+                    options: [
+                        "Iris",
+                        "Ciliary body",
+                        "Trabecular meshwork",
+                        "Lens"
+                    ],
+                    answer: 1,
+                    explanation: "The ciliary body produces aqueous humor, which maintains intraocular pressure and provides nutrients to the lens and cornea. Understanding aqueous humor production and drainage is important when considering patients with glaucoma for contact lens wear."
+                },
+                {
+                    question: "What is the normal corneal thickness at the center?",
+                    options: [
+                        "0.3 mm",
+                        "0.5 mm",
+                        "0.7 mm",
+                        "1.0 mm"
+                    ],
+                    answer: 1,
+                    explanation: "The normal corneal thickness at the center is approximately 0.5 mm (or 500 microns). Corneal thickness is an important measurement when evaluating patients for certain types of contact lenses, especially in patients with conditions like keratoconus."
+                },
+                {
+                    question: "Which condition is characterized by corneal thinning and steepening that results in an irregular, cone-shaped cornea?",
+                    options: [
+                        "Keratitis",
+                        "Keratoconus",
+                        "Corneal dystrophy",
+                        "Pinguecula"
+                    ],
+                    answer: 1,
+                    explanation: "Keratoconus is characterized by progressive corneal thinning and steepening, resulting in an irregular, cone-shaped cornea. This condition often requires specialty contact lenses like rigid gas permeable lenses, hybrid lenses, or scleral lenses for proper vision correction."
+                },
+                {
+                    question: "Which glands in the eyelids produce the oily component of tears?",
+                    options: [
+                        "Meibomian glands",
+                        "Lacrimal glands",
+                        "Goblet cells",
+                        "Glands of Zeis"
+                    ],
+                    answer: 0,
+                    explanation: "Meibomian glands are sebaceous glands located in the tarsal plates of the eyelids that produce the oily (lipid) component of tears. This oil helps prevent tear evaporation and is crucial for maintaining a stable tear film, which is essential for comfortable contact lens wear."
+                },
+                {
+                    question: "Which of the following is a sign of giant papillary conjunctivitis (GPC)?",
+                    options: [
+                        "Flat, clear cornea",
+                        "Large papillae under the upper eyelid",
+                        "Yellow discharge from the eye",
+                        "Reduced tear production"
+                    ],
+                    answer: 1,
+                    explanation: "Giant papillary conjunctivitis (GPC) is characterized by large papillae (bumps) under the upper eyelid. It's often associated with contact lens wear, especially soft lenses, and can cause symptoms like itching, mucous discharge, and reduced lens comfort."
                 }
-                return false;
-            }
-        }
-        
-        function loadFromStorage(key) {
-            try {
-                const data = localStorage.getItem(key);
-                return data ? JSON.parse(data) : null;
-            } catch (error) {
-                console.error(`Error loading from storage (${key}):`, error);
-                return null;
-            }
-        }
-        
-        // DOM Elements
-        const feed = document.getElementById('feed');
-        const uploadModal = document.getElementById('uploadModal');
-        const uploadButton = document.getElementById('uploadButton');
-        const closeUploadModal = document.getElementById('closeUploadModal');
-        const videoFileInput = document.getElementById('videoFileInput');
-        const selectFileButton = document.getElementById('selectFileButton');
-        const recordVideoButton = document.getElementById('recordVideoButton');
-        const uploadControls = document.getElementById('uploadControls');
-        const recordingControls = document.getElementById('recordingControls');
-        const previewControls = document.getElementById('previewControls');
-        const cameraPreview = document.getElementById('cameraPreview');
-        const videoPreview = document.getElementById('videoPreview');
-        const captionInput = document.getElementById('captionInput');
-        const postButton = document.getElementById('postButton');
-        const uploadError = document.getElementById('uploadError');
-        const startRecordingButton = document.getElementById('startRecordingButton');
-        const stopRecordingButton = document.getElementById('stopRecordingButton');
-        const recordingIndicator = document.getElementById('recordingIndicator');
-        const recordingTimeDisplay = document.getElementById('recordingTime');
-        const commentSection = document.getElementById('commentSection');
-        const closeCommentSection = document.getElementById('closeCommentSection');
-        const commentList = document.getElementById('commentList');
-        const commentInput = document.getElementById('commentInput');
-        const commentSendButton = document.getElementById('commentSendButton');
-        const userIcon = document.getElementById('userIcon');
-        const profileModal = document.getElementById('profileModal');
-        const closeProfileModal = document.getElementById('closeProfileModal');
-        const profileAvatar = document.getElementById('profileAvatar');
-        const profileUsername = document.getElementById('profileUsername');
-        const followingCount = document.getElementById('followingCount');
-        const followersCount = document.getElementById('followersCount');
-        const likesCount = document.getElementById('likesCount');
-        const profileVideos = document.getElementById('profileVideos');
-        const logoutButton = document.getElementById('logoutButton');
-        const loaderContainer = document.getElementById('loaderContainer');
-        const emptyFeed = document.querySelector('.empty-feed');
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        // Initialize the app
-        function initApp() {
-            // Check for storage support
-            if (!checkStorageSupport()) {
-                alert('Your browser does not support local storage. This app requires local storage to work properly.');
-                return;
-            }
-            
-            console.log('Starting app initialization...');
-            
-            // Check if user is logged in
-            const storedUser = loadFromStorage('tiktok_user');
-            if (storedUser) {
-                currentUser = storedUser;
-                userIcon.textContent = currentUser.username.charAt(0).toUpperCase();
-                console.log('User loaded:', currentUser.username);
-            } else {
-                // Create random username if not logged in
-                const randomId = Math.floor(Math.random() * 10000);
-                currentUser = {
-                    id: `user_${randomId}`,
-                    username: `user${randomId}`,
-                    following: 0,
-                    followers: 0,
-                    likes: 0
-                };
-                saveToStorage('tiktok_user', currentUser);
-                userIcon.textContent = currentUser.username.charAt(0).toUpperCase();
-                console.log('New user created:', currentUser.username);
-            }
-            
-            // Load videos from local storage
-            const storedVideos = loadFromStorage('tiktok_videos');
-            if (storedVideos && Array.isArray(storedVideos) && storedVideos.length > 0) {
-                videos = storedVideos;
-                console.log('Loaded videos from storage:', videos.length);
-                emptyFeed.style.display = 'none';
-                renderFeed();
-            } else {
-                console.log('No videos found in storage or invalid data');
-                videos = [];
-            }
-            
-            // Set up event listeners
-            setupEventListeners();
-            
-            console.log('App initialization complete');
-        }
-        
-        // Set up event listeners
-        function setupEventListeners() {
-            // Upload video
-            uploadButton.addEventListener('click', openUploadModal);
-            closeUploadModal.addEventListener('click', closeModal);
-            selectFileButton.addEventListener('click', () => videoFileInput.click());
-            videoFileInput.addEventListener('change', handleFileSelect);
-            recordVideoButton.addEventListener('click', setupCamera);
-            postButton.addEventListener('click', postVideo);
-            
-            // Recording
-            startRecordingButton.addEventListener('click', startRecording);
-            stopRecordingButton.addEventListener('click', stopRecording);
-            
-            // Comments
-            closeCommentSection.addEventListener('click', () => {
-                commentSection.classList.remove('active');
-            });
-            commentSendButton.addEventListener('click', postComment);
-            
-            // Profile
-            userIcon.addEventListener('click', openProfileModal);
-            closeProfileModal.addEventListener('click', () => {
-                profileModal.classList.remove('active');
-            });
-            logoutButton.addEventListener('click', logout);
-            
-            // Nav items
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    if (item.dataset.page === 'profile') {
-                        openProfileModal();
-                    }
-                    
-                    navItems.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-                });
-            });
-        }
-        
-        // Render the feed with videos
-        function renderFeed() {
-            // Clear feed
-            feed.innerHTML = '';
-            
-            if (videos.length === 0) {
-                feed.appendChild(emptyFeed);
-                return;
-            }
-            
-            // Sort videos by date (newest first)
-            const sortedVideos = [...videos].sort((a, b) => b.timestamp - a.timestamp);
-            
-            // Add videos to feed
-            sortedVideos.forEach(video => {
-                const videoContainer = document.createElement('div');
-                videoContainer.className = 'video-container';
-                
-                const videoElement = document.createElement('video');
-                videoElement.className = 'video-player';
-                videoElement.src = video.url;
-                videoElement.setAttribute('loop', '');
-                videoElement.setAttribute('data-id', video.id);
-                
-                const videoInfo = document.createElement('div');
-                videoInfo.className = 'video-info';
-                
-                const username = document.createElement('div');
-                username.className = 'username';
-                username.textContent = video.username;
-                
-                const caption = document.createElement('div');
-                caption.className = 'caption';
-                caption.textContent = video.caption;
-                
-                const videoActions = document.createElement('div');
-                videoActions.className = 'video-actions';
-                
-                const heartButton = document.createElement('div');
-                heartButton.className = `action-button heart ${video.likes.includes(currentUser.id) ? 'active' : ''}`;
-                heartButton.innerHTML = '❤️';
-                heartButton.setAttribute('data-id', video.id);
-                heartButton.addEventListener('click', () => toggleLike(video.id));
-                
-                const likeCount = document.createElement('div');
-                likeCount.className = 'action-count';
-                likeCount.textContent = video.likes.length;
-                
-                const commentButton = document.createElement('div');
-                commentButton.className = 'action-button';
-                commentButton.innerHTML = '💬';
-                commentButton.addEventListener('click', () => openComments(video.id));
-                
-                const commentCount = document.createElement('div');
-                commentCount.className = 'action-count';
-                commentCount.textContent = video.comments.length;
-                
-                videoInfo.appendChild(username);
-                videoInfo.appendChild(caption);
-                
-                heartButton.appendChild(likeCount);
-                commentButton.appendChild(commentCount);
-                
-                videoActions.appendChild(heartButton);
-                videoActions.appendChild(commentButton);
-                
-                videoContainer.appendChild(videoElement);
-                videoContainer.appendChild(videoInfo);
-                videoContainer.appendChild(videoActions);
-                
-                feed.appendChild(videoContainer);
-                
-                // Add intersection observer for videos
-                observeVideo(videoElement);
-            });
-        }
-        
-        // Observe video elements to autoplay when in view
-        function observeVideo(videoElement) {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        videoElement.play();
-                    } else {
-                        videoElement.pause();
-                    }
-                });
-            }, { threshold: 0.6 });
-            
-            observer.observe(videoElement);
-        }
-        
-        // Open upload modal
-        function openUploadModal() {
-            uploadModal.classList.add('active');
-            uploadControls.style.display = 'block';
-            recordingControls.style.display = 'none';
-            previewControls.style.display = 'none';
-            uploadError.textContent = '';
-        }
-        
-        // Close modal
-        function closeModal() {
-            uploadModal.classList.remove('active');
-            if (mediaRecorder && mediaRecorder.state === 'recording') {
-                mediaRecorder.stop();
-            }
-            
-            if (cameraPreview.srcObject) {
-                const tracks = cameraPreview.srcObject.getTracks();
-                tracks.forEach(track => track.stop());
-                cameraPreview.srcObject = null;
-            }
-            
-            clearInterval(recordingInterval);
-            recordingTime = 0;
-            recordingTimeDisplay.textContent = '0:00';
-            recordingIndicator.classList.remove('recording-active');
-            recordedChunks = [];
-        }
-        
-        // Handle file selection
-        function handleFileSelect(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            if (!file.type.startsWith('video/')) {
-                uploadError.textContent = 'Please select a video file';
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                videoPreview.src = event.target.result;
-                uploadControls.style.display = 'none';
-                previewControls.style.display = 'block';
-                captionInput.value = '';
-            };
-            reader.readAsDataURL(file);
-        }
-        
-        // Set up camera for recording
-        function setupCamera() {
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                uploadError.textContent = 'Your browser does not support video recording';
-                return;
-            }
-            
-            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-                .then(stream => {
-                    cameraPreview.srcObject = stream;
-                    uploadControls.style.display = 'none';
-                    recordingControls.style.display = 'block';
-                    
-                    // Set up media recorder
-                    mediaRecorder = new MediaRecorder(stream);
-                    
-                    mediaRecorder.ondataavailable = function(e) {
-                        if (e.data.size > 0) {
-                            recordedChunks.push(e.data);
-                        }
-                    };
-                    
-                    mediaRecorder.onstop = function() {
-                        const blob = new Blob(recordedChunks, { type: 'video/webm' });
-                        const url = URL.createObjectURL(blob);
-                        videoPreview.src = url;
-                        
-                        recordingControls.style.display = 'none';
-                        previewControls.style.display = 'block';
-                        
-                        // Stop all tracks
-                        const tracks = cameraPreview.srcObject.getTracks();
-                        tracks.forEach(track => track.stop());
-                        cameraPreview.srcObject = null;
-                        
-                        clearInterval(recordingInterval);
-                        recordingTime = 0;
-                        recordingTimeDisplay.textContent = '0:00';
-                        recordingIndicator.classList.remove('recording-active');
-                    };
-                })
-                .catch(err => {
-                    uploadError.textContent = 'Failed to access camera: ' + err.message;
-                });
-        }
-        
-        // Start recording
-        function startRecording() {
-            if (!mediaRecorder) return;
-            
-            recordedChunks = [];
-            mediaRecorder.start(1000);
-            startRecordingButton.style.display = 'none';
-            stopRecordingButton.style.display = 'block';
-            recordingIndicator.classList.add('recording-active');
-            
-            // Update recording time
-            recordingTime = 0;
-            recordingInterval = setInterval(() => {
-                recordingTime++;
-                const minutes = Math.floor(recordingTime / 60);
-                const seconds = recordingTime % 60;
-                recordingTimeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                
-                // Limit recording to 60 seconds
-                if (recordingTime >= 60) {
-                    stopRecording();
+            ],
+            domain2: [
+                {
+                    question: "What is the refractive error in which light focuses behind the retina called?",
+                    options: [
+                        "Myopia",
+                        "Hyperopia",
+                        "Astigmatism",
+                        "Presbyopia"
+                    ],
+                    answer: 1,
+                    explanation: "Hyperopia (farsightedness) occurs when light focuses behind the retina, causing difficulty with near vision. For contact lens correction, plus-powered lenses are used to bring the focal point forward onto the retina."
+                },
+                {
+                    question: "A contact lens prescription of -2.50D indicates which refractive error?",
+                    options: [
+                        "Moderate myopia",
+                        "Mild hyperopia",
+                        "Severe astigmatism",
+                        "Presbyopia"
+                    ],
+                    answer: 0,
+                    explanation: "A contact lens prescription of -2.50D indicates moderate myopia (nearsightedness). Minus-powered lenses are used to correct myopia by moving the focal point back onto the retina."
+                },
+                {
+                    question: "Which condition requires toric contact lenses for proper correction?",
+                    options: [
+                        "Simple myopia",
+                        "Simple hyperopia",
+                        "Astigmatism",
+                        "Presbyopia"
+                    ],
+                    answer: 2,
+                    explanation: "Astigmatism requires toric contact lenses for proper correction. Toric lenses have different powers in different meridians to correct the irregularly curved cornea characteristic of astigmatism."
+                },
+                {
+                    question: "What does the 'add' power in a multifocal contact lens prescription refer to?",
+                    options: [
+                        "The power needed to correct astigmatism",
+                        "The additional power needed for near vision",
+                        "The total spherical power of the lens",
+                        "The power needed to correct myopia"
+                    ],
+                    answer: 1,
+                    explanation: "The 'add' power in a multifocal contact lens prescription refers to the additional plus power needed for near vision. This is necessary for correcting presbyopia, the age-related loss of near focusing ability."
+                },
+                {
+                    question: "What is the vertex distance?",
+                    options: [
+                        "The distance between the pupil and the lens",
+                        "The distance between the back surface of a contact lens and the cornea",
+                        "The distance between the back surface of a spectacle lens and the front surface of the cornea",
+                        "The distance between the two eyes"
+                    ],
+                    answer: 2,
+                    explanation: "Vertex distance is the distance between the back surface of a spectacle lens and the front surface of the cornea (approximately 12-14mm). When converting spectacle prescriptions to contact lens prescriptions, vertex distance must be considered for powers stronger than ±4.00D."
+                },
+                {
+                    question: "Which term describes the condition where the corneal astigmatism and refractive astigmatism are different?",
+                    options: [
+                        "Residual astigmatism",
+                        "Regular astigmatism",
+                        "Lenticular astigmatism",
+                        "Oblique astigmatism"
+                    ],
+                    answer: 0,
+                    explanation: "Residual astigmatism refers to the condition where corneal astigmatism and refractive astigmatism are different. This occurs when some of the astigmatism originates from the crystalline lens rather than just the cornea, which affects contact lens fitting strategies."
+                },
+                {
+                    question: "What is the typical power change for every 1mm movement of a -3.00D contact lens?",
+                    options: [
+                        "0.15D",
+                        "0.25D",
+                        "0.50D",
+                        "0.75D"
+                    ],
+                    answer: 0,
+                    explanation: "The typical power change for every 1mm movement of a -3.00D contact lens is approximately 0.15D. This is why proper lens centration is important, especially with higher powers where small movements can cause more significant visual changes."
                 }
-            }, 1000);
+            ],
+            domain3: [
+                {
+                    question: "Which instrument is used to measure corneal curvature?",
+                    options: [
+                        "Slit lamp",
+                        "Keratometer",
+                        "Tonometer",
+                        "Ophthalmoscope"
+                    ],
+                    answer: 1,
+                    explanation: "A keratometer (also known as an ophthalmometer) is used to measure the curvature of the anterior corneal surface. These measurements are critical for determining the base curve of rigid contact lenses and for detecting and measuring corneal astigmatism."
+                },
+                {
+                    question: "What does a corneal topographer measure?",
+                    options: [
+                        "Corneal thickness",
+                        "Intraocular pressure",
+                        "Three-dimensional corneal shape",
+                        "Tear film stability"
+                    ],
+                    answer: 2,
+                    explanation: "A corneal topographer measures the three-dimensional shape of the cornea. It creates detailed maps showing corneal elevation, curvature, and power across the entire corneal surface, which is especially useful for fitting specialty contact lenses for irregular corneas."
+                },
+                {
+                    question: "What is the primary use of a slit lamp in contact lens practice?",
+                    options: [
+                        "To measure corneal curvature",
+                        "To determine the refractive error",
+                        "To examine the anterior segment of the eye",
+                        "To measure intraocular pressure"
+                    ],
+                    answer: 2,
+                    explanation: "The primary use of a slit lamp in contact lens practice is to examine the anterior segment of the eye. It allows for detailed examination of the cornea, conjunctiva, tear film, eyelids, and contact lens fit on the eye with high magnification."
+                },
+                {
+                    question: "What is the function of a lensometer (focimeter)?",
+                    options: [
+                        "To measure the base curve of a contact lens",
+                        "To measure the power and optical center of a lens",
+                        "To determine tear film quality",
+                        "To measure pupil size"
+                    ],
+                    answer: 1,
+                    explanation: "A lensometer (focimeter) is used to measure the power and optical center of a lens. In contact lens practice, it can be used to verify the power of soft contact lenses that have been removed from the eye and placed on a special contact lens holder."
+                },
+                {
+                    question: "Which test evaluates tear film stability?",
+                    options: [
+                        "Schirmer test",
+                        "Tear break-up time (TBUT)",
+                        "Fluorescein staining",
+                        "Phenol red thread test"
+                    ],
+                    answer: 1,
+                    explanation: "Tear break-up time (TBUT) evaluates tear film stability by measuring how long it takes for dry spots to appear in the tear film after a blink. This is important when evaluating patients for contact lenses, as poor tear stability can lead to discomfort and dryness with lens wear."
+                },
+                {
+                    question: "What is the purpose of using fluorescein dye with contact lens patients?",
+                    options: [
+                        "To measure intraocular pressure",
+                        "To evaluate the fit of rigid contact lenses",
+                        "To determine corneal thickness",
+                        "To measure pupil size"
+                    ],
+                    answer: 1,
+                    explanation: "Fluorescein dye is used to evaluate the fit of rigid contact lenses by visualizing the tear layer between the lens and cornea. It can also reveal corneal epithelial defects or abrasions, which might contraindicate contact lens wear until healed."
+                },
+                {
+                    question: "What does an optical coherence tomographer (OCT) measure in relation to contact lens fitting?",
+                    options: [
+                        "Corneal curvature only",
+                        "Tear film thickness only",
+                        "Cross-sectional images of anterior eye structures",
+                        "Pupil diameter in different lighting conditions"
+                    ],
+                    answer: 2,
+                    explanation: "An optical coherence tomographer (OCT) creates high-resolution cross-sectional images of anterior eye structures. For contact lens fitting, it can be used to evaluate lens clearance with scleral lenses, assess corneal thickness, and examine the tear lens between the contact lens and cornea."
+                }
+            ],
+            domain4: [
+                {
+                    question: "What information should be gathered during the case history for a new contact lens patient?",
+                    options: [
+                        "Only previous contact lens experience",
+                        "Only ocular and medical history",
+                        "Only lifestyle and occupational needs",
+                        "All of the above"
+                    ],
+                    answer: 3,
+                    explanation: "A comprehensive case history for a new contact lens patient should include previous contact lens experience, ocular and medical history, medications, allergies, and lifestyle and occupational needs. This information helps determine the most appropriate lens type and wearing schedule."
+                },
+                {
+                    question: "Which of the following contraindications for contact lens wear is considered absolute?",
+                    options: [
+                        "Mild dry eye",
+                        "Active corneal infection",
+                        "Mild astigmatism",
+                        "Allergic conjunctivitis"
+                    ],
+                    answer: 1,
+                    explanation: "An active corneal infection is an absolute contraindication for contact lens wear. Wearing contact lenses during an active infection can exacerbate the condition and potentially lead to serious complications like corneal ulcers."
+                },
+                {
+                    question: "What is the primary purpose of assessing tear film quality before fitting contact lenses?",
+                    options: [
+                        "To determine lens power",
+                        "To evaluate potential comfort and lens wettability",
+                        "To measure corneal curvature",
+                        "To check for color vision deficiencies"
+                    ],
+                    answer: 1,
+                    explanation: "Assessing tear film quality before fitting contact lenses is primarily done to evaluate potential comfort and lens wettability. Poor tear quality or quantity can lead to discomfort, dryness, and deposits on the lens, affecting the success of contact lens wear."
+                },
+                {
+                    question: "Which measurement is most important when selecting the diameter of a rigid gas permeable (RGP) lens?",
+                    options: [
+                        "Horizontal visible iris diameter (HVID)",
+                        "Vertical palpebral aperture",
+                        "Pupil size",
+                        "Lens power"
+                    ],
+                    answer: 0,
+                    explanation: "The horizontal visible iris diameter (HVID) is most important when selecting the diameter of a rigid gas permeable (RGP) lens. Generally, RGP lenses are fit smaller than the HVID to allow for movement and tear exchange while maintaining centration."
+                },
+                {
+                    question: "What is the most appropriate initial base curve selection for a spherical soft contact lens?",
+                    options: [
+                        "0.5mm flatter than the flattest keratometry reading",
+                        "Equal to the average keratometry reading",
+                        "0.5mm steeper than the steepest keratometry reading",
+                        "Based on the manufacturer's fitting guide for the specific lens"
+                    ],
+                    answer: 3,
+                    explanation: "The most appropriate initial base curve selection for a spherical soft contact lens should be based on the manufacturer's fitting guide for the specific lens. Different lens materials and designs have different optimal fitting relationships to the cornea."
+                },
+                {
+                    question: "Which of the following would indicate a patient might benefit from daily disposable contact lenses?",
+                    options: [
+                        "History of poor compliance with lens care",
+                        "Desire for occasional wear only",
+                        "Mild allergies or seasonal allergies",
+                        "All of the above"
+                    ],
+                    answer: 3,
+                    explanation: "All of these factors would indicate a patient might benefit from daily disposable contact lenses. Daily disposables eliminate the need for lens care solutions (addressing compliance issues), are convenient for occasional wear, and provide a fresh lens daily (beneficial for patients with allergies)."
+                },
+                {
+                    question: "What is the typical amount of oxygen transmission needed to avoid corneal edema during daily wear?",
+                    options: [
+                        "At least 24 Dk/t",
+                        "At least 35 Dk/t",
+                        "At least 87 Dk/t",
+                        "At least 125 Dk/t"
+                    ],
+                    answer: 0,
+                    explanation: "For daily wear contact lenses, a minimum oxygen transmissibility (Dk/t) value of approximately 24 is typically needed to avoid corneal edema. For extended or overnight wear, much higher values (87 Dk/t or greater) are recommended to maintain corneal health."
+                }
+            ],
+            domain5: [
+                {
+                    question: "What does an 'alignment fit' of an RGP lens mean?",
+                    options: [
+                        "The lens base curve is steeper than the corneal curvature",
+                        "The lens base curve matches the corneal curvature",
+                        "The lens base curve is flatter than the corneal curvature",
+                        "The lens is positioning off-center"
+                    ],
+                    answer: 1,
+                    explanation: "An 'alignment fit' of an RGP lens means the lens base curve matches the corneal curvature. This typically produces even fluorescein pattern across the cornea, with the lens weight supported evenly across the corneal surface."
+                },
+                {
+                    question: "What fluorescein pattern indicates a steep-fitting RGP lens?",
+                    options: [
+                        "Central pooling with peripheral touch",
+                        "Central touch with peripheral pooling",
+                        "Even fluorescein distribution",
+                        "No fluorescein pattern visible"
+                    ],
+                    answer: 0,
+                    explanation: "A steep-fitting RGP lens (where the base curve is steeper than the cornea) creates a fluorescein pattern with central pooling (appears bright green) and peripheral touch or bearing (appears darker). This indicates inadequate central lens clearance."
+                },
+                {
+                    question: "What does 'apical clearance' refer to in RGP lens fitting?",
+                    options: [
+                        "The lens touches the corneal apex",
+                        "The lens clears the corneal apex",
+                        "The lens is centered on the pupil",
+                        "The lens moves excessively with each blink"
+                    ],
+                    answer: 1,
+                    explanation: "Apical clearance refers to when the RGP lens clears (doesn't touch) the corneal apex (the highest point of the cornea). This fitting approach is sometimes used for keratoconus patients to avoid mechanical pressure on the apex of the cone."
+                },
+                {
+                    question: "What is the ideal amount of movement for a well-fitted soft contact lens?",
+                    options: [
+                        "No movement",
+                        "0.5-1.0 mm with each blink",
+                        "2.0-3.0 mm with each blink",
+                        "Complete rotation with each blink"
+                    ],
+                    answer: 1,
+                    explanation: "A well-fitted soft contact lens should move approximately 0.5-1.0 mm with each blink. This amount of movement allows for proper tear exchange while maintaining comfort and stable vision. Insufficient movement can lead to corneal hypoxia, while excessive movement causes discomfort and fluctuating vision."
+                },
+                {
+                    question: "What is the primary consideration when fitting a toric soft contact lens?",
+                    options: [
+                        "Base curve only",
+                        "Lens diameter only",
+                        "Lens power only",
+                        "Rotational stability"
+                    ],
+                    answer: 3,
+                    explanation: "Rotational stability is the primary consideration when fitting toric soft contact lenses. Since toric lenses correct astigmatism, the lens must maintain proper orientation to align the cylindrical correction with the patient's astigmatic axis. Various stabilization methods (prism ballast, peri-ballast, dual thin zones) help achieve this stability."
+                },
+                {
+                    question: "What is a characteristic of a loose-fitting soft lens?",
+                    options: [
+                        "Excessive movement with blinking",
+                        "Edge standoff",
+                        "Conjunctival indentation",
+                        "Both A and B"
+                    ],
+                    answer: 3,
+                    explanation: "A loose-fitting soft lens exhibits both excessive movement with blinking and edge standoff (the edge of the lens lifts away from the eye). These signs indicate the lens is too flat or too large for the eye, which can cause discomfort, poor vision, and lens dislodgement."
+                },
+                {
+                    question: "What is the best way to evaluate the fit of a multifocal soft contact lens?",
+                    options: [
+                        "Assess lens movement only",
+                        "Check distance vision only",
+                        "Check near vision only",
+                        "Evaluate lens centration, movement, and visual performance at multiple distances"
+                    ],
+                    answer: 3,
+                    explanation: "The best way to evaluate the fit of a multifocal soft contact lens is to assess lens centration, movement, and visual performance at multiple distances. Proper centration is critical for simultaneous vision designs, as decentration can significantly affect the balance between distance and near vision."
+                }
+            ],
+            domain6: [
+                {
+                    question: "What is the most appropriate instruction to give a new contact lens wearer about insertion and removal times?",
+                    options: [
+                        "Insert the lenses upon waking and remove them just before sleeping",
+                        "Insert the lenses after breakfast and remove them before dinner",
+                        "Gradually build up wearing time as recommended by the practitioner",
+                        "Wear the lenses only when necessary"
+                    ],
+                    answer: 2,
+                    explanation: "New contact lens wearers should gradually build up wearing time as recommended by the practitioner. This adaptation period allows the cornea to adjust to reduced oxygen availability and the eyelids to adapt to the presence of the lens. A typical schedule might start with 4 hours on day one and increase by 2 hours daily until reaching the prescribed wearing time."
+                },
+                {
+                    question: "Which statement about contact lens solution compatibility is correct?",
+                    options: [
+                        "All multipurpose solutions can be used with all types of contact lenses",
+                        "Hydrogen peroxide systems require a neutralization step before lens insertion",
+                        "Saline solution alone is sufficient for disinfecting lenses",
+                        "Rigid lens solutions can be used for soft lenses in emergencies"
+                    ],
+                    answer: 1,
+                    explanation: "Hydrogen peroxide systems require a neutralization step before lens insertion. Without neutralization, hydrogen peroxide (typically 3%) will cause severe burning and corneal damage. Neutralization occurs either by using a special case with a platinum disc or by adding a neutralizing tablet."
+                },
+                {
+                    question: "What is the appropriate way to store contact lenses when not being worn?",
+                    options: [
+                        "In tap water",
+                        "In saline solution",
+                        "In a clean, closed case with fresh solution",
+                        "Dry in a contact lens case"
+                    ],
+                    answer: 2,
+                    explanation: "Contact lenses should be stored in a clean, closed case with fresh solution when not being worn. The solution should be changed each time the lenses are stored, and the case should be cleaned and air-dried regularly to prevent microbial contamination."
+                },
+                {
+                    question: "What is the proper hand washing procedure before handling contact lenses?",
+                    options: [
+                        "Rinse with water only",
+                        "Use antibacterial soap, rinse thoroughly, and dry with a lint-free towel",
+                        "Use any available soap and dry hands on clothing",
+                        "Clean hands with alcohol-based hand sanitizer"
+                    ],
+                    answer: 1,
+                    explanation: "Proper hand washing before handling contact lenses involves using antibacterial soap, rinsing thoroughly, and drying with a lint-free towel. This reduces the risk of transferring microorganisms and debris to the lens and eye. Alcohol-based hand sanitizers can transfer to the lens and cause eye irritation."
+                },
+                {
+                    question: "What should be emphasized when teaching a new RGP lens wearer about lens care?",
+                    options: [
+                        "RGP lenses rarely need cleaning",
+                        "RGP lenses should be rubbed and rinsed daily to remove deposits",
+                        "RGP lenses can be stored dry overnight",
+                        "RGP lenses should be replaced monthly"
+                    ],
+                    answer: 1,
+                    explanation: "RGP lenses should be rubbed and rinsed daily to remove deposits. Unlike some soft lenses, RGP lenses are not disposable and can accumulate lipid and protein deposits over time. Daily cleaning with a surfactant cleaner, followed by rinsing and soaking in conditioning/disinfecting solution, is essential for comfort and lens longevity."
+                },
+                {
+                    question: "What should a patient do if a soft contact lens feels uncomfortable upon insertion?",
+                    options: [
+                        "Continue wearing it until the discomfort subsides",
+                        "Apply eye drops while wearing the lens",
+                        "Remove the lens, rinse with solution, and reinsert",
+                        "Switch to glasses for the rest of the day"
+                    ],
+                    answer: 2,
+                    explanation: "If a soft contact lens feels uncomfortable upon insertion, the patient should remove the lens, rinse it with fresh solution, and reinsert it. Discomfort may be caused by debris, an inside-out lens, or a damaged lens. If discomfort persists after reinsertion, the lens should be removed and the eye care practitioner consulted."
+                },
+                {
+                    question: "What is the correct way to verify the orientation of a soft contact lens before insertion?",
+                    options: [
+                        "Place the lens on a fingertip and look at its profile",
+                        "Check the tint pattern",
+                        "Look for laser markings",
+                        "Feel the edge thickness"
+                    ],
+                    answer: 0,
+                    explanation: "The correct way to verify the orientation of a soft contact lens before insertion is to place it on a fingertip and look at its profile. A properly oriented lens will have edges that turn slightly upward, resembling a bowl. An inside-out lens will have edges that flare outward and may appear more flat or irregularly shaped."
+                }
+            ],
+            domain7: [
+                {
+                    question: "How soon after initial dispensing should the first follow-up visit be scheduled for a new contact lens wearer?",
+                    options: [
+                        "The same day",
+                        "Within 1-2 weeks",
+                        "After 1 month",
+                        "After 3 months"
+                    ],
+                    answer: 1,
+                    explanation: "The first follow-up visit for a new contact lens wearer should typically be scheduled within 1-2 weeks after initial dispensing. This timeframe allows assessment of the patient's adaptation to the lenses, evaluation of the fit and vision after regular wear, and addressing any compliance or comfort issues early in the wearing experience."
+                },
+                {
+                    question: "What is the primary purpose of corneal topography at follow-up visits?",
+                    options: [
+                        "To evaluate changes in corneal curvature and look for warpage",
+                        "To determine if a prescription change is needed",
+                        "To check for corneal edema",
+                        "To evaluate tear film quality"
+                    ],
+                    answer: 0,
+                    explanation: "The primary purpose of corneal topography at follow-up visits is to evaluate changes in corneal curvature and look for corneal warpage or molding. This is particularly important for RGP lens wearers or those with overnight orthokeratology lenses, as these can induce changes to the corneal shape."
+                },
+                {
+                    question: "Which grading scale is commonly used to evaluate contact lens complications?",
+                    options: [
+                        "Snellen scale",
+                        "VARK scale",
+                        "Efron or CCLRU grading scales",
+                        "LogMAR scale"
+                    ],
+                    answer: 2,
+                    explanation: "The Efron or CCLRU (Cornea and Contact Lens Research Unit) grading scales are commonly used to evaluate contact lens complications. These standardized scales (typically 0-4) help practitioners assess and document the severity of conditions like conjunctival hyperemia, corneal staining, tarsal conjunctival changes, and limbal redness."
+                },
+                {
+                    question: "What finding at a follow-up visit would necessitate discontinuation of contact lens wear?",
+                    options: [
+                        "Grade 1 corneal staining",
+                        "Mild lens deposits",
+                        "Corneal infiltrates with pain and redness",
+                        "Slight lens decentration"
+                    ],
+                    answer: 2,
+                    explanation: "Corneal infiltrates with pain and redness would necessitate discontinuation of contact lens wear. This presentation suggests a possible microbial keratitis or severe inflammatory response, which requires immediate discontinuation of lens wear and often requires treatment with antibiotics or other medications."
+                },
+                {
+                    question: "How should you manage a patient who presents with a tight-fitting soft contact lens at a follow-up visit?",
+                    options: [
+                        "Increase wearing time to stretch the lens",
+                        "Switch to a flatter base curve or different material",
+                        "Increase lens power",
+                        "Recommend more frequent replacement"
+                    ],
+                    answer: 1,
+                    explanation: "A patient with a tight-fitting soft contact lens should be refitted with a flatter base curve or different lens material with better oxygen permeability. Tight lenses restrict movement and tear exchange, which can lead to corneal hypoxia, neovascularization, and discomfort. Different materials may also reduce binding or adherence to the cornea."
+                },
+                {
+                    question: "What is the recommended follow-up schedule for an established contact lens wearer with no problems?",
+                    options: [
+                        "Every month",
+                        "Every 3-4 months",
+                        "Every 6-12 months",
+                        "Only when experiencing problems"
+                    ],
+                    answer: 2,
+                    explanation: "For established contact lens wearers with no problems, a follow-up schedule of every 6-12 months is generally recommended. This allows for regular assessment of ocular health, lens fit, vision, and compliance, even when patients are asymptomatic, as some contact lens complications can develop without noticeable symptoms."
+                },
+                {
+                    question: "What is the most common cause of deposit formation on silicone hydrogel contact lenses?",
+                    options: [
+                        "Calcium from hard water",
+                        "Protein deposits from tears",
+                        "Lipid deposits from tears",
+                        "Preservatives from lens solutions"
+                    ],
+                    answer: 2,
+                    explanation: "Lipid deposits from tears are the most common cause of deposit formation on silicone hydrogel contact lenses. Due to the hydrophobic nature of silicone, these lenses tend to attract lipids from the tear film. These deposits can reduce comfort, affect vision, and potentially lead to inflammatory reactions if not properly cleaned."
+                }
+            ],
+            domain8: [
+                {
+                    question: "According to FDA regulations, contact lenses are classified as:",
+                    options: [
+                        "Cosmetics",
+                        "Over-the-counter medical devices",
+                        "Prescription medical devices",
+                        "Vision correction appliances"
+                    ],
+                    answer: 2,
+                    explanation: "According to FDA regulations, contact lenses are classified as prescription medical devices. This classification applies to all contact lenses, including plano (non-prescription) cosmetic lenses. As prescription devices, contact lenses require a valid prescription and proper fitting by a licensed eye care professional."
+                },
+                {
+                    question: "What is required for a valid contact lens prescription?",
+                    options: [
+                        "Lens power only",
+                        "Base curve and diameter only",
+                        "Power, base curve, diameter, lens material/brand, and expiration date",
+                        "Patient's name and prescriber's signature only"
+                    ],
+                    answer: 2,
+                    explanation: "A valid contact lens prescription must include lens power, base curve, diameter, lens material or brand, and an expiration date, along with the patient's name and prescriber's information and signature. This comprehensive information ensures the contact lenses are properly fitted to the patient's specific ocular needs."
+                },
+                {
+                    question: "What is the maximum expiration period for a contact lens prescription under the Fairness to Contact Lens Consumers Act (FCLCA)?",
+                    options: [
+                        "6 months",
+                        "1 year",
+                        "2 years",
+                        "Varies by state law"
+                    ],
+                    answer: 3,
+                    explanation: "The maximum expiration period for a contact lens prescription varies by state law under the Fairness to Contact Lens Consumers Act (FCLCA). While the FCLCA requires prescribers to provide patients with their prescriptions, it defers to state laws regarding expiration dates, which typically range from 1-2 years."
+                },
+                {
+                    question: "What information must be documented in a patient's record when dispensing contact lenses?",
+                    options: [
+                        "Lens parameters only",
+                        "Patient training only",
+                        "Lens parameters, care system, wearing schedule, and follow-up visits",
+                        "Payment information only"
+                    ],
+                    answer: 2,
+                    explanation: "When dispensing contact lenses, practitioners must document the lens parameters (power, base curve, diameter, material), care system recommended, wearing schedule instructions, and scheduled follow-up visits. Comprehensive documentation is essential for continuity of care and may have legal importance in case of complications."
+                },
+                {
+                    question: "What action is required if a patient experiences a serious contact lens-related adverse event?",
+                    options: [
+                        "Only note it in the patient's record",
+                        "Report it to the FDA through the MedWatch program",
+                        "Only inform the contact lens manufacturer",
+                        "No reporting is necessary"
+                    ],
+                    answer: 1,
+                    explanation: "Serious contact lens-related adverse events should be reported to the FDA through the MedWatch program. This mandatory reporting helps identify potential safety issues with contact lenses or care products and can lead to better product safety and patient outcomes through appropriate FDA actions."
+                },
+                {
+                    question: "What does HIPAA require regarding patient contact lens information?",
+                    options: [
+                        "Information can be freely shared with any retailer",
+                        "Information can only be shared with written patient authorization",
+                        "Information cannot be shared under any circumstances",
+                        "Only lens parameters can be shared"
+                    ],
+                    answer: 1,
+                    explanation: "HIPAA (Health Insurance Portability and Accountability Act) requires that patient contact lens information, like all protected health information, can only be shared with written patient authorization. Exceptions exist for treatment, payment, and healthcare operations, but sharing with retailers typically requires specific patient consent."
+                },
+                {
+                    question: "Which organization establishes manufacturing standards for contact lenses in the United States?",
+                    options: [
+                        "American National Standards Institute (ANSI)",
+                        "International Organization for Standardization (ISO)",
+                        "Both ANSI and ISO",
+                        "Centers for Disease Control (CDC)"
+                    ],
+                    answer: 2,
+                    explanation: "Both the American National Standards Institute (ANSI) and the International Organization for Standardization (ISO) establish manufacturing standards for contact lenses in the United States. These standards ensure consistency in lens parameters, quality, and performance across manufacturers, enhancing safety for contact lens wearers."
+                }
+            ]
+        };
+        
+        // Initialize variables
+        let currentDomain = "all";
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOption = null;
+        let answeredQuestions = [];
+        
+        // DOM elements
+        const domainSelect = document.getElementById("domain-select");
+        const startScreen = document.getElementById("start-screen");
+        const quizScreen = document.getElementById("quiz-screen");
+        const resultsScreen = document.getElementById("results-screen");
+        const startBtn = document.getElementById("start-btn");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const restartBtn = document.getElementById("restart-btn");
+        const newDomainBtn = document.getElementById("new-domain-btn");
+        const questionText = document.getElementById("question-text");
+        const optionsList = document.getElementById("options-list");
+        const explanationBox = document.getElementById("explanation-box");
+        const explanationText = document.getElementById("explanation-text");
+        const progressText = document.getElementById("progress-text");
+        const progressBar = document.getElementById("progress-bar");
+        const scoreDisplay = document.getElementById("score");
+        const totalDisplay = document.getElementById("total");
+        const finalScoreDisplay = document.getElementById("final-score");
+        const finalTotalDisplay = document.getElementById("final-total");
+        const percentageDisplay = document.getElementById("percentage");
+        
+        // Event listeners
+        domainSelect.addEventListener("change", handleDomainChange);
+        startBtn.addEventListener("click", startQuiz);
+        prevBtn.addEventListener("click", showPreviousQuestion);
+        nextBtn.addEventListener("click", showNextQuestion);
+        restartBtn.addEventListener("click", restartQuiz);
+        newDomainBtn.addEventListener("click", goToStart);
+        
+        // Functions
+        function handleDomainChange() {
+            currentDomain = domainSelect.value;
         }
         
-        // Stop recording
-        function stopRecording() {
-            if (!mediaRecorder) return;
+        function startQuiz() {
+            // Gather questions based on selected domain
+            questions = [];
             
-            if (mediaRecorder.state === 'recording') {
-                mediaRecorder.stop();
-            }
-            
-            startRecordingButton.style.display = 'block';
-            stopRecordingButton.style.display = 'none';
-        }
-        
-        // Post video
-        function postVideo() {
-            const caption = captionInput.value.trim();
-            if (!caption) {
-                uploadError.textContent = 'Please add a caption';
-                return;
-            }
-            
-            showLoader();
-            
-            try {
-                // Create a unique ID for the video
-                const videoId = 'video_' + Date.now();
-                
-                // Store the video as a Blob URL
-                const videoUrl = videoPreview.src;
-                
-                // Convert to Blob and store as Blob
-                fetch(videoUrl)
-                    .then(res => res.blob())
-                    .then(blob => {
-                        // Create a video reader
-                        const reader = new FileReader();
-                        reader.readAsDataURL(blob);
-                        reader.onloadend = function() {
-                            const base64data = reader.result;
-                            
-                            // Add video to storage
-                            const newVideo = {
-                                id: videoId,
-                                username: currentUser.username,
-                                userId: currentUser.id,
-                                caption: caption,
-                                url: base64data, // Store as base64 string
-                                timestamp: Date.now(),
-                                likes: [],
-                                comments: []
-                            };
-                            
-                            // Add to videos array
-                            videos.push(newVideo);
-                            
-                            // Save to local storage
-                            const saveSuccess = saveToStorage('tiktok_videos', videos);
-                            
-                            if (saveSuccess) {
-                                console.log('Video saved successfully. Total videos:', videos.length);
-                                
-                                // Reset form
-                                captionInput.value = '';
-                                closeModal();
-                                
-                                // Re-render feed
-                                emptyFeed.style.display = 'none';
-                                renderFeed();
-                            } else {
-                                uploadError.textContent = 'Failed to save video. The video might be too large.';
-                            }
-                            
-                            hideLoader();
-                        };
-                    })
-                    .catch(err => {
-                        console.error('Error converting video:', err);
-                        uploadError.textContent = 'Error processing video: ' + err.message;
-                        hideLoader();
-                    });
-            } catch (error) {
-                console.error('Error posting video:', error);
-                uploadError.textContent = 'Error posting video: ' + error.message;
-                hideLoader();
-            }
-        }
-        
-        // Toggle like on a video
-        function toggleLike(videoId) {
-            const videoIndex = videos.findIndex(video => video.id === videoId);
-            if (videoIndex === -1) return;
-            
-            const likeIndex = videos[videoIndex].likes.indexOf(currentUser.id);
-            
-            if (likeIndex === -1) {
-                // Add like
-                videos[videoIndex].likes.push(currentUser.id);
+            if (currentDomain === "all") {
+                // Select random questions from each domain
+                Object.keys(quizQuestions).forEach(domain => {
+                    const domainQuestions = quizQuestions[domain];
+                    // Select 3 random questions from each domain
+                    const selectedQuestions = getRandomQuestions(domainQuestions, 3);
+                    questions = questions.concat(selectedQuestions);
+                });
             } else {
-                // Remove like
-                videos[videoIndex].likes.splice(likeIndex, 1);
+                // Get all questions from the selected domain
+                questions = [...quizQuestions[currentDomain]];
+                // Shuffle the questions
+                shuffleArray(questions);
+                // Limit to 10 questions if there are more
+                if (questions.length > 10) {
+                    questions = questions.slice(0, 10);
+                }
             }
             
-            // Update local storage
-            localStorage.setItem('tiktok_videos', JSON.stringify(videos));
+            // Shuffle the final question set
+            shuffleArray(questions);
+            
+            // Reset quiz state
+            currentQuestionIndex = 0;
+            score = 0;
+            answeredQuestions = Array(questions.length).fill(false);
+            
+            // Update display
+            updateScoreDisplay();
+            
+            // Show quiz screen
+            startScreen.classList.remove("show");
+            startScreen.classList.add("hide");
+            quizScreen.classList.remove("hide");
+            quizScreen.classList.add("show");
+            resultsScreen.classList.remove("show");
+            resultsScreen.classList.add("hide");
+            
+            // Load first question
+            loadQuestion();
+        }
+        
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            
+            // Update question text
+            questionText.textContent = `${currentQuestionIndex + 1}. ${question.question}`;
+            
+            // Clear options
+            optionsList.innerHTML = "";
+            
+            // Add options
+            question.options.forEach((option, index) => {
+                const li = document.createElement("li");
+                li.className = "option";
+                li.textContent = option;
+                li.dataset.index = index;
+                
+                // Add selected/correct/incorrect classes if question was already answered
+                if (answeredQuestions[currentQuestionIndex]) {
+                    if (index === questions[currentQuestionIndex].answer) {
+                        li.classList.add("correct");
+                    } else if (index === selectedOption) {
+                        li.classList.add("incorrect");
+                    }
+                } else {
+                    // Add click event if not answered yet
+                    li.addEventListener("click", handleOptionClick);
+                }
+                
+                optionsList.appendChild(li);
+            });
+            
+            // Show/hide explanation
+            if (answeredQuestions[currentQuestionIndex]) {
+                explanationText.textContent = question.explanation;
+                explanationBox.classList.add("show");
+                nextBtn.disabled = false;
+            } else {
+                explanationBox.classList.remove("show");
+                nextBtn.disabled = true;
+            }
+            
+            // Update progress
+            updateProgress();
+            
+            // Enable/disable prev button
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            // Enable/disable next button based on if last question
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.textContent = "Finish Quiz";
+            } else {
+                nextBtn.textContent = "Next";
+            }
+        }
+        
+        function handleOptionClick(e) {
+            // If already answered, do nothing
+            if (answeredQuestions[currentQuestionIndex]) return;
+            
+            // Get selected option
+            selectedOption = parseInt(e.target.dataset.index);
+            
+            // Mark as answered
+            answeredQuestions[currentQuestionIndex] = true;
+            
+            // Check if correct
+            const correctOption = questions[currentQuestionIndex].answer;
+            if (selectedOption === correctOption) {
+                score++;
+                updateScoreDisplay();
+            }
             
             // Update UI
-            const heartButton = document.querySelector(`.heart[data-id="${videoId}"]`);
-            const likeCount = heartButton.querySelector('.action-count');
+            const options = optionsList.querySelectorAll(".option");
+            options.forEach((option, index) => {
+                // Remove click events
+                option.removeEventListener("click", handleOptionClick);
+                
+                // Add appropriate classes
+                if (index === correctOption) {
+                    option.classList.add("correct");
+                } else if (index === selectedOption && selectedOption !== correctOption) {
+                    option.classList.add("incorrect");
+                }
+            });
             
-            likeCount.textContent = videos[videoIndex].likes.length;
+            // Show explanation
+            explanationText.textContent = questions[currentQuestionIndex].explanation;
+            explanationBox.classList.add("show");
             
-            if (likeIndex === -1) {
-                heartButton.classList.add('active');
+            // Enable next button
+            nextBtn.disabled = false;
+        }
+        
+        function showPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+        
+        function showNextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
             } else {
-                heartButton.classList.remove('active');
-            }
-            
-            // Update user's total likes
-            updateUserLikes();
-        }
-        
-        // Open comments section
-        function openComments(videoId) {
-            currentVideoId = videoId;
-            commentSection.classList.add('active');
-            
-            // Find video
-            const video = videos.find(v => v.id === videoId);
-            if (!video) return;
-            
-            // Clear comment list
-            commentList.innerHTML = '';
-            
-            // Add comments
-            video.comments.forEach(comment => {
-                addCommentToUI(comment);
-            });
-            
-            // Clear input
-            commentInput.value = '';
-        }
-        
-        // Post a comment
-        function postComment() {
-            if (!currentVideoId) return;
-            
-            const commentText = commentInput.value.trim();
-            if (!commentText) return;
-            
-            // Find video
-            const videoIndex = videos.findIndex(v => v.id === currentVideoId);
-            if (videoIndex === -1) return;
-            
-            // Create comment object
-            const newComment = {
-                id: 'comment_' + Date.now(),
-                userId: currentUser.id,
-                username: currentUser.username,
-                text: commentText,
-                timestamp: Date.now()
-            };
-            
-            // Add to video comments
-            videos[videoIndex].comments.push(newComment);
-            
-            // Update local storage
-            localStorage.setItem('tiktok_videos', JSON.stringify(videos));
-            
-            // Add to UI
-            addCommentToUI(newComment);
-            
-            // Update comment count in feed
-            const commentButton = document.querySelector(`.video-container:has(video[data-id="${currentVideoId}"]) .video-actions .action-button:nth-child(2)`);
-            if (commentButton) {
-                const commentCount = commentButton.querySelector('.action-count');
-                if (commentCount) {
-                    commentCount.textContent = videos[videoIndex].comments.length;
-                }
-            }
-            
-            // Clear input
-            commentInput.value = '';
-        }
-        
-        // Add comment to UI
-        function addCommentToUI(comment) {
-            const commentItem = document.createElement('div');
-            commentItem.className = 'comment-item';
-            
-            const commentAvatar = document.createElement('div');
-            commentAvatar.className = 'comment-avatar';
-            commentAvatar.textContent = comment.username.charAt(0).toUpperCase();
-            
-            const commentContent = document.createElement('div');
-            commentContent.className = 'comment-content';
-            
-            const commentUser = document.createElement('div');
-            commentUser.className = 'comment-user';
-            commentUser.textContent = comment.username;
-            
-            const commentText = document.createElement('div');
-            commentText.className = 'comment-text';
-            commentText.textContent = comment.text;
-            
-            commentContent.appendChild(commentUser);
-            commentContent.appendChild(commentText);
-            
-            commentItem.appendChild(commentAvatar);
-            commentItem.appendChild(commentContent);
-            
-            commentList.appendChild(commentItem);
-        }
-        
-        // Open profile modal
-        function openProfileModal() {
-            profileModal.classList.add('active');
-            
-            // Set profile info
-            profileAvatar.textContent = currentUser.username.charAt(0).toUpperCase();
-            profileUsername.textContent = currentUser.username;
-            followingCount.textContent = currentUser.following;
-            followersCount.textContent = currentUser.followers;
-            likesCount.textContent = currentUser.likes;
-            
-            // Clear profile videos
-            profileVideos.innerHTML = '';
-            
-            // Filter videos by user
-            const userVideos = videos.filter(video => video.userId === currentUser.id);
-            
-            // Sort by date (newest first)
-            const sortedVideos = [...userVideos].sort((a, b) => b.timestamp - a.timestamp);
-            
-            // Check if user has videos
-            if (sortedVideos.length === 0) {
-                const noVideosMessage = document.createElement('div');
-                noVideosMessage.style.width = '100%';
-                noVideosMessage.style.textAlign = 'center';
-                noVideosMessage.style.padding = '30px';
-                noVideosMessage.textContent = 'You haven\'t posted any videos yet';
-                profileVideos.appendChild(noVideosMessage);
-                return;
-            }
-            
-            // Add videos to profile
-            sortedVideos.forEach(video => {
-                const videoElement = document.createElement('div');
-                videoElement.className = 'profile-video';
-                videoElement.setAttribute('data-id', video.id);
-                
-                const videoImg = document.createElement('video');
-                videoImg.className = 'video-thumbnail';
-                videoImg.src = video.url;
-                
-                const viewsCount = document.createElement('div');
-                viewsCount.className = 'views-count';
-                viewsCount.innerHTML = `❤️ ${video.likes.length}`;
-                
-                // Add overlay with delete button
-                const overlay = document.createElement('div');
-                overlay.className = 'video-overlay';
-                
-                const playButton = document.createElement('div');
-                playButton.style.fontSize = '24px';
-                playButton.innerHTML = '▶️';
-                
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'delete-video';
-                deleteButton.textContent = 'Delete';
-                deleteButton.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    deleteVideo(video.id);
-                });
-                
-                overlay.appendChild(playButton);
-                overlay.appendChild(deleteButton);
-                
-                videoElement.appendChild(videoImg);
-                videoElement.appendChild(viewsCount);
-                videoElement.appendChild(overlay);
-                
-                // Add click handler to play video in feed
-                videoElement.addEventListener('click', () => {
-                    // Find index of this video in the main feed
-                    const feedIndex = videos.findIndex(v => v.id === video.id);
-                    if (feedIndex !== -1) {
-                        profileModal.classList.remove('active');
-                        
-                        // Scroll to this video in feed after a slight delay
-                        setTimeout(() => {
-                            const videoElements = document.querySelectorAll('.video-container');
-                            if (videoElements[feedIndex]) {
-                                videoElements[feedIndex].scrollIntoView({ behavior: 'smooth' });
-                            }
-                        }, 100);
-                    }
-                });
-                
-                profileVideos.appendChild(videoElement);
-            });
-        }
-        
-        // Delete a video
-        function deleteVideo(videoId) {
-            // Prevent any selection/copy behavior
-            document.getSelection()?.removeAllRanges();
-            
-            if (confirm('Are you sure you want to delete this video?')) {
-                // Find the video index
-                const videoIndex = videos.findIndex(video => video.id === videoId);
-                if (videoIndex === -1) return;
-                
-                // Remove the video
-                videos.splice(videoIndex, 1);
-                
-                // Save to storage
-                saveToStorage('tiktok_videos', videos);
-                
-                // Update UI
-                openProfileModal(); // Refresh profile view
-                renderFeed();       // Refresh feed
-                
-                // Update user's total likes
-                updateUserLikes();
-                
-                // Show confirmation
-                alert('Video deleted successfully');
+                // Show results screen
+                finishQuiz();
             }
         }
         
-        // Update user's total likes
-        function updateUserLikes() {
-            const userVideos = videos.filter(video => video.userId === currentUser.id);
-            const totalLikes = userVideos.reduce((total, video) => total + video.likes.length, 0);
+        function updateProgress() {
+            // Update text
+            progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
             
-            currentUser.likes = totalLikes;
-            localStorage.setItem('tiktok_user', JSON.stringify(currentUser));
+            // Update progress bar
+            const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
         }
         
-        // Logout
-        function logout() {
-            localStorage.removeItem('tiktok_user');
-            window.location.reload();
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = score;
+            totalDisplay.textContent = questions.length;
         }
         
-        // Show loader
-        function showLoader() {
-            loaderContainer.classList.add('active');
+        function finishQuiz() {
+            // Update final score
+            finalScoreDisplay.textContent = score;
+            finalTotalDisplay.textContent = questions.length;
+            
+            // Calculate percentage
+            const percentage = Math.round((score / questions.length) * 100);
+            percentageDisplay.textContent = percentage;
+            
+            // Show results screen
+            quizScreen.classList.remove("show");
+            quizScreen.classList.add("hide");
+            resultsScreen.classList.remove("hide");
+            resultsScreen.classList.add("show");
         }
         
-        // Hide loader
-        function hideLoader() {
-            loaderContainer.classList.remove('active');
+        function restartQuiz() {
+            // Reset quiz state
+            currentQuestionIndex = 0;
+            score = 0;
+            answeredQuestions = Array(questions.length).fill(false);
+            
+            // Update display
+            updateScoreDisplay();
+            
+            // Show quiz screen
+            resultsScreen.classList.remove("show");
+            resultsScreen.classList.add("hide");
+            quizScreen.classList.remove("hide");
+            quizScreen.classList.add("show");
+            
+            // Load first question
+            loadQuestion();
         }
         
-        // Fix for :has selector support
-        if (!CSS.supports('selector(:has(*))')) {
-            document.querySelectorAll('.video-container').forEach(container => {
-                const videoElement = container.querySelector('video');
-                if (videoElement && videoElement.getAttribute('data-id') === currentVideoId) {
-                    const commentButton = container.querySelector('.video-actions .action-button:nth-child(2)');
-                    if (commentButton) {
-                        const commentCount = commentButton.querySelector('.action-count');
-                        if (commentCount) {
-                            commentCount.textContent = videos[videoIndex].comments.length;
-                        }
-                    }
-                }
-            });
+        function goToStart() {
+            // Show start screen
+            resultsScreen.classList.remove("show");
+            resultsScreen.classList.add("hide");
+            startScreen.classList.remove("hide");
+            startScreen.classList.add("show");
         }
         
-        // Initialize the app when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initApp);
+        // Helper functions
+        function getRandomQuestions(array, count) {
+            const shuffled = [...array];
+            shuffleArray(shuffled);
+            return shuffled.slice(0, count);
+        }
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
     </script>
 </body>
 </html>
