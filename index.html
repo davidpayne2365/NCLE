@@ -452,12 +452,42 @@
             aspect-ratio: 1/1.3;
             background-color: #333;
             position: relative;
+            cursor: pointer;
+            overflow: hidden;
         }
         
         .video-thumbnail {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-video:hover .video-overlay {
+            display: flex;
+        }
+        
+        .delete-video {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
         }
         
         .views-count {
@@ -1243,10 +1273,22 @@
             // Sort by date (newest first)
             const sortedVideos = [...userVideos].sort((a, b) => b.timestamp - a.timestamp);
             
+            // Check if user has videos
+            if (sortedVideos.length === 0) {
+                const noVideosMessage = document.createElement('div');
+                noVideosMessage.style.width = '100%';
+                noVideosMessage.style.textAlign = 'center';
+                noVideosMessage.style.padding = '30px';
+                noVideosMessage.textContent = 'You haven\'t posted any videos yet';
+                profileVideos.appendChild(noVideosMessage);
+                return;
+            }
+            
             // Add videos to profile
             sortedVideos.forEach(video => {
                 const videoElement = document.createElement('div');
                 videoElement.className = 'profile-video';
+                videoElement.setAttribute('data-id', video.id);
                 
                 const videoImg = document.createElement('video');
                 videoImg.className = 'video-thumbnail';
@@ -1256,11 +1298,73 @@
                 viewsCount.className = 'views-count';
                 viewsCount.innerHTML = `❤️ ${video.likes.length}`;
                 
+                // Add overlay with delete button
+                const overlay = document.createElement('div');
+                overlay.className = 'video-overlay';
+                
+                const playButton = document.createElement('div');
+                playButton.style.fontSize = '24px';
+                playButton.innerHTML = '▶️';
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-video';
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteVideo(video.id);
+                });
+                
+                overlay.appendChild(playButton);
+                overlay.appendChild(deleteButton);
+                
                 videoElement.appendChild(videoImg);
                 videoElement.appendChild(viewsCount);
+                videoElement.appendChild(overlay);
+                
+                // Add click handler to play video in feed
+                videoElement.addEventListener('click', () => {
+                    // Find index of this video in the main feed
+                    const feedIndex = videos.findIndex(v => v.id === video.id);
+                    if (feedIndex !== -1) {
+                        profileModal.classList.remove('active');
+                        
+                        // Scroll to this video in feed after a slight delay
+                        setTimeout(() => {
+                            const videoElements = document.querySelectorAll('.video-container');
+                            if (videoElements[feedIndex]) {
+                                videoElements[feedIndex].scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }, 100);
+                    }
+                });
                 
                 profileVideos.appendChild(videoElement);
             });
+        }
+        
+        // Delete a video
+        function deleteVideo(videoId) {
+            if (confirm('Are you sure you want to delete this video?')) {
+                // Find the video index
+                const videoIndex = videos.findIndex(video => video.id === videoId);
+                if (videoIndex === -1) return;
+                
+                // Remove the video
+                videos.splice(videoIndex, 1);
+                
+                // Save to storage
+                saveToStorage('tiktok_videos', videos);
+                
+                // Update UI
+                openProfileModal(); // Refresh profile view
+                renderFeed();       // Refresh feed
+                
+                // Update user's total likes
+                updateUserLikes();
+                
+                // Show confirmation
+                alert('Video deleted successfully');
+            }
         }
         
         // Update user's total likes
