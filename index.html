@@ -637,6 +637,58 @@
         let recordingTime = 0;
         let currentVideoId = null;
         
+        // Check browser storage support
+        function checkStorageSupport() {
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                return true;
+            } catch (e) {
+                console.error('localStorage not supported:', e);
+                return false;
+            }
+        }
+        
+        // Helper function to compress video data URLs (simple approach)
+        function compressDataUrl(dataUrl) {
+            // This is a very basic approach - in a real app you'd want to use proper compression
+            // For now, just return the original URL but log the size
+            const sizeInMB = (dataUrl.length * 2) / (1024 * 1024);
+            console.log(`Video size: approximately ${sizeInMB.toFixed(2)} MB`);
+            
+            // Check if size is too large
+            if (sizeInMB > 5) {
+                console.warn('Warning: Video size exceeds 5MB, may have storage issues');
+            }
+            
+            return dataUrl;
+        }
+        
+        // Storage helper functions
+        function saveToStorage(key, data) {
+            try {
+                const jsonData = JSON.stringify(data);
+                localStorage.setItem(key, jsonData);
+                return true;
+            } catch (error) {
+                console.error(`Error saving to storage (${key}):`, error);
+                if (error.name === 'QuotaExceededError' || error.toString().includes('quota')) {
+                    alert('Storage limit exceeded. Try shorter videos or delete some existing ones.');
+                }
+                return false;
+            }
+        }
+        
+        function loadFromStorage(key) {
+            try {
+                const data = localStorage.getItem(key);
+                return data ? JSON.parse(data) : null;
+            } catch (error) {
+                console.error(`Error loading from storage (${key}):`, error);
+                return null;
+            }
+        }
+        
         // DOM Elements
         const feed = document.getElementById('feed');
         const uploadModal = document.getElementById('uploadModal');
@@ -678,11 +730,20 @@
         
         // Initialize the app
         function initApp() {
+            // Check for storage support
+            if (!checkStorageSupport()) {
+                alert('Your browser does not support local storage. This app requires local storage to work properly.');
+                return;
+            }
+            
+            console.log('Starting app initialization...');
+            
             // Check if user is logged in
-            const storedUser = localStorage.getItem('tiktok_user');
+            const storedUser = loadFromStorage('tiktok_user');
             if (storedUser) {
-                currentUser = JSON.parse(storedUser);
+                currentUser = storedUser;
                 userIcon.textContent = currentUser.username.charAt(0).toUpperCase();
+                console.log('User loaded:', currentUser.username);
             } else {
                 // Create random username if not logged in
                 const randomId = Math.floor(Math.random() * 10000);
@@ -693,19 +754,27 @@
                     followers: 0,
                     likes: 0
                 };
-                localStorage.setItem('tiktok_user', JSON.stringify(currentUser));
+                saveToStorage('tiktok_user', currentUser);
                 userIcon.textContent = currentUser.username.charAt(0).toUpperCase();
+                console.log('New user created:', currentUser.username);
             }
             
             // Load videos from local storage
-            const storedVideos = localStorage.getItem('tiktok_videos');
-            if (storedVideos) {
-                videos = JSON.parse(storedVideos);
+            const storedVideos = loadFromStorage('tiktok_videos');
+            if (storedVideos && Array.isArray(storedVideos) && storedVideos.length > 0) {
+                videos = storedVideos;
+                console.log('Loaded videos from storage:', videos.length);
+                emptyFeed.style.display = 'none';
                 renderFeed();
+            } else {
+                console.log('No videos found in storage or invalid data');
+                videos = [];
             }
             
             // Set up event listeners
             setupEventListeners();
+            
+            console.log('App initialization complete');
         }
         
         // Set up event listeners
@@ -982,34 +1051,50 @@
             
             showLoader();
             
-            // Create a unique ID for the video
-            const videoId = 'video_' + Date.now();
-            
-            // Add video to storage
-            const newVideo = {
-                id: videoId,
-                username: currentUser.username,
-                userId: currentUser.id,
-                caption: caption,
-                url: videoPreview.src,
-                timestamp: Date.now(),
-                likes: [],
-                comments: []
-            };
-            
-            // Add to videos array
-            videos.push(newVideo);
-            
-            // Save to local storage
-            localStorage.setItem('tiktok_videos', JSON.stringify(videos));
-            
-            // Reset form
-            captionInput.value = '';
-            closeModal();
-            
-            // Re-render feed
-            renderFeed();
-            hideLoader();
+            try {
+                // Create a unique ID for the video
+                const videoId = 'video_' + Date.now();
+                
+                // Compress video URL if needed
+                const videoUrl = compressDataUrl(videoPreview.src);
+                
+                // Add video to storage
+                const newVideo = {
+                    id: videoId,
+                    username: currentUser.username,
+                    userId: currentUser.id,
+                    caption: caption,
+                    url: videoUrl,
+                    timestamp: Date.now(),
+                    likes: [],
+                    comments: []
+                };
+                
+                // Add to videos array
+                videos.push(newVideo);
+                
+                // Save to local storage
+                const saveSuccess = saveToStorage('tiktok_videos', videos);
+                
+                if (saveSuccess) {
+                    console.log('Video saved successfully. Total videos:', videos.length);
+                    
+                    // Reset form
+                    captionInput.value = '';
+                    closeModal();
+                    
+                    // Re-render feed
+                    emptyFeed.style.display = 'none';
+                    renderFeed();
+                } else {
+                    uploadError.textContent = 'Failed to save video. The video might be too large.';
+                }
+            } catch (error) {
+                console.error('Error posting video:', error);
+                uploadError.textContent = 'Error posting video: ' + error.message;
+            } finally {
+                hideLoader();
+            }
         }
         
         // Toggle like on a video
