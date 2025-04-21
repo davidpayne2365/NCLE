@@ -488,6 +488,11 @@
             margin-top: 10px;
             cursor: pointer;
             font-weight: bold;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            touch-action: manipulation;
         }
         
         .views-count {
@@ -1344,6 +1349,9 @@
         
         // Delete a video
         function deleteVideo(videoId) {
+            // Prevent any selection/copy behavior
+            document.getSelection()?.removeAllRanges();
+            
             if (confirm('Are you sure you want to delete this video?')) {
                 // Find the video index
                 const videoIndex = videos.findIndex(video => video.id === videoId);
