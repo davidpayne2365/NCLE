@@ -80,6 +80,9 @@
     let wrongIndexes = [];
     let currentQuestionIdx = null;
     let isFailed = false;
+    let viewingExplanation = false;
+    let questionAnswered = false;
+    let selectedOption = null;
 
     const questionContainer = document.getElementById('question-container');
     const explanationContainer = document.getElementById('explanation-container');
@@ -91,10 +94,21 @@
     const correctAnswerDiv = document.getElementById('correct-answer');
     const resultsScreen = document.getElementById('results-screen');
 
-    nextBtn.addEventListener('click', loadQuestion);
+    nextBtn.addEventListener('click', () => {
+      // Save that we're not viewing explanation anymore
+      localStorage.setItem('viewingExplanation', 'false');
+      localStorage.setItem('questionAnswered', 'false');
+      localStorage.setItem('selectedOption', '');
+      loadQuestion();
+    });
+    
     restartBtn.addEventListener('click', () => {
       localStorage.removeItem('remainingIndexes');
       localStorage.removeItem('wrongIndexes');
+      localStorage.removeItem('currentQuestionIdx');
+      localStorage.removeItem('viewingExplanation');
+      localStorage.removeItem('questionAnswered');
+      localStorage.removeItem('selectedOption');
       remainingIndexes = quizQuestions.map((_, i) => i);
       wrongIndexes = [];
       resultsScreen.style.display = 'none';
@@ -104,6 +118,11 @@
     function loadState() {
       const rem = localStorage.getItem('remainingIndexes');
       const wrong = localStorage.getItem('wrongIndexes');
+      const current = localStorage.getItem('currentQuestionIdx');
+      viewingExplanation = localStorage.getItem('viewingExplanation') === 'true';
+      questionAnswered = localStorage.getItem('questionAnswered') === 'true';
+      selectedOption = localStorage.getItem('selectedOption');
+      
       if (rem && wrong) {
         remainingIndexes = JSON.parse(rem);
         wrongIndexes = JSON.parse(wrong);
@@ -113,14 +132,46 @@
         localStorage.setItem('remainingIndexes', JSON.stringify(remainingIndexes));
         localStorage.setItem('wrongIndexes', JSON.stringify(wrongIndexes));
       }
+      
+      if (current) {
+        currentQuestionIdx = parseInt(current);
+      }
     }
 
     function startQuiz() {
       loadState();
       resultsScreen.style.display = 'none';
-      questionContainer.style.display = 'flex';
-      explanationContainer.style.display = 'none';
-      loadQuestion();
+      
+      if (remainingIndexes.length === 0 && wrongIndexes.length === 0) {
+        questionContainer.style.display = 'none';
+        explanationContainer.style.display = 'none';
+        resultsScreen.style.display = 'block';
+        return;
+      }
+      
+      if (currentQuestionIdx !== null) {
+        displayQuestion(currentQuestionIdx);
+        
+        if (viewingExplanation) {
+          showExplanation();
+        } else {
+          questionContainer.style.display = 'flex';
+          explanationContainer.style.display = 'none';
+          
+          if (questionAnswered && selectedOption) {
+            // Re-select the option that was previously selected
+            setTimeout(() => {
+              const options = document.querySelectorAll('.option');
+              const selectedIdx = parseInt(selectedOption);
+              if (!isNaN(selectedIdx) && options[selectedIdx]) {
+                handleOptionClick({ target: options[selectedIdx] });
+              }
+            }, 100);
+          }
+        }
+      } else {
+        loadQuestion();
+      }
     }
 
     function loadQuestion() {
@@ -129,6 +180,9 @@
       questionContainer.style.display = 'flex';
       nextBtn.disabled = true;
       optionsList.innerHTML = '';
+      viewingExplanation = false;
+      questionAnswered = false;
+      selectedOption = '';
 
       if (remainingIndexes.length === 0) {
         if (wrongIndexes.length > 0) {
@@ -145,9 +199,18 @@
       }
 
       currentQuestionIdx = remainingIndexes.shift();
+      localStorage.setItem('currentQuestionIdx', currentQuestionIdx);
       localStorage.setItem('remainingIndexes', JSON.stringify(remainingIndexes));
-      const q = quizQuestions[currentQuestionIdx];
+      localStorage.setItem('viewingExplanation', 'false');
+      
+      displayQuestion(currentQuestionIdx);
+    }
+    
+    function displayQuestion(idx) {
+      const q = quizQuestions[idx];
       questionText.textContent = q.question;
+      optionsList.innerHTML = '';
+      
       q.options.forEach((opt, i) => {
         const li = document.createElement('li');
         li.className = 'option';
@@ -160,6 +223,11 @@
 
     function handleOptionClick(e) {
       const selected = +e.target.dataset.index;
+      selectedOption = selected;
+      localStorage.setItem('selectedOption', selected);
+      questionAnswered = true;
+      localStorage.setItem('questionAnswered', 'true');
+      
       const q = quizQuestions[currentQuestionIdx];
       const correctIndex = q.answer;
       isFailed = selected !== correctIndex;
@@ -179,9 +247,15 @@
         localStorage.setItem('wrongIndexes', JSON.stringify(wrongIndexes));
       }
 
+      showExplanation();
+    }
+    
+    function showExplanation() {
       questionContainer.style.display = 'none';
       explanationContainer.style.display = 'flex';
       nextBtn.disabled = false;
+      viewingExplanation = true;
+      localStorage.setItem('viewingExplanation', 'true');
     }
 
     document.addEventListener('DOMContentLoaded', startQuiz);
