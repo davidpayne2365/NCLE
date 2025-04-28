@@ -437,11 +437,9 @@ const quizQuestions = [
         ],
         answer: 0,
         explanation: "A patient with a high degree of with-the-rule astigmatism (steeper in the vertical meridian) fitted with a spherical rigid lens will show touch on the horizontal meridian. This is because the lens will align with or vault the steeper vertical meridian while touching or bearing on the flatter horizontal meridian."
-    }
-];
-
-    
-    // Domain 6: Dispensing
+    },
+   
+   // Domain 6: Dispensing
     {
         question: "What is the most appropriate instruction to give a new contact lens wearer about insertion and removal times?",
         options: [
@@ -879,4 +877,4 @@ const quizQuestions = [
         ],
         answer: 3,
         explanation: "The best way to evaluate the fit of a multifocal soft contact lens is to assess lens centration, movement, and visual performance at multiple distances. Proper centration is critical for simultaneous vision designs, as decentration can significantly affect the balance between distance and near vision."
-    },
+    }]
