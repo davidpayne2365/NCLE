@@ -1,6 +1,6 @@
 // Quiz Questions Database - all domains combined
 const quizQuestions = [
-    // Domain 1: Ocular Anatomy, Physiology, and Pathology
+
     {
         question: "Which layer of the cornea is responsible for most of the cornea's refractive power?",
         options: [
@@ -90,7 +90,6 @@ const quizQuestions = [
         explanation: "Giant papillary conjunctivitis (GPC) is characterized by large papillae (bumps) under the upper eyelid. It's often associated with contact lens wear, especially soft lenses, and can cause symptoms like itching, mucous discharge, and reduced lens comfort."
     },
     
-    // Domain 2: Refractive Errors
     {
         question: "What is the refractive error in which light focuses behind the retina called?",
         options: [
@@ -169,7 +168,7 @@ const quizQuestions = [
         explanation: "The typical power change for every 1mm movement of a -3.00D contact lens is approximately 0.15D. This is why proper lens centration is important, especially with higher powers where small movements can cause more significant visual changes."
     },
     
-    // Domain 3: Instrumentation for Measurement and Observation
+
     {
         question: "Which instrument is used to measure corneal curvature?",
         options: [
@@ -248,7 +247,7 @@ const quizQuestions = [
         explanation: "An optical coherence tomographer (OCT) creates high-resolution cross-sectional images of anterior eye structures. For contact lens fitting, it can be used to evaluate lens clearance with scleral lenses, assess corneal thickness, and examine the tear lens between the contact lens and cornea."
     },
     
-    // Domain 4: Prefitting
+
     {
         question: "What information should be gathered during the case history for a new contact lens patient?",
         options: [
@@ -327,7 +326,7 @@ const quizQuestions = [
         explanation: "For daily wear contact lenses, a minimum oxygen transmissibility (Dk/t) value of approximately 24 is typically needed to avoid corneal edema. For extended or overnight wear, much higher values (87 Dk/t or greater) are recommended to maintain corneal health."
     },
     
-    // Domain 5: Diagnostic Fitting
+
     {
         question: "What does an 'alignment fit' of an RGP lens mean?",
         options: [
@@ -439,7 +438,7 @@ const quizQuestions = [
         explanation: "A patient with a high degree of with-the-rule astigmatism (steeper in the vertical meridian) fitted with a spherical rigid lens will show touch on the horizontal meridian. This is because the lens will align with or vault the steeper vertical meridian while touching or bearing on the flatter horizontal meridian."
     },
    
-   // Domain 6: Dispensing
+
     {
         question: "What is the most appropriate instruction to give a new contact lens wearer about insertion and removal times?",
         options: [
@@ -518,7 +517,7 @@ const quizQuestions = [
         explanation: "The correct way to verify the orientation of a soft contact lens before insertion is to place it on a fingertip and look at its profile. A properly oriented lens will have edges that turn slightly upward, resembling a bowl. An inside-out lens will have edges that flare outward and may appear more flat or irregularly shaped."
     },
     
-    // Domain 7: Follow-up
+
     {
         question: "How soon after initial dispensing should the first follow-up visit be scheduled for a new contact lens wearer?",
         options: [
@@ -586,7 +585,6 @@ const quizQuestions = [
         explanation: "For established contact lens wearers with no problems, a follow-up schedule of every 6-12 months is generally recommended. This allows for regular assessment of ocular health, lens fit, vision, and compliance, even when patients are asymptomatic, as some contact lens complications can develop without noticeable symptoms."
     },
     
-    // Domain 8: Regulatory and Administrative
     {
         question: "According to FDA regulations, contact lenses are classified as:",
         options: [
@@ -676,7 +674,7 @@ const quizQuestions = [
         explanation: "Edge standoff is a characteristic of a loose-fitting soft lens. This occurs when the edge of the lens lifts away from the eye rather than conforming to the ocular surface. Other signs include excessive movement with blinking and possible decentration."
     },
     
-    // Toric Lenses
+
     {
         question: "If a diagnostic toric soft lens with axis 180 rotated 10 degrees clockwise during evaluation, what axis should be ordered?",
         options: [
@@ -711,7 +709,7 @@ const quizQuestions = [
         explanation: "Rotational stability is the primary consideration when fitting toric soft contact lenses. Since toric lenses correct astigmatism, the lens must maintain proper orientation to align the cylindrical correction with the patient's astigmatic axis. Various stabilization methods (prism ballast, peri-ballast, dual thin zones) help achieve this stability."
     },
     
-    // Corneal Findings and Complications
+
     {
         question: "What is the most likely cause of '3 and 9 o'clock staining' observed in an RGP lens wearer?",
         options: [
@@ -746,7 +744,7 @@ const quizQuestions = [
         explanation: "Corneal edema observed inferiorly under a prism ballast toric soft lens is likely caused by the prism thickness being too great. The thicker portion of the lens (the prism ballast) restricts oxygen transmission to that area of the cornea, potentially causing localized hypoxia and edema."
     },
     
-    // Slit Lamp Examination
+
     {
         question: "What slit lamp illumination technique is best for evaluating the fluorescein pattern of an RGP lens?",
         options: [
@@ -770,7 +768,7 @@ const quizQuestions = [
         explanation: "Epithelial edema manifesting as central corneal haze is best verified using sclerotic scatter illumination, which involves viewing with the naked eye at an angle of approximately 90° between the slit lamp beam and the viewing axis. This technique highlights irregularities in corneal transparency."
     },
     
-    // Contact Lens Materials and Properties
+
     {
         question: "When comparing high DK silicone acrylate polymers to earlier generation materials, which of the following is true?",
         options: [
@@ -794,7 +792,7 @@ const quizQuestions = [
         explanation: "For daily wear contact lenses, a minimum oxygen transmissibility (Dk/t) value of approximately 24 is typically needed to avoid corneal edema. For extended or overnight wear, much higher values (87 Dk/t or greater) are recommended to maintain corneal health."
     },
     
-    // Lens Verification
+
     {
         question: "When the CPC (central posterior curve) of a rigid lens was ordered at 7.84mm but received measuring 7.94mm, this lens is _____ than ordered.",
         options: [
@@ -818,7 +816,7 @@ const quizQuestions = [
         explanation: "A rigid lens that shows two base curves on the radiuscope but displays a spherical power on the lensometer indicates a warped lens. In a properly manufactured lens, specific designs should show predictable patterns: spherical lenses show one base curve and spherical power; back toric lenses show two base curves and toroidal power; front toric lenses show one base curve and toroidal power."
     },
     
-    // Specialty Lenses
+
     {
         question: "Which lens design would be most appropriate for a patient with keratoconus?",
         options: [
@@ -841,8 +839,7 @@ const quizQuestions = [
         answer: 2,
         explanation: "For post-penetrating keratoplasty patients, a diagnostic RGP fitting with fluorescein assessment is typically most effective. The transplanted cornea often has irregular astigmatism and elevation disparities at the graft-host junction that require direct evaluation with trial lenses rather than relying solely on keratometry readings or empirical formulas."
     },
-    
-    // Regulatory and Administrative
+
     {
         question: "According to FDA regulations, what risk category are contact lenses classified under?",
         options: [
@@ -866,7 +863,7 @@ const quizQuestions = [
         explanation: "The maximum expiration period for a contact lens prescription varies by state law under the Fairness to Contact Lens Consumers Act (FCLCA). While the FCLCA requires prescribers to provide patients with their prescriptions, it defers to state laws regarding expiration dates, which typically range from 1-2 years."
     },
     
-    // Additional Questions
+
     {
         question: "What is the best way to evaluate the fit of a multifocal soft contact lens?",
         options: [
@@ -877,4 +874,1756 @@ const quizQuestions = [
         ],
         answer: 3,
         explanation: "The best way to evaluate the fit of a multifocal soft contact lens is to assess lens centration, movement, and visual performance at multiple distances. Proper centration is critical for simultaneous vision designs, as decentration can significantly affect the balance between distance and near vision."
-    }]
+    },
+  
+    {
+        question: "Which test evaluates the thickness of the lipid layer of the tear film?",
+        options: [
+          "Schirmer test",
+          "Tear break-up time",
+          "Interferometry",
+          "Phenol red thread test"
+        ],
+        answer: 2,
+        explanation: "Lipid layer thickness is measured using interferometric techniques such as LipiView, which quantifies the interference pattern created by the oil layer on the tear film :contentReference[oaicite:3]{index=3}."
+      },
+      {
+        question: "What material is most commonly used for overnight orthokeratology lenses?",
+        options: [
+          "PMMA",
+          "Hydrogel",
+          "Fluorosilicone acrylate",
+          "Conventional silicone hydrogel"
+        ],
+        answer: 2,
+        explanation: "Orthokeratology lenses require high Dk to permit safe overnight wear and are typically made of rigid fluorosilicone acrylate materials :contentReference[oaicite:4]{index=4}."
+      },
+      {
+        question: "Which device is used to measure the post-lens tear reservoir in scleral lenses?",
+        options: [
+          "Keratometer",
+          "Slit lamp",
+          "Anterior segment OCT",
+          "Placido topographer"
+        ],
+        answer: 2,
+        explanation: "Anterior segment optical coherence tomography (AS-OCT) provides cross-sectional images that allow precise measurement of the tear reservoir beneath scleral lenses :contentReference[oaicite:5]{index=5}."
+      },
+      {
+        question: "Which systemic medication is known to exacerbate dry eye by reducing tear production?",
+        options: [
+          "Antihistamines",
+          "ACE inhibitors",
+          "Beta blockers",
+          "Antibiotics"
+        ],
+        answer: 0,
+        explanation: "First-generation antihistamines have anticholinergic properties that reduce lacrimal gland secretion, worsening dry eye symptoms :contentReference[oaicite:6]{index=6}."
+      },
+      {
+        question: "Under FDA regulations, cosmetic (non-vision) tinted contact lenses are classified as:",
+        options: [
+          "Cosmetics",
+          "Over-the-counter devices",
+          "Prescription medical devices",
+          "Vision correction appliances"
+        ],
+        answer: 2,
+        explanation: "All contact lenses—even purely decorative ones—are prescription medical devices requiring a valid prescription under FDA classification :contentReference[oaicite:7]{index=7}."
+      },
+      {
+        question: "What is the primary advantage of a reverse-geometry scleral lens?",
+        options: [
+          "Lower oxygen transmission",
+          "Enhanced tear reservoir",
+          "Easier cleaning",
+          "Greater lens rotation"
+        ],
+        answer: 1,
+        explanation: "Reverse-geometry curves vault the central cornea, creating a reservoir of fluid that protects and hydrates irregular corneas under the lens :contentReference[oaicite:8]{index=8}."
+      },
+      {
+        question: "In pediatric contact lens fitting, which measurement is most critical for initial lens diameter selection?",
+        options: [
+          "Horizontal visible iris diameter",
+          "Palpebral aperture height",
+          "Pupil diameter",
+          "Tear meniscus height"
+        ],
+        answer: 1,
+        explanation: "Children’s smaller palpebral apertures affect ease of insertion and removal, making aperture height essential for selecting an appropriately sized lens :contentReference[oaicite:9]{index=9}."
+      },
+      {
+        question: "What is the normal range for tear meniscus height in a healthy adult?",
+        options: [
+          "0.05–0.1 mm",
+          "0.2–0.3 mm",
+          "0.5–0.7 mm",
+          "1.0–1.2 mm"
+        ],
+        answer: 1,
+        explanation: "A normal central tear meniscus height at the lower lid should measure approximately 0.2–0.3 mm on slit lamp examination :contentReference[oaicite:10]{index=10}."
+      },
+      {
+        question: "Which lens care system uses a platinum-coated case for chemical neutralization?",
+        options: [
+          "Multipurpose solution",
+          "Hydrogen peroxide system",
+          "Enzymatic cleaner",
+          "Daily cleaner"
+        ],
+        answer: 1,
+        explanation: "Hydrogen peroxide solutions require a catalytic platinum disc in the case to neutralize peroxide into water and oxygen before lens insertion :contentReference[oaicite:11]{index=11}."
+      },
+      {
+        question: "Which instrument is preferred for assessing corneal warpage after orthokeratology treatment?",
+        options: [
+          "Manual keratometer",
+          "Corneal topographer",
+          "Pachymeter",
+          "Slit lamp"
+        ],
+        answer: 1,
+        explanation: "Corneal topography maps changes in corneal curvature across the entire surface, detecting warpage induced by overnight reshaping lenses :contentReference[oaicite:12]{index=12}."
+      },
+      {
+        question: "What is the recommended vault (post-lens tear thickness) for scleral lenses in microns?",
+        options: [
+          "50–100 μm",
+          "150–250 μm",
+          "300–400 μm",
+          "500–600 μm"
+        ],
+        answer: 1,
+        explanation: "Optimal scleral lens vault ranges from approximately 150–250 μm to avoid corneal bearing or excessive clearance :contentReference[oaicite:13]{index=13}."
+      },
+      {
+        question: "Which federal law mandates the automatic release of a contact lens prescription to the patient?",
+        options: [
+          "HIPAA",
+          "FCLCA",
+          "ADA",
+          "OSHA"
+        ],
+        answer: 1,
+        explanation: "The Fairness to Contact Lens Consumers Act (FCLCA) requires practitioners to provide prescriptions directly to patients upon completion of the fitting :contentReference[oaicite:14]{index=14}."
+      },
+      {
+        question: "Which bifocal contact lens design uses concentric rings for simultaneous vision?",
+        options: [
+          "Translating design",
+          "Segmented design",
+          "Concentric design",
+          "Aspheric design"
+        ],
+        answer: 2,
+        explanation: "Concentric multifocal lenses feature alternating rings of distance and near power, allowing simultaneous focus at multiple distances."
+      },
+      {
+        question: "What is the primary contraindication for overnight soft contact lens wear?",
+        options: [
+          "Mild seasonal allergies",
+          "History of recurrent corneal erosion",
+          "Pupil diameter >6 mm",
+          "History of stable presbyopia"
+        ],
+        answer: 1,
+        explanation: "Recurrent corneal erosions risk epithelial breakdown and infection under low-oxygen overnight conditions, making overnight wear contraindicated."
+      },
+      {
+        question: "Which dye is used to assess epithelial integrity under a contact lens?",
+        options: [
+          "Fluorescein sodium",
+          "Lissamine green",
+          "Rose bengal",
+          "Indocyanine green"
+        ],
+        answer: 0,
+        explanation: "Fluorescein sodium highlights corneal epithelial defects and can be observed through a blue filter on the slit lamp."
+      },
+      {
+        question: "What is the minimum Dk/t recommended for extended-wear silicone hydrogel lenses?",
+        options: [
+          "24",
+          "36",
+          "87",
+          "125"
+        ],
+        answer: 2,
+        explanation: "Extended-wear lenses generally require Dk/t values ≥87 to maintain corneal oxygenation during overnight wear."
+      },
+      {
+        question: "Which contact lens material inherently blocks most UV-B radiation?",
+        options: [
+          "Hydrogel",
+          "PMMA",
+          "Silicone hydrogel",
+          "Fluoropolymer"
+        ],
+        answer: 2,
+        explanation: "Many silicone hydrogel materials include UV-B blockers in the polymer matrix, providing protection against short-wave UV radiation."
+      },
+      {
+        question: "What pachymetry change would you expect after 8 hours of overnight contact lens wear?",
+        options: [
+          "0–2% increase",
+          "5–8% increase",
+          "10–12% increase",
+          "15–18% increase"
+        ],
+        answer: 1,
+        explanation: "Overnight lens wear can induce a transient 5–8% increase in corneal thickness due to hypoxic edema."
+      },
+      {
+        question: "Which parameter is most critical when converting a spectacle astigmatism of –2.00 × 180 to a toric contact lens prescription?",
+        options: [
+          "Power only",
+          "Axis only",
+          "Vertex distance",
+          "Add power"
+        ],
+        answer: 2,
+        explanation: "Vertex distance affects effective power calculations for prescriptions stronger than ±4.00 D and must be accounted for when converting to contact lens power."
+      },
+      {
+        question: "What is the expected fluorescein pattern for an alignment fit RGP lens?",
+        options: [
+          "Central pooling, peripheral touch",
+          "Central touch, peripheral pooling",
+          "Even distribution of fluorescein",
+          "No observable pattern"
+        ],
+        answer: 2,
+        explanation: "An alignment fit shows an even fluorescein layer across the cornea, indicating the base curve matches the corneal curvature."
+      },
+      {
+        question: "Which curve on an RGP lens is measured by a shadowgraph?",
+        options: [
+          "Central posterior curve",
+          "Optical zone diameter",
+          "Peripheral curve radius",
+          "Back vertex power"
+        ],
+        answer: 1,
+        explanation: "Shadowgraphs determine lens diameter and optical zone by projecting the lens edge onto a scale."
+      },
+      {
+        question: "What is the primary advantage of a daily disposable lens for allergy sufferers?",
+        options: [
+          "Lower cost",
+          "Improved oxygen transmission",
+          "Elimination of solution allergens",
+          "Greater dioptric range"
+        ],
+        answer: 2,
+        explanation: "Daily disposables remove solution reservoir allergens and deposits each day, improving comfort in allergy sufferers."
+      },
+      {
+        question: "Which grading scale is commonly used for corneal staining severity?",
+        options: [
+          "Snellen",
+          "LogMAR",
+          "Efron",
+          "Gonioscopy"
+        ],
+        answer: 2,
+        explanation: "The Efron grading scale (0–4) is used to quantify severity of corneal and conjunctival staining and other contact lens-related signs."
+      },
+      {
+        question: "What is the purpose of lens ballast designs in toric soft lenses?",
+        options: [
+          "Improve oxygen permeability",
+          "Enhance color vision",
+          "Stabilize rotational orientation",
+          "Increase wettability"
+        ],
+        answer: 2,
+        explanation: "Prism ballast or peri-ballast designs ensure the cylindrical axis remains aligned with the patient's astigmatic axis by using gravity or lid forces."
+      },
+      {
+        question: "Which solution component chelates metal ions to improve lens cleaning?",
+        options: [
+          "Polyhexamethylene biguanide",
+          "Edetate disodium (EDTA)",
+          "Hydrogen peroxide",
+          "Benzalkonium chloride"
+        ],
+        answer: 1,
+        explanation: "EDTA binds divalent metal ions, enhancing the efficacy of multipurpose solutions against deposit formation."
+      },
+      {
+        question: "Which corneal finding indicates a flat-fitting RGP lens?",
+        options: [
+          "Central pooling",
+          "Peripheral touch",
+          "3 and 9 o’clock staining",
+          "Complete fluorescein clearance"
+        ],
+        answer: 2,
+        explanation: "Flat-fitting RGP lenses often cause peripheral desiccation, observed as 3 and 9 o’clock staining."
+      },
+      {
+        question: "What is the maximum allowable expiration period for a contact lens prescription per the FCLCA?",
+        options: [
+          "6 months",
+          "1 year",
+          "2 years",
+          "Indefinite"
+        ],
+        answer: 2,
+        explanation: "While the FCLCA defers to state law, most states set a maximum prescription validity of 2 years."
+      },
+      {
+        question: "Which instrument measures tear break-up time by fluorescein?",
+        options: [
+          "Pachymeter",
+          "Keratometer",
+          "Slit lamp with cobalt blue filter",
+          "Placido ring"
+        ],
+        answer: 2,
+        explanation: "Slit lamp evaluation with fluorescein and cobalt blue illumination measures time until dry spots appear on the tear film."
+      },
+      {
+        question: "What is the typical duration before the first follow-up visit for a new RGP wearer?",
+        options: [
+          "Same day",
+          "1–2 days",
+          "1–2 weeks",
+          "1 month"
+        ],
+        answer: 2,
+        explanation: "RGP lens wearers are usually reevaluated within 1–2 weeks to assess fit, comfort, and visual performance."
+      },
+      {
+        question: "Which specialty lens is best suited for keratoconic patients with advanced cones?",
+        options: [
+          "Soft toric",
+          "Scleral lens",
+          "Daily disposable",
+          "Rigid spherical"
+        ],
+        answer: 1,
+        explanation: "Scleral lenses vault the irregular cornea entirely, providing uniform tear reservoir and stable optics over advanced cones."
+      },
+      {
+        question: "What property distinguishes silicone hydrogel from conventional hydrogel lenses?",
+        options: [
+          "Higher water content",
+          "Intrinsic UV blocking",
+          "Higher oxygen permeability",
+          "Enzymatic resistance"
+        ],
+        answer: 2,
+        explanation: "Silicone hydrogel materials incorporate silicone to greatly increase oxygen transmissibility compared to conventional hydrogels."
+      },
+      {
+        question: "Which design feature reduces photophobia in post-photorefractive keratectomy patients?",
+        options: [
+          "Aspheric front surface",
+          "Concentric near zone",
+          "Prism ballast",
+          "Thin center thickness"
+        ],
+        answer: 0,
+        explanation: "Aspheric lens designs reduce spherical aberration and glare, improving comfort in post-surgical eyes."
+      },
+      {
+        question: "What is the key parameter for fitting piggyback systems?",
+        options: [
+          "Rigid lens base curve only",
+          "Soft lens power only",
+          "Combined system thickness",
+          "UV block"
+        ],
+        answer: 2,
+        explanation: "Successful piggyback fitting requires managing the total thickness and oxygen transmissibility of the rigid plus soft lens system."
+      },
+      {
+        question: "Which contact lens solution is contraindicated for sensitive low-DK RGP lenses due to dehydration?",
+        options: [
+          "Hydrogen peroxide",
+          "Multipurpose solution with surfactants",
+          "Saline with sodium chloride",
+          "Enzymatic cleaner"
+        ],
+        answer: 1,
+        explanation: "Surfactant-based MPS can dehydrate low-DK rigid materials, causing warpage and discomfort."
+      },
+      {
+        question: "What is the main advantage of dual-axis toric RGP lenses over spherical RGP lenses for astigmatism?",
+        options: [
+          "Lower cost",
+          "Better rotational stability",
+          "Customized astigmatic correction on the back surface",
+          "Simplified fitting"
+        ],
+        answer: 2,
+        explanation: "Back toric RGP lenses match the toric corneal shape, providing more precise astigmatic correction than spherical RGPs."
+      },
+      {
+        question: "In patients with severe blepharitis, which lens modality is preferable?",
+        options: [
+          "Daily disposable soft lenses",
+          "Monthly reusable soft lenses",
+          "RGP lenses",
+          "Scleral lenses"
+        ],
+        answer: 0,
+        explanation: "Daily disposables minimize microbial bioburden and mechanical irritation in ocular surface inflammatory conditions like blepharitis."
+      },
+      {
+        question: "Which lens design uses a progressive change in curvature from center to periphery for presbyopia?",
+        options: [
+          "Translating bifocal",
+          "Concentric rings",
+          "Aspheric multifocal",
+          "Segmented bifocal"
+        ],
+        answer: 2,
+        explanation: "Aspheric multifocals provide a gradual power change across the optic zone for simultaneous distance and near clarity."
+      },
+      {
+        question: "What instrument is essential for quantifying corneal elevation maps?",
+        options: [
+          "Manual keratometer",
+          "Placido disc topographer",
+          "Slit lamp",
+          "Non-contact tonometer"
+        ],
+        answer: 1,
+        explanation: "Placido disc–based topographers map corneal curvature and elevation, critical for irregular cornea and refractive surgery patients."
+      },
+      {
+        question: "Which pediatric condition may require contact lens overcorrection at night?",
+        options: [
+          "High myopia",
+          "Amblyopia",
+          "Strabismus",
+          "Hyperopia"
+        ],
+        answer: 1,
+        explanation: "Therapeutic contact lenses can occlude the dominant eye overnight in refractive amblyopia therapy to improve neural adaptation."
+      },
+      {
+        question: "What laboratory test screens for solution toxicity on corneal epithelium?",
+        options: [
+          "Cell culture assay",
+          "Schirmer test",
+          "TBUT",
+          "Pachymetry"
+        ],
+        answer: 0,
+        explanation: "In vitro cytotoxicity assays evaluate preservative toxicity on corneal epithelial cell cultures before clinical use."
+      },
+      {
+        question: "Which follow-up interval is recommended for established scleral lens wearers with no issues?",
+        options: [
+          "Weekly",
+          "Monthly",
+          "Every 3–6 months",
+          "Annually"
+        ],
+        answer: 2,
+        explanation: "Scleral lens patients should be reevaluated every 3–6 months to monitor ocular health and lens fit."
+      },
+      {
+        question: "What diagnostic dye highlights devitalized conjunctival cells?",
+        options: [
+          "Fluorescein",
+          "Rose bengal",
+          "Lissamine green",
+          "Amino-acid violet"
+        ],
+        answer: 2,
+        explanation: "Lissamine green selectively stains devitalized mucosal cells without the stinging associated with rose bengal."
+      },
+      {
+        question: "Which additive in lens care solutions improves protein deposit removal?",
+        options: [
+          "Polyquad",
+          "EDTA",
+          "Enzymatic protease",
+          "Biguanide"
+        ],
+        answer: 2,
+        explanation: "Proteolytic enzymes in weekly cleaners break down protein deposits, enhancing lens surface clarity."
+      },
+      {
+        question: "What is the primary role of the ciliary body in contact lens fitting?",
+        options: [
+          "Producing aqueous humor",
+          "Controlling pupil size",
+          "Maintaining tear film",
+          "Focusing the eye"
+        ],
+        answer: 0,
+        explanation: "The ciliary body produces aqueous humor, which maintains intraocular pressure and nourishes avascular ocular tissues."
+      },
+      {
+        question: "Which paracentral corneal radius is most important for soft lens fitting?",
+        options: [
+          "Central 3 mm zone",
+          "Peripheral 8 mm zone",
+          "Paracentral 5 mm zone",
+          "Limbal zone"
+        ],
+        answer: 2,
+        explanation: "Soft lenses drape over the paracentral cornea (≈5 mm), making this radius most reflective of lens–cornea alignment."
+      },
+      {
+        question: "What adaptive feature do daily disposable lenses provide for high-oxygen demand eyes?",
+        options: [
+          "Thin profile with high Dk",
+          "Thick center for comfort",
+          "UV blocking",
+          "Low modulus"
+        ],
+        answer: 0,
+        explanation: "Daily disposables can be manufactured very thin with high oxygen permeability to meet elevated oxygen demands."
+      },
+      {
+        question: "Which professional practice issue is governed by the NCLEP Practical Exam?",
+        options: [
+          "Lens ordering",
+          "Patient counseling",
+          "Lens parameter verification",
+          "Continuing education credits"
+        ],
+        answer: 2,
+        explanation: "The NCLEP Practical Exam tests hands-on skills such as measuring and verifying lens parameters using standardized equipment."
+      },
+      {
+        question: "Which tear evaluation test uses paper dyed with phenol red?",
+        options: [
+          "Schirmer test",
+          "TBUT",
+          "Phenol red thread test",
+          "Pachymetry"
+        ],
+        answer: 2,
+        explanation: "The phenol red thread test measures tear volume by the length of thread that changes color when wetted."
+      },
+      {
+        question: "What is the main advantage of water gradient silicone hydrogel lenses?",
+        options: [
+          "Uniform water content",
+          "Gradient lubricity",
+          "Thicker center",
+          "Lower Dk"
+        ],
+        answer: 1,
+        explanation: "Water gradient lenses provide a high-lubricity surface layer while maintaining high oxygen transmissibility in the core."
+      },
+      {
+        question: "Which regulatory requirement addresses hazardous waste from lens care solutions?",
+        options: [
+          "EPA guidelines",
+          "FCLCA",
+          "FDA labeling",
+          "OSHA standards"
+        ],
+        answer: 0,
+        explanation: "The Environmental Protection Agency (EPA) regulates disposal of lens care solutions deemed hazardous due to preservatives."
+      },
+      {
+        question: "Which lens parameter is MOST critical in high hyperopia correction?",
+        options: [
+          "Base curve",
+          "Center thickness",
+          "Edge thickness",
+          "Optical zone diameter"
+        ],
+        answer: 1,
+        explanation: "High plus lenses require adequate center thickness to achieve the necessary optical power without structural deformation."
+      },
+      {
+        question: "In low humidity environments, which lens property is most affected?",
+        options: [
+          "Dk/t",
+          "Wettability",
+          "Lens power",
+          "Edge lift"
+        ],
+        answer: 1,
+        explanation: "Low ambient humidity increases evaporation from the lens surface, reducing wettability and increasing comfort issues."
+      },
+      {
+        question: "Which contact lens design can reduce higher-order aberrations?",
+        options: [
+          "Segmented bifocal",
+          "Aspheric RGP",
+          "Concentric multifocal",
+          "Toric soft"
+        ],
+        answer: 1,
+        explanation: "Aspheric RGP surfaces can be tailored to counteract corneal and spherical aberrations, improving image quality."
+      },
+      {
+        question: "What follow-up frequency is recommended after cataract surgery when fitting contact lenses?",
+        options: [
+          "1 week",
+          "1 month",
+          "3 months",
+          "6 months"
+        ],
+        answer: 0,
+        explanation: "Postoperative patients should be seen within one week to ensure surgical healing before lens introduction."
+      },
+      {
+        question: "Which lens care additive neutralizes residual enzyme cleaner in the case?",
+        options: [
+          "Hydrogen peroxide",
+          "Polyquad",
+          "Catalyst disc",
+          "EDTA"
+        ],
+        answer: 2,
+        explanation: "Catalyst discs neutralize residual enzyme in peroxide systems; however, enzymatic cleaners themselves don’t require neutralization."
+      },
+      {
+        question: "Which ocular surface device measures tear osmolarity?",
+        options: [
+          "TearLab system",
+          "Slit lamp",
+          "Topographer",
+          "Keratometer"
+        ],
+        answer: 0,
+        explanation: "The TearLab Osmolarity System quantifies tear film osmolarity, a key indicator of dry eye severity."
+      },
+      {
+        question: "What is the main risk of tight-fitting soft lenses?",
+        options: [
+          "Excessive movement",
+          "Conjunctival indentation",
+          "Corneal hypoxia",
+          "Enhanced deposit formation"
+        ],
+        answer: 2,
+        explanation: "Tight-fitting lenses restrict tear exchange and oxygen supply, increasing the risk of hypoxic complications."
+      },
+      {
+        question: "Which dispensed lens parameter verification uses a lensometer?",
+        options: [
+          "Base curve",
+          "Power and axis",
+          "Diameter",
+          "Back vertex radius"
+        ],
+        answer: 1,
+        explanation: "Lensometers measure the optical power and cylindrical axis of finished lenses for verification."
+      },
+      {
+        question: "Which neonatal anatomical feature affects contact lens choice?",
+        options: [
+          "Thin tear film",
+          "High tear volume",
+          "Large palpebral aperture",
+          "Corneal diameters <9 mm"
+        ],
+        answer: 3,
+        explanation: "Infants have smaller corneal diameters (<9 mm) requiring custom-made or specialized pediatric lens designs."
+      },
+      {
+        question: "What is the proper method to clean RGP lenses daily?",
+        options: [
+          "Soaking only",
+          "Rubbing with enzyme cleaner",
+          "Rubbing with surfactant cleaner and rinsing",
+          "Automated ultrasonic cleaning"
+        ],
+        answer: 2,
+        explanation: "Daily manual rubbing with a mild surfactant cleaner removes deposits before soaking in disinfecting solution."
+      },
+      {
+        question: "Which parameter most affects rotational stability of a toric soft lens?",
+        options: [
+          "Lens modulus",
+          "Water content",
+          "Peripheral thickness profile",
+          "Center thickness"
+        ],
+        answer: 2,
+        explanation: "Peripheral thickness variations (prism ballast or thin zones) create differential lid pressure to stabilize the lens orientation."
+      },
+      {
+        question: "Which contact lens prescription element must include the axis for cylinder powers ≥0.75 D?",
+        options: [
+          "Sphere",
+          "Cylinder",
+          "Axis",
+          "Add"
+        ],
+        answer: 2,
+        explanation: "Cylinder power prescriptions ≥0.75 D must specify the axis to ensure correct cylindrical correction alignment."
+      },
+      {
+        question: "What is the hallmark sign of giant papillary conjunctivitis in soft lens wearers?",
+        options: [
+          "Clear cornea",
+          "Large papillae on the tarsal conjunctiva",
+          "Mucous discharge",
+          "Punctate staining"
+        ],
+        answer: 1,
+        explanation: "GPC is characterized by papillae >0.3 mm under the upper lid, often accompanied by itching and discharge."
+      },
+      {
+        question: "Which multifocal soft lens design is pupil dependent?",
+        options: [
+          "Translating bifocal",
+          "Segmented bifocal",
+          "Concentric multifocal",
+          "Aspheric multifocal"
+        ],
+        answer: 2,
+        explanation: "Concentric designs depend on pupil size to distribute distance and near power zones appropriately."
+      },
+      {
+        question: "Which condition is an absolute contraindication for contact lens wear?",
+        options: [
+          "Mild dry eye",
+          "Systemic antihistamine use",
+          "Active microbial keratitis",
+          "Mild seasonal allergy"
+        ],
+        answer: 2,
+        explanation: "Active microbial keratitis poses a serious infection risk and necessitates immediate discontinuation of lenses."
+      },
+      {
+        question: "What is the typical corneal thickness measured by pachymetry at the center?",
+        options: [
+          "300 μm",
+          "500 μm",
+          "800 μm",
+          "1000 μm"
+        ],
+        answer: 1,
+        explanation: "Central corneal thickness averages around 500 μm (0.5 mm) in normal eyes."
+      },
+      {
+        question: "Which contact lens solution preservative has the lowest risk of toxicity?",
+        options: [
+          "Thimerosal",
+          "Polyhexamethylene biguanide",
+          "Benzalkonium chloride",
+          "Chlorhexidine"
+        ],
+        answer: 1,
+        explanation: "Polyhexamethylene biguanide (PHMB) exhibits broad antimicrobial action with low epithelial toxicity when used properly."
+      },
+      {
+        question: "Which tear test uses a filter paper held at the lateral canthus?",
+        options: [
+          "Schirmer I",
+          "Schirmer II",
+          "Phenol red thread test",
+          "Fluorescein staining"
+        ],
+        answer: 0,
+        explanation: "Schirmer I is performed without anesthesia by placing paper in the lateral third of the lower lid to measure basal plus reflex tears."
+      },
+      {
+        question: "Which lens design can minimize spherical aberration in large pupils?",
+        options: [
+          "High-water hydrogel",
+          "Aspheric silicone hydrogel",
+          "Segmented bifocal",
+          "Front-toric RGP"
+        ],
+        answer: 1,
+        explanation: "Aspheric silicone hydrogel lenses incorporate aberration control profiles to reduce spherical aberration in mesopic conditions."
+      },
+      {
+        question: "What is the optimal time to measure TBUT after fluorescein instillation?",
+        options: [
+          "Immediately",
+          "Within 30 seconds",
+          "After 1 minute",
+          "After 5 minutes"
+        ],
+        answer: 1,
+        explanation: "TBUT should be measured within 30 seconds of instillation to minimize reflex tearing and obtain an accurate value."
+      },
+      {
+        question: "Which property of PMMA lenses limits their current clinical use?",
+        options: [
+          "Low wettability",
+          "High oxygen permeability",
+          "High cost",
+          "Fragility"
+        ],
+        answer: 0,
+        explanation: "PMMA is impermeable to oxygen and has poor surface wettability, leading to corneal hypoxia and discomfort."
+      },
+      {
+        question: "Which diameter increase is typically recommended for therapeutic corneal bandage lenses?",
+        options: [
+          "0.5 mm smaller than HVID",
+          "Equal to HVID",
+          "0.5 mm larger than HVID",
+          "2 mm larger than HVID"
+        ],
+        answer: 2,
+        explanation: "Therapeutic bandage lenses are fit slightly larger (≈0.5 mm) than the HVID to ensure coverage of the epithelial defect."
+      },
+      {
+        question: "Which slit lamp illumination best highlights corneal epithelial edema?",
+        options: [
+          "Diffuse",
+          "Sclerotic scatter",
+          "Retroillumination",
+          "Direct focal"
+        ],
+        answer: 1,
+        explanation: "Sclerotic scatter uses a narrow beam at 90° to the viewing axis, causing light scatter by corneal haze and edema to become visible."
+      },
+      {
+        question: "Which factors determine Dk/t of a contact lens?",
+        options: [
+          "Material Dk and thickness",
+          "Water content only",
+          "Base curve only",
+          "Edge design only"
+        ],
+        answer: 0,
+        explanation: "Dk/t represents oxygen permeability (Dk) divided by lens thickness (t), so both material and thickness are critical."
+      },
+      {
+        question: "What lens modification improves centration in soft toric lenses?",
+        options: [
+          "Increased modulus",
+          "Thicker center",
+          "Prism ballast",
+          "Hydrophobic coating"
+        ],
+        answer: 2,
+        explanation: "Prism ballast designs use differential thickness to orient the lens under lid forces for stable toric axis alignment."
+      },
+      {
+        question: "Which tear film component is primarily responsible for surface wettability?",
+        options: [
+          "Lipid layer",
+          "Aqueous layer",
+          "Mucin layer",
+          "Protein layer"
+        ],
+        answer: 2,
+        explanation: "The mucin layer interacts with the hydrophilic corneal epithelial surface, enhancing tear film stability and wettability."
+      },
+      {
+        question: "Which contact lens material has the highest water content?",
+        options: [
+          "Silicone hydrogel",
+          "Conventional hydrogel",
+          "Fluoropolymer RGP",
+          "PMMA"
+        ],
+        answer: 1,
+        explanation: "High-water conventional hydrogels can reach up to 80–90% water content, improving initial comfort but reducing oxygen transmissibility."
+      },
+      {
+        question: "What is the first step in a contact lens emergency protocol?",
+        options: [
+          "Remove the lens",
+          "Irrigate with saline",
+          "Apply antibiotic drops",
+          "Refer immediately"
+        ],
+        answer: 0,
+        explanation: "Immediate lens removal reduces continued exposure to the offending agent and allows ocular examination."
+      },
+      {
+        question: "Which instrument measures lens surface roughness and scratches?",
+        options: [
+          "Shadowgraph",
+          "Profile analyzer",
+          "Placido disc",
+          "Optical coherence tomographer"
+        ],
+        answer: 1,
+        explanation: "Profile analyzers detect minute surface irregularities, scratches, and abrasions on contact lenses."
+      },
+      {
+        question: "Which condition requires piggyback lens systems?",
+        options: [
+          "Intermittent exotropia",
+          "Severe keratoconus",
+          "Simple myopia",
+          "Age-related presbyopia"
+        ],
+        answer: 1,
+        explanation: "Piggyback systems combine a soft lens under an RGP to improve comfort in advanced keratoconus cases."
+      },
+      {
+        question: "What is a common complication of overnight soft lens wear?",
+        options: [
+          "Corneal neovascularization",
+          "Increased peripheral refraction",
+          "Decreased tear volume",
+          "Enhanced centration"
+        ],
+        answer: 0,
+        explanation: "Chronic hypoxia from overnight wear can stimulate new vessel growth into the cornea."
+      },
+      {
+        question: "Which tear evaluation uses rose bengal to stain devitalized cells?",
+        options: [
+          "Schirmer test",
+          "TBUT",
+          "Phenol red thread test",
+          "Rose bengal staining"
+        ],
+        answer: 3,
+        explanation: "Rose bengal highlights devitalized epithelial cells and mucous areas, although it can cause stinging."
+      },
+      {
+        question: "Which lens modality is preferred for aphakic patients?",
+        options: [
+          "Soft mass-produced lenses",
+          "High-Dk RGP lenses",
+          "Daily disposable soft lenses",
+          "Scleral lenses"
+        ],
+        answer: 1,
+        explanation: "RGP lenses provide high refractive power thin lenses and excellent oxygen delivery for aphakes."
+      },
+      {
+        question: "Which system quantifies meibomian gland dropout?",
+        options: [
+          "Meibography",
+          "TBUT",
+          "Schirmer",
+          "Placido topography"
+        ],
+        answer: 0,
+        explanation: "Meibography uses infrared imaging to assess gland structure and dropout, crucial in evaporative dry eye."
+      },
+      {
+        question: "Which parameter is measured by an optical biometer?",
+        options: [
+          "Axial length",
+          "Corneal curvature",
+          "Tear film stability",
+          "Lens thickness"
+        ],
+        answer: 0,
+        explanation: "Biometers use interferometry to measure axial length, essential for post-surgical contact lens calculations."
+      },
+      {
+        question: "Which contact lens is best for management of corneal ectasia?",
+        options: [
+          "Soft toric",
+          "Keratoconic RGP",
+          "Hybrid lens",
+          "Daily disposable"
+        ],
+        answer: 2,
+        explanation: "Hybrid lenses combine a rigid center with a soft skirt to vault ectatic corneas and provide comfort."
+      },
+      {
+        question: "Which additive in care solutions helps prevent microbial keratitis by disrupting cell walls?",
+        options: [
+          "EDTA",
+          "Polyquad",
+          "Hydrogen peroxide",
+          "EDTA"
+        ],
+        answer: 1,
+        explanation: "Polyquad disrupts microbial cell walls and is widely used in multipurpose solutions for broad-spectrum disinfection."
+      },
+      {
+        question: "What is the most common complication of scleral lens wear?",
+        options: [
+          "Lens decentration",
+          "Conjunctival prolapse",
+          "Corneal infiltrates",
+          "Microbial keratitis"
+        ],
+        answer: 1,
+        explanation: "Conjunctival prolapse under the lens edge is frequently observed due to excessive suction and vault."
+      },
+      {
+        question: "Which curve alteration reduces central pooling in RGP fitting?",
+        options: [
+          "Flatten the base curve",
+          "Steepen the base curve",
+          "Increase diameter",
+          "Add peripheral curves"
+        ],
+        answer: 0,
+        explanation: "Flattening the base curve reduces central vault and decreases fluorescein pooling."
+      },
+      {
+        question: "Which soft lens property most affects dehydration rate?",
+        options: [
+          "Modulus",
+          "Water content",
+          "Tint",
+          "Diameter"
+        ],
+        answer: 1,
+        explanation: "Higher water content lenses lose water more rapidly in low-humidity environments, leading to dehydration."
+      },
+      {
+        question: "Which disinfecting agent is active against Acanthamoeba cysts?",
+        options: [
+          "Polyquad",
+          "Hydrogen peroxide",
+          "Polyhexamethylene biguanide",
+          "Edetate"
+        ],
+        answer: 1,
+        explanation: "Hydrogen peroxide systems achieve high-level disinfection, including efficacy against Acanthamoeba cysts."
+      },
+      {
+        question: "Which design aspect of multifocal RGP lenses improves near vision in presbyopes?",
+        options: [
+          "Central near zone",
+          "Peripheral near zone",
+          "Concentric ring design",
+          "Aspheric mid-periphery"
+        ],
+        answer: 0,
+        explanation: "Central near designs allocate the central optical zone for near vision, with distance correction in the periphery."
+      },
+      {
+        question: "Which ocular surface cell secretes mucin for tear film stability?",
+        options: [
+          "Goblet cells",
+          "Meibomian glands",
+          "Conjunctival epithelial cells",
+          "Corneal endothelium"
+        ],
+        answer: 0,
+        explanation: "Conjunctival goblet cells produce mucin glycoproteins essential for tear film adherence to the corneal epithelium."
+      },
+      {
+        question: "Which ring topography pattern suggests keratoconus?",
+        options: [
+          "Regular symmetrical rings",
+          "Cherry-red center",
+          "Oval-shaped U-area",
+          "Concentric hyperbolic rings"
+        ],
+        answer: 2,
+        explanation: "Paracentral elevations forming an oval or elliptical pattern on topography are indicative of keratoconus."
+      },
+      {
+        question: "Which follow-up interval is recommended after initial scleral lens fitting?",
+        options: [
+          "1 day",
+          "1 week",
+          "1 month",
+          "3 months"
+        ],
+        answer: 1,
+        explanation: "A follow-up within one week allows evaluation of lens fit, comfort, and ocular health under scleral lenses."
+      },
+      {
+        question: "What is the main limitation of front-surface toric RGP lenses?",
+        options: [
+          "Poor wettability",
+          "Axis drift",
+          "Limited cylinder power",
+          "High cost"
+        ],
+        answer: 1,
+        explanation: "Front toric designs can rotate unpredictably, leading to axis misalignment and variable vision."
+      },
+      {
+        question: "Which contact lens design best corrects irregular corneal astigmatism?",
+        options: [
+          "Soft toric",
+          "Front toric RGP",
+          "Hybrid lens",
+          "Daily disposable"
+        ],
+        answer: 1,
+        explanation: "Front toric RGP lenses mask corneal irregularities by providing a smooth anterior refractive surface aligned to the cylinder axis."
+      },
+      {
+        question: "Which parameter is most critical when ordering post-LASIK contact lenses?",
+        options: [
+          "Base curve flatter than flattest K reading",
+          "Water content",
+          "Diameter larger than HVID",
+          "Add power"
+        ],
+        answer: 0,
+        explanation: "Post-LASIK corneas are flattened centrally; lenses are ordered 0.5 mm flatter than the flattest keratometry reading for appropriate fit."
+      },
+      {
+        question: "Which lens care option is LEAST appropriate for silicone hydrogel lenses?",
+        options: [
+          "Hydrogen peroxide system",
+          "Multipurpose solution without surfactants",
+          "Daily cleaning with enzymatic tablets",
+          "Over-night protein removal kits"
+        ],
+        answer: 3,
+        explanation: "Aggressive enzymatic protein removers can degrade surface treatments on silicone hydrogels, reducing wettability."
+      },
+      {
+        question: "Which ocular surface parameter is assessed by dynamic meibomian imaging?",
+        options: [
+          "Gland structure",
+          "Tear meniscus",
+          "Corneal thickness",
+          "Bulbar redness"
+        ],
+        answer: 0,
+        explanation: "Dynamic meibography evaluates structure and expressibility of meibomian glands, guiding evaporative dry eye management."
+      },
+      {
+        question: "What is the optimal time to schedule a follow-up after fitting a multifocal soft lens?",
+        options: [
+          "1 day",
+          "1 week",
+          "2 weeks",
+          "1 month"
+        ],
+        answer: 2,
+        explanation: "Two weeks allows adequate adaptation time for presbyopic patients to multifocal optics before re-evaluation."
+      },
+      {
+        question: "Which lens design minimizes axis rotation in soft torics?",
+        options: [
+          "Thin-zone design",
+          "Accelerated stabilisation design",
+          "Rounded edge design",
+          "Bi-gradient design"
+        ],
+        answer: 1,
+        explanation: "Accelerated stabilization uses optimized thickness zones to align lenses rapidly upon blink and maintain axis stability."
+      },
+      {
+        question: "Which step is essential when converting spectacle add power to contact lens add?",
+        options: [
+          "Ignore vertex distance",
+          "Account for lens-eye distance",
+          "Increase add by 0.50 D",
+          "Use manufacturer's nominal values"
+        ],
+        answer: 1,
+        explanation: "Vertex distance differences between glasses and contacts alter effective add power, requiring adjustment calculations."
+      },
+      {
+        question: "Which environmental factor MOST increases contact lens dehydration?",
+        options: [
+          "High humidity",
+          "Low temperature",
+          "Low humidity",
+          "Indoor lighting"
+        ],
+        answer: 2,
+        explanation: "Low ambient humidity accelerates tear evaporation and lens dehydration, worsening comfort and vision fluctuations."
+      },
+      {
+        question: "What fluorescein pattern indicates an excessively steep RGP fit?",
+        options: [
+          "Central touch",
+          "Peripheral pooling",
+          "Central pooling",
+          "Even spread"
+        ],
+        answer: 2,
+        explanation: "Central pooling with minimal edge touch indicates the lens base curve is steeper than the cornea."
+      },
+      {
+        question: "Which preservative system is most associated with contact lens-related microbial keratitis?",
+        options: [
+          "Polyquad",
+          "Pluronic F127",
+          "Thimerosal",
+          "Hydrogen peroxide"
+        ],
+        answer: 2,
+        explanation: "Thimerosal, an older mercury-based preservative, had high toxicity and was withdrawn due to microbial resistance concerns."
+      },
+      {
+        question: "Which fitting parameter is MOST important for daily disposable soft toric lenses?",
+        options: [
+          "Center thickness",
+          "Edge design",
+          "Back surface toricity",
+          "UV block"
+        ],
+        answer: 2,
+        explanation: "Accurate back surface toricity ensures proper alignment of the lens cylinder axis with minimal rotation on the eye."
+      },
+      {
+        question: "What is the main benefit of UV-blocking contact lenses?",
+        options: [
+          "Reduced myopia progression",
+          "Protection against UV-related ocular damage",
+          "Enhanced tear film stability",
+          "Improved night vision"
+        ],
+        answer: 1,
+        explanation: "UV-blocking lenses help shield the cornea and lens from UV-A and UV-B radiation, reducing risk of photokeratitis and cataract formation."
+      },
+      {
+        question: "Which ocular measurement is critical when fitting scleral lenses for severe irregular corneas?",
+        options: [
+          "HVID",
+          "Scleral contour mapping",
+          "Tear meniscus height",
+          "Pupil diameter"
+        ],
+        answer: 1,
+        explanation: "Scleral topography maps toricity and asymmetry of the sclera, guiding custom lens haptic design for even landing."
+      },
+      {
+        question: "Which follow-up test checks for lens-induced hypoxia?",
+        options: [
+          "Corneal pachymetry",
+          "TBUT",
+          "Conjunctival staining",
+          "Meibography"
+        ],
+        answer: 0,
+        explanation: "Pachymetry quantifies corneal thickness increase due to hypoxic edema from low-Dk lens wear."
+      },
+      {
+        question: "What parameter does a V-gauge measure?",
+        options: [
+          "Base curve",
+          "Diameter",
+          "Optical zone",
+          "Peripheral curve radius"
+        ],
+        answer: 1,
+        explanation: "A V-gauge measures the total diameter of contact lenses and the diameter of the optical zone."
+      },
+      {
+        question: "Which lens cleaning regimen is recommended for patients with protein deposits?",
+        options: [
+          "Daily peroxide rinse",
+          "Weekly enzyme soaking",
+          "Monthly replacement",
+          "Only multipurpose solution"
+        ],
+        answer: 1,
+        explanation: "Weekly enzymatic cleaning breaks down protein films that accumulate with repeated lens wear."
+      },
+      {
+        question: "Which parameter must be verified on all dispensed toric RGP lenses?",
+        options: [
+          "Base curve only",
+          "Back vertex power only",
+          "Cylinder power and axis",
+          "Diameter only"
+        ],
+        answer: 2,
+        explanation: "Cylinder power and axis must match the ordered specifications to ensure correct astigmatic correction."
+      },
+      {
+        question: "Which factor MOST influences soft lens on-eye stability in torics?",
+        options: [
+          "Material Dk",
+          "Modulus",
+          "Toric back surface design",
+          "Center thickness"
+        ],
+        answer: 2,
+        explanation: "Back surface toricity interacts with the cornea to maintain lens orientation against eyelid forces."
+      },
+      {
+        question: "Which specialty lens is indicated for highly irregular corneas with extensive scarring?",
+        options: [
+          "Soft disposable",
+          "Hybrid lens",
+          "Daily toric",
+          "Custom RGP only"
+        ],
+        answer: 1,
+        explanation: "Hybrid lenses vault central irregularities and provide a comfortable soft skirt for scarred corneas."
+      },
+      {
+        question: "Which tear film parameter is assessed by rose bengal but not fluorescein?",
+        options: [
+          "Epithelial defects",
+          "Mucus debris",
+          "Tear breakup time",
+          "Aqueous volume"
+        ],
+        answer: 1,
+        explanation: "Rose bengal stains devitalized cells and mucous filaments that fluorescein does not readily highlight."
+      },
+      {
+        question: "What daily lens care step prevents lipid deposition most effectively?",
+        options: [
+          "Rinse only",
+          "Rub with surfactant",
+          "Use enzymatic tablet",
+          "Store dry"
+        ],
+        answer: 1,
+        explanation: "Manual rubbing with a surfactant cleaner dislodges oily deposits better than soaking alone."
+      },
+      {
+        question: "Which multifocal design requires lens translation on downgaze?",
+        options: [
+          "Concentric multifocal",
+          "Translating bifocal",
+          "Aspheric multifocal",
+          "Segmented trifocal"
+        ],
+        answer: 1,
+        explanation: "Translating designs use segment decentration that moves into the visual axis when the wearer looks down to read."
+      },
+      {
+        question: "Which contact lens parameter is LEAST affected by daily wear schedule?",
+        options: [
+          "Dk/t requirement",
+          "Deposits accumulation",
+          "Base curve stability",
+          "Replacement frequency"
+        ],
+        answer: 2,
+        explanation: "Base curve remains constant regardless of wear schedule; oxygen and deposit factors vary with wear modality."
+      },
+      {
+        question: "Which prescription element is not needed for plano cosmetic lenses?",
+        options: [
+          "Sphere",
+          "Cylinder",
+          "Axis",
+          "Add power"
+        ],
+        answer: 3,
+        explanation: "Plano cosmetic lenses have no refractive power and typically do not include add power for presbyopia."
+      },
+      {
+        question: "Which ocular surface test uses impression cytology?",
+        options: [
+          "Schirmer test",
+          "TBUT",
+          "Cell analysis",
+          "Topography"
+        ],
+        answer: 2,
+        explanation: "Impression cytology collects superficial epithelial cells for laboratory staining and evaluation of ocular surface diseases."
+      },
+      {
+        question: "Which contact lens solution type requires a rinse step before insertion?",
+        options: [
+          "Daily cleaner + peroxide",
+          "Multipurpose solution",
+          "Saline only",
+          "Daily disposable"
+        ],
+        answer: 0,
+        explanation: "Daily cleaner solutions require lenses to be rinsed thoroughly with saline or multipurpose solution before wear."
+      },
+      {
+        question: "Which lens fits smaller than HVID to allow tear exchange in RGP fitting?",
+        options: [
+          "Large lens",
+          "Equal to HVID",
+          "0.5 mm smaller than HVID",
+          "2 mm larger than HVID"
+        ],
+        answer: 2,
+        explanation: "RGP lenses are typically fit 0.5 mm smaller than the HVID to promote tear exchange and centration."
+      },
+      {
+        question: "Which material exhibits the highest oxygen permeability for RGP lenses?",
+        options: [
+          "Silicone acrylate",
+          "Fluoropolymer",
+          "PMMA",
+          "Hydrogel"
+        ],
+        answer: 1,
+        explanation: "Fluoropolymers offer the highest Dk for rigid lenses, improving long-term corneal health."
+      },
+      {
+        question: "Which patient factor most influences contact lens cost?",
+        options: [
+          "Refractive power",
+          "Material complexity",
+          "Office location",
+          "Patient age"
+        ],
+        answer: 1,
+        explanation: "Specialty materials and designs (e.g., custom, high-Dk, scleral) increase manufacturing complexity and cost."
+      },
+      {
+        question: "Which slit lamp technique evaluates lens edge clearance?",
+        options: [
+          "Diffuse",
+          "Optical section",
+          "Retroillumination",
+          "Conical beam"
+        ],
+        answer: 1,
+        explanation: "Optical sectioning with a narrow slit allows visualization of the lens edge-to-cornea relationship."
+      },
+      {
+        question: "Which condition dictates more frequent contact lens follow-ups?",
+        options: [
+          "Stable keratoconus",
+          "New RGP wearer",
+          "Daily disposable user",
+          "Patient under 18"
+        ],
+        answer: 1,
+        explanation: "New RGP wearers require closer monitoring to adjust fit and ensure ocular tolerance of the rigid material."
+      },
+      {
+        question: "What is the main risk of lens reuse beyond replacement schedule?",
+        options: [
+          "Increased oxygen transmissibility",
+          "Reduced UV protection",
+          "Deposit accumulation",
+          "Improved comfort"
+        ],
+        answer: 2,
+        explanation: "Exceeding replacement intervals allows lipid, protein, and microbial deposits to build up, compromising comfort and safety."
+      },
+      {
+        question: "Which fluorescein pattern suggests a flat soft lens fit?",
+        options: [
+          "Bright central pooling",
+          "Peripheral pooling",
+          "Fluorescein even distribution",
+          "Staining at edges"
+        ],
+        answer: 3,
+        explanation: "Edge staining indicates excessive edge lift from a flat-fitting soft lens."
+      },
+      {
+        question: "Which prescribed add power range is typical for low presbyopes in multifocal soft lenses?",
+        options: [
+          "+0.50 to +1.00 D",
+          "+1.25 to +1.75 D",
+          "+2.00 to +2.50 D",
+          "+2.75 to +3.00 D"
+        ],
+        answer: 0,
+        explanation: "Low add multifocals generally range from +0.50 to +1.00 D for early presbyopic correction."
+      },
+      {
+        question: "Which ocular health finding warrants immediate lens discontinuation?",
+        options: [
+          "Grade 1 hyperemia",
+          "Mild lens deposits",
+          "Corneal infiltrates with pain",
+          "Slight papillary reaction"
+        ],
+        answer: 2,
+        explanation: "Corneal infiltrates accompanied by pain indicate possible infection requiring urgent lens removal and treatment."
+      },
+      {
+        question: "What is the recommended cleaning step for soft lenses when using peroxide care?",
+        options: [
+          "Rub and rinse",
+          "Just soak",
+          "Apply drops overnight",
+          "Dry storage"
+        ],
+        answer: 1,
+        explanation: "Peroxide care systems require no rubbing; lenses are soaked and then inserted after neutralization."
+      },
+      {
+        question: "Which further test is indicated for suspected contact lens–induced papillary conjunctivitis?",
+        options: [
+          "TBUT",
+          "Conjunctival biopsy",
+          "Papilla size measurement",
+          "Keratometry"
+        ],
+        answer: 2,
+        explanation: "Measuring papillae size under the upper lid quantifies severity of giant papillary conjunctivitis."
+      },
+      {
+        question: "Which solution property is optimized in preservative-free multipurpose formulations?",
+        options: [
+          "pH balance",
+          "Preservative concentration",
+          "Surfactant type",
+          "Osmolarity"
+        ],
+        answer: 0,
+        explanation: "Preservative-free solutions maintain physiologic pH and osmolarity without adding antimicrobial preservatives."
+      },
+      {
+        question: "Which lens fits by vaulting the cornea without touching it?",
+        options: [
+          "Standard soft lens",
+          "Scleral lens",
+          "Front toric RGP",
+          "PMMA lens"
+        ],
+        answer: 1,
+        explanation: "Scleral lenses vault the entire cornea, resting on the conjunctival tissue over the sclera."
+      },
+      {
+        question: "Which prescription change is expected when converting high plus spectacles to contact lenses?",
+        options: [
+          "No change",
+          "Decrease plus power",
+          "Increase plus power",
+          "Add cylinder"
+        ],
+        answer: 1,
+        explanation: "Contact lenses sit directly on the cornea (vertex distance = 0 mm), reducing effective plus power needed compared to spectacles."
+      },
+      {
+        question: "What is the typical hazard of daily reuse of daily disposable lenses?",
+        options: [
+          "Lens warp",
+          "Reduced Dk",
+          "Deposit buildup",
+          "Improved comfort"
+        ],
+        answer: 2,
+        explanation: "Daily disposables are not designed for reuse; reuse leads to deposit accumulation and material breakdown."
+      },
+      {
+        question: "Which corneal topography pattern is characteristic of pellucid marginal degeneration?",
+        options: [
+          "Oval inferior steepening",
+          "Central steepening",
+          "Concentric toric rings",
+          "Peripheral flattening"
+        ],
+        answer: 0,
+        explanation: "Pellucid marginal degeneration shows a band of thinning and inferior steepening resembling an arcuate pattern above the horizontal meridian."
+      },
+      {
+        question: "Which preservative block is essential for some silicone hydrogel materials?",
+        options: [
+          "UV-B block",
+          "UV-A block",
+          "Both UV-A and UV-B block",
+          "No UV block"
+        ],
+        answer: 2,
+        explanation: "Many silicone hydrogels include both UV-A and UV-B blockers to protect against photokeratitis and long-term lens wear risks."
+      },
+      {
+        question: "Which condition requires corneal edema evaluation after lens removal?",
+        options: [
+          "Daily wear",
+          "Extended wear",
+          "Weekly cleaning",
+          "Monthly replacement"
+        ],
+        answer: 1,
+        explanation: "Extended-wear lenses predispose to hypoxic edema, which should be assessed after removal."
+      },
+      {
+        question: "Which lens design feature minimizes modulus-related discomfort?",
+        options: [
+          "High modulus",
+          "Low modulus",
+          "Thick center",
+          "Concentric design"
+        ],
+        answer: 1,
+        explanation: "Lower modulus lenses flex more easily, reducing mechanical interaction with the eyelids and improving comfort."
+      },
+      {
+        question: "Which ocular measurement is required for custom RGP keratoconus lenses?",
+        options: [
+          "Topography and HVID",
+          "Pupil diameter only",
+          "Schirmer値",
+          "Axial length"
+        ],
+        answer: 0,
+        explanation: "Custom keratoconus RGP designs rely on detailed corneal topography and iris diameter to vault the cone and ensure centration."
+      },
+      {
+        question: "Which instrument is used to check UV transmittance of contact lenses?",
+        options: [
+          "Spectrophotometer",
+          "Keratometer",
+          "Pachymeter",
+          "Placido disc"
+        ],
+        answer: 0,
+        explanation: "Spectrophotometers measure the percentage of UV-A and UV-B light transmitted through lens materials."
+      },
+      {
+        question: "Which contact lens practice parameter is dictated by state law rather than federal law?",
+        options: [
+          "Prescription release",
+          "Prescription expiration",
+          "Lens classification",
+          "Fitting procedures"
+        ],
+        answer: 1,
+        explanation: "Prescription expiration dates vary by state law, whereas prescription release is mandated federally by the FCLCA."
+      },
+      {
+        question: "Which contact lens wearer profile benefits most from daily disposables?",
+        options: [
+          "Athletes",
+          "Office workers",
+          "Elderly",
+          "Night drivers"
+        ],
+        answer: 0,
+        explanation: "Athletes often require lenses that minimize deposit buildup and maximize hygiene, making daily disposables ideal."
+      },
+      {
+        question: "Which contact lens material tends to have the greatest modulus?",
+        options: [
+          "Hydrogel",
+          "Silicone hydrogel",
+          "PMMA",
+          "Fluoropolymers"
+        ],
+        answer: 2,
+        explanation: "PMMA lenses are rigid and have a high modulus, resulting in less flexibility and potential discomfort."
+      },
+      {
+        question: "Which follow-up test evaluates conjunctival hyperemia quantitatively?",
+        options: [
+          "Slit lamp biomicroscopy",
+          "Digital photography grading scales",
+          "Schirmer test",
+          "TBUT"
+        ],
+        answer: 1,
+        explanation: "Standardized digital photography with grading scales (e.g., Efron) provides quantitative evaluation of hyperemia."
+      },
+      {
+        question: "Which instrument maps scleral toricity for lens fitting?",
+        options: [
+          "Placido topographer",
+          "Scheimpflug camera",
+          "Scleral topographer",
+          "Slit lamp"
+        ],
+        answer: 2,
+        explanation: "Dedicated scleral topographers measure the elevation and toricity of the sclera to guide haptic zone design."
+      },
+      {
+        question: "Which condition benefits from mini-scleral lenses rather than standard scleral lenses?",
+        options: [
+          "Severe conjunctivochalasis",
+          "Mild keratoconus",
+          "Dry eye",
+          "Allergic conjunctivitis"
+        ],
+        answer: 1,
+        explanation: "Mild keratoconus patients may achieve adequate vault with smaller-diameter mini-sclerals, improving handling and comfort."
+      },
+      {
+        question: "Which contact lens test uses cobalt blue and yellow filter combination?",
+        options: [
+          "Placido topography",
+          "TBUT",
+          "Fluorescein evaluation",
+          "Phenol red thread test"
+        ],
+        answer: 2,
+        explanation: "Cobalt blue light with a yellow Wratten filter enhances visualization of fluorescein staining patterns under the slit lamp."
+      },
+      {
+        question: "Which multifocal RGP design offers simultaneous vision?",
+        options: [
+          "Concentric design",
+          "Segmented near-center",
+          "Translated",
+          "Concentric rings"
+        ],
+        answer: 3,
+        explanation: "Concentric ring RGP multifocals present distance and near zones simultaneously, requiring neural adaptation."
+      },
+      {
+        question: "Which regulatory body accredits the NCLE certification program?",
+        options: [
+          "FDA",
+          "ISO/IEC",
+          "EPA",
+          "OSHA"
+        ],
+        answer: 1,
+        explanation: "ABO-NCLE certification is accredited under ISO/IEC 17024:2012 standards for personnel certification bodies."
+      },
+      {
+        question: "Which corneal thickness measurement tool uses ultrasound?",
+        options: [
+          "Optical coherence tomography",
+          "Ultrasound pachymeter",
+          "Keratometer",
+          "Topographer"
+        ],
+        answer: 1,
+        explanation: "Ultrasound pachymetry uses high-frequency sound waves to measure central and peripheral corneal thickness."
+      },
+      {
+        question: "Which lens modification reduces lens glare under mesopic conditions?",
+        options: [
+          "Front surface roughening",
+          "Aspheric profile",
+          "Increased center thickness",
+          "Tinted edge"
+        ],
+        answer: 1,
+        explanation: "Aspheric lens designs reduce spherical aberrations and glare in low-light conditions."
+      },
+      {
+        question: "Which condition requires lubrication enhancement under contact lenses?",
+        options: [
+          "Dry eye syndrome",
+          "Hyperopia",
+          "Blepharitis",
+          "Amblyopia"
+        ],
+        answer: 0,
+        explanation: "Dry eye patients often need artificial tears or wetting agents to maintain lens comfort and visual clarity."
+      },
+      {
+        question: "Which step is vital when dispensing toric lenses to ensure correct axis?",
+        options: [
+          "Verifying cylinder power only",
+          "Instructing on marking orientation",
+          "Measuring pupil size",
+          "Checking base curve"
+        ],
+        answer: 1,
+        explanation: "Demonstrating how to locate and align lens orientation marks on insertion ensures correct axis alignment in torics."
+      },
+      {
+        question: "Which soft lens edge design reduces lid interaction?",
+        options: [
+          "Rounded edge",
+          "Square edge",
+          "Beveled edge",
+          "Sharp edge"
+        ],
+        answer: 0,
+        explanation: "Rounded lens edges minimize friction and irritation between the lens periphery and eyelids during blinks."
+      },
+      {
+        question: "Which corneal warpage sign is detected by keratometry flattening after RGP wear?",
+        options: [
+          "Steepening",
+          "Flattening",
+          "Irregular mires",
+          "Oval mires"
+        ],
+        answer: 1,
+        explanation: "Corneal flattening on repeated keratometry readings after RGP wear indicates possible warpage."
+      },
+      {
+        question: "Which pediatric fitting approach minimizes lens loss risk?",
+        options: [
+          "Daily disposable lenses",
+          "Monthly reusable lenses",
+          "RGP lenses",
+          "Scleral lenses"
+        ],
+        answer: 0,
+        explanation: "Daily disposables reduce replacement concern and hygiene issues in children prone to lens loss."
+      }
+    ];
+    
