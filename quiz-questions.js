@@ -2624,6 +2624,252 @@ const quizQuestions = [
         ],
         answer: 0,
         explanation: "Daily disposables reduce replacement concern and hygiene issues in children prone to lens loss."
+      },
+      {
+        question: "Contact lens power is typically specified by which reference measurement?",
+        options: ["Front vertex power", "Back vertex power", "Spherical equivalent power", "Effective power in situ"],
+        answer: 1,
+        explanation: "Contact lenses are labeled by their back vertex power, which is the power as measured at the back surface of the lens. The back vertex power represents the effective focusing power when the lens is on the eye. Using back vertex power ensures that the lens provides the correct refractive effect at the cornea. Front vertex or 'in situ' power are not used in specifying lens prescriptions because they do not directly correspond to the lens’s effect on the eye."
+      },
+      {
+        question: "A spectacle prescription is -5.00 D sphere at a 12 mm vertex distance. Which contact lens power is most appropriate for the same refractive error?",
+        options: ["-5.00 D", "-5.25 D", "-4.75 D", "-4.50 D"],
+        answer: 2,
+        explanation: "For higher prescriptions (generally above 4.00 D), a vertex distance adjustment is needed. A -5.00 D spectacle lens sits 12 mm from the eye, so on the cornea it will have slightly less effect (become weaker). Using the vertex formula F_CL = F_spec / (1 - d * F_spec), with d = 0.012 m and F_spec = -5.00 D, we get F_CL ≈ -4.72 D. The nearest available 0.25 D step is -4.75 D. Thus, a -4.75 D contact lens will provide the same refraction as a -5.00 D spectacle lens."
+      },
+      {
+        question: "A patient has a spectacle Rx of -6.00 D sphere (12 mm vertex). What contact lens power will best compensate for vertex distance?",
+        options: ["-6.00 D", "-6.50 D", "-5.50 D", "-5.75 D"],
+        answer: 2,
+        explanation: "A -6.00 D lens at the spectacle plane will be too strong if placed directly on the cornea. We calculate the effective power at the eye using F_CL = F_spec / (1 + d * F_spec) ≈ -5.60 D, rounded to -5.50 D. Using a -5.50 D contact lens will provide the appropriate correction for a -6.00 D spectacle prescription."
+      },
+      {
+        question: "You refract a patient as -8.00 D in glasses at 12 mm vertex distance. What contact lens power will closest match?",
+        options: ["-8.00 D", "-7.25 D", "-7.75 D", "-8.50 D"],
+        answer: 1,
+        explanation: "For -8.00 D at 12 mm: F_CL = -8.00 / (1 + 0.096) ≈ -7.30 D. The best contact lens power is -7.25 D (rounding to the nearest 0.25 D). This accounts for the vertex distance and correctly corrects an -8.00 D refractive error."
+      },
+      {
+        question: "A spectacle prescription of -10.00 D requires what contact lens power (assume 12 mm vertex distance)?",
+        options: ["-9.00 D", "-9.50 D", "-10.00 D", "-10.50 D"],
+        answer: 0,
+        explanation: "For -10.00 D: F_CL = -10.00 / (1 + 0.12) ≈ -8.93 D. Rounding to the nearest step gives -9.00 D. Thus, a -10.00 D glasses prescription corresponds to roughly -9.00 D in a contact lens."
+      },
+      {
+        question: "A spectacle prescription is +4.00 D sphere at 12 mm. What contact lens power would be required?",
+        options: ["+3.75 D", "+4.00 D", "+4.25 D", "+4.50 D"],
+        answer: 2,
+        explanation: "For plus lenses, F_CL = +4.00 / (1 - 0.048) ≈ +4.20 D. The nearest available power is about +4.25 D. Therefore, a +4.25 D contact lens will provide the correct focusing power for a +4.00 D spectacle prescription."
+      },
+      {
+        question: "A hyperopic patient wears a +6.00 D spectacle correction at 12 mm vertex. Which contact lens power is most appropriate?",
+        options: ["+5.75 D", "+6.00 D", "+6.50 D", "+6.75 D"],
+        answer: 2,
+        explanation: "Calculate F_CL = +6.00 / (1 - 0.072) ≈ +6.46 D. Rounded to the nearest quarter, this is approximately +6.50 D. Thus, a +6.50 D contact is needed for a +6.00 D spectacle prescription."
+      },
+      {
+        question: "A spectacle prescription of +8.00 D. Which contact lens power is closest (12 mm vertex)?",
+        options: ["+8.00 D", "+8.50 D", "+8.75 D", "+9.00 D"],
+        answer: 2,
+        explanation: "F_CL = +8.00 / (1 - 0.096) ≈ +8.85 D. The closest contact lens power is +8.75 D."
+      },
+      {
+        question: "A patient has +12.00 D in glasses. Approximately what power contact lens would they need (12 mm vertex)?",
+        options: ["+12.00 D", "+13.00 D", "+14.00 D", "+15.00 D"],
+        answer: 2,
+        explanation: "F_CL = +12.00 / (1 - 0.144) ≈ +14.02 D. The best estimate is about +14.00 D."
+      },
+      {
+        question: "Which of the following prescriptions would require a vertex distance compensation when fitting contact lenses?",
+        options: ["-3.50 -0.50 x 090", "+2.00 -1.25 x 180", "-4.50 sphere", "+3.75 sphere"],
+        answer: 2,
+        explanation: "Vertex distance compensation is needed when the spectacle power is ≥ ±4.00 D. Here, -4.50 D exceeds that threshold."
+      },
+      {
+        question: "Given the spectacle prescription -2.50 -1.00 x 180, if you choose a spherical contact lens instead of toric, what approximate power should it be?",
+        options: ["-2.50 D", "-3.00 D", "-3.25 D", "-1.50 D"],
+        answer: 1,
+        explanation: "Spherical equivalent = Sphere + ½ cylinder = -2.50 + (-0.50) = -3.00 D."
+      },
+      {
+        question: "A hyperopic patient has +2.00 -1.00 x 045 glasses Rx. You want to fit a spherical soft lens. What power is closest to the spherical equivalent?",
+        options: ["+1.00 D", "+1.50 D", "+2.00 D", "+2.50 D"],
+        answer: 1,
+        explanation: "Spherical equivalent = +2.00 + (-0.50) = +1.50 D."
+      },
+      {
+        question: "Convert +1.00 +2.50 x 100 (plus cyl form) into minus cyl form. ",
+        options: ["+1.00 -2.50 x 010", "+3.50 -2.50 x 010", "+3.50 -2.50 x 100", "+1.00 -2.50 x 100"],
+        answer: 1,
+        explanation: "Transpose: Sphere = 1 + 2.5 = +3.50, Cylinder = -2.50, Axis = 100 + 90 = 010°."
+      },
+      {
+        question: "K-readings: 42.00 D and 44.50 D. How much corneal astigmatism?",
+        options: ["2.50 D", "0.50 D", "42.00 D", "44.50 D"],
+        answer: 0,
+        explanation: "Difference = 44.50 - 42.00 = 2.50 D of corneal astigmatism."
+      },
+      {
+        question: "Refraction: -3.00 -2.00 x 180. Keratometry: 42.00 @180 / 44.00 @90. Using spherical RGP on K (43.00 D), expected residual astigmatism?",
+        options: ["0.00 D", "1.00 D", "2.00 D", "4.00 D"],
+        answer: 0,
+        explanation: "Corneal astigmatism = 2.00 D. Spherical RGP neutralizes that, leaving ~0.00 D residual."
+      },
+      {
+        question: "Rx: -1.00 -1.00 x 045. K-readings: 42.50 @45 / 43.00 @135. If spherical RGP used, how much astigmatism remains?",
+        options: ["0.00 D", "0.50 D", "1.00 D", "2.00 D"],
+        answer: 1,
+        explanation: "Corneal astigmatism = 0.50 D; internal astigmatism = 0.50 D remains as residual."
+      },
+      {
+        question: "A contact lens base curve of 8.4 mm corresponds to approximately how many diopters (n=1.3375)?",
+        options: ["38.00 D", "40.00 D", "42.50 D", "45.00 D"],
+        answer: 1,
+        explanation: "D = 337.5 / r = 337.5 / 8.4 ≈ 40.18 D."
+      },
+      {
+        question: "A keratometer reading of 45.00 D corresponds to what radius (mm)?",
+        options: ["7.50 mm", "7.80 mm", "8.60 mm", "9.50 mm"],
+        answer: 0,
+        explanation: "r = 337.5 / 45.00 ≈ 7.50 mm."
+      },
+      {
+        question: "How do contact lenses affect image size compared to glasses for a high myope?",
+        options: ["Images appear larger with contacts than glasses", "Smaller with contacts", "Same size", "Inverted"],
+        answer: 0,
+        explanation: "Contacts eliminate minification from vertex distance, making images appear larger/natural compared to glasses."
+      },
+      {
+        question: "Refraction: -8.00 -0.50 x 090. Fitting spherical soft lens ignoring cyl, what power?",
+        options: ["-7.50 D", "-7.75 D", "-8.00 D", "-8.50 D"],
+        answer: 0,
+        explanation: "Spherical equivalent = -8.25 D. Vertex compensation gives ≈ -7.50 D."
+      },
+      {
+        question: "Rx: -6.00 -2.00 x 180, K: 43.00/45.00 D. Fitting spherical RGP on K (43.00 D), what sphere order?",
+        options: ["-6.00 D", "-5.50 D", "-8.00 D", "-4.00 D"],
+        answer: 1,
+        explanation: "Vertex adjust sphere -6.00 D → -5.50 D; tear lens corrects 2.00 D corneal cyl."
+      },
+      {
+        question: "What is 'residual astigmatism'?",
+        options: ["Astigmatism that remains uncorrected by a contact lens", "Astigmatism due to incorrect base curve", "All corneal astigmatism", "Lens material warpage"],
+        answer: 0,
+        explanation: "It’s the astigmatism the contact lens cannot correct, usually lenticular/internal astigmatism."
+      },
+      {
+        question: "The 'tear lens' effect is associated with which lens type?",
+        options: ["Soft lenses", "Rigid gas permeable lenses", "Spectacles", "IOLs"],
+        answer: 1,
+        explanation: "RGP lenses create a tear lens between the rigid back and cornea, adding/subtracting power."
+      },
+      {
+        question: "Why do contact lens prescriptions not include pupillary distance?",
+        options: ["Lenses move with the eye", "Cover entire cornea", "PD only for astigmatism", "One-size fits all"],
+        answer: 0,
+        explanation: "Contacts move with the eye, so the optical center always aligns with the pupil."
+      },
+      {
+        question: "Default spectacle vertex distance assumed in contact lens calculations?",
+        options: ["8 mm", "12 mm", "0 mm (on eye)", "20 mm"],
+        answer: 1,
+        explanation: "12 mm is the standard assumed distance between spectacle lens and cornea."
+      },
+      {
+        question: "Which lens material provides the greatest oxygen permeability?",
+        options: ["PMMA", "Conventional hydrogel", "Silicone hydrogel", "Low-Dk RGP"],
+        answer: 2,
+        explanation: "Silicone hydrogels have the highest Dk among soft lenses, designed for extended wear."
+      },
+      {
+        question: "Which soft lens group is most prone to protein deposits?",
+        options: ["Group I", "Group II", "Group III", "Group IV"],
+        answer: 3,
+        explanation: "Group IV (high-water, ionic) lenses attract more protein deposits due to charge and water content."
+      },
+      {
+        question: "Which material has zero oxygen permeability (Dk≈0)?",
+        options: ["PMMA", "Silicone hydrogel", "Silicone-acrylate RGP", "HEMA hydrogel"],
+        answer: 0,
+        explanation: "PMMA is impermeable to oxygen; early hard lenses relied on tear exchange only."
+      },
+      {
+        question: "In RGPs, adding fluorine to the polymer primarily improves what?",
+        options: ["Water content", "Oxygen permeability", "Surface wettability and deposit resistance", "Flexibility"],
+        answer: 2,
+        explanation: "Fluorine enhances RGP surface wettability and resists deposits while silicone provides Dk."
+      },
+      {
+        question: "Compared to soft lenses, RGP lenses are typically:",
+        options: ["Replaced more frequently", "Less frequently", "One-time use", "Prone to tearing"],
+        answer: 1,
+        explanation: "RGPs are durable and can last a year or more, unlike planned-replacement soft lenses."
+      },
+      {
+        question: "Advantage of RGP over soft lenses?",
+        options: ["Sharper vision in astigmatism", "No adaptation period", "Never dislodge", "No maintenance"],
+        answer: 0,
+        explanation: "RGPs provide crisper optics, especially in astigmatic eyes, via stable tear lens."
+      },
+      {
+        question: "Advantage of soft lenses over RGPs?",
+        options: ["Immediate comfort", "Sharper vision for high astigmatism", "No deposits", "Easier handling"],
+        answer: 0,
+        explanation: "Soft lenses are comfortable immediately with minimal adaptation compared to RGPs."
+      },
+      {
+        question: "A large lens vaulting entire cornea resting on sclera is called?",
+        options: ["Corneal GP", "Scleral lens", "Hybrid lens", "Piggyback lens"],
+        answer: 1,
+        explanation: "Scleral lenses vault over the cornea and land on the sclera, creating a fluid reservoir."
+      },
+      {
+        question: "A lens with rigid center and soft skirt is called?",
+        options: ["Toric soft", "Scleral", "Hybrid", "Piggyback"],
+        answer: 2,
+        explanation: "Hybrid lenses have an RGP center and soft skirt for comfort and optics."
+      },
+      {
+        question: "Wearing a soft lens under an RGP is called?",
+        options: ["Monovision", "Piggyback system", "Hybrid design", "Reverse geometry"],
+        answer: 1,
+        explanation: "Piggyback uses a soft lens under an RGP to improve comfort or fit in special cases."
+      },
+      {
+        question: "Purpose of prism ballast in toric lens?",
+        options: ["Reduce thickness", "Stabilize orientation", "Bifocal effect", "Correct astig without toric"],
+        answer: 1,
+        explanation: "Prism ballast thickens lens bottom to orient under lid pressure and stabilize toric axis."
+      },
+      {
+        question: "Benefit of aspheric contact lenses?",
+        options: ["Auto-fit any cornea", "Reduce spherical aberration", "Eliminate need for torics", "Easier manufacture"],
+        answer: 1,
+        explanation: "Aspheric surfaces reduce spherical aberration for sharper vision, especially in low light."
+      },
+      {
+        question: "Front-surface toric RGP corrects primarily?",
+        options: ["Corneal astigmatism", "Internal astigmatism", "Soft lens astigmatism", "Keratoconus"],
+        answer: 1,
+        explanation: "Front toric RGP corrects lenticular/internal astigmatism when cornea is relatively spherical."
+      },
+      {
+        question: "Purpose of fenestrations in rigid lenses?",
+        options: ["Tear circulation", "Increase Dk", "Left/right mark", "Auto-align"],
+        answer: 0,
+        explanation: "Fenestrations allow tear exchange and relieve suction under the lens."
+      },
+      {
+        question: "Why peripheral curves flatter than base curve in RGPs?",
+        options: ["Reduce weight", "Improve peripheral vision", "Enable tear exchange and comfort", "Add optical power"],
+        answer: 2,
+        explanation: "Flatter peripheral curves lift lens edge, promoting tear flow and preventing edge bearing."
+      },
+      {
+        question: "Purpose of edge blend on rigid lens?",
+        options: ["Improve comfort by smoothing edge", "Change edge power", "Aid handling", "Dramatic tear exchange"],
+        answer: 0,
+        explanation: "Edge blending smooths transitions so lids glide comfortably over lens edge."
       }
     ];
     
