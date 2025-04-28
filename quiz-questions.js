@@ -1,4 +1,3 @@
-// Quiz Questions Database - all domains combined
 const quizQuestions = [
 
     {
@@ -2870,6 +2869,1422 @@ const quizQuestions = [
         options: ["Improve comfort by smoothing edge", "Change edge power", "Aid handling", "Dramatic tear exchange"],
         answer: 0,
         explanation: "Edge blending smooths transitions so lids glide comfortably over lens edge."
-      }
-    ];
+      },
+  {
+    question: "Which step physically removes surface debris from a soft contact lens after it is taken off the eye?",
+    options: [
+      "Rinsing with multipurpose solution only",
+      "Rubbing the lens in the palm with solution",
+      "Soaking the lens overnight",
+      "Placing the lens in a peroxide case"
+    ],
+    answer: 1,
+    explanation: "The mechanical -rub- step loosens and detaches lipid, protein, and cosmetic residues that a passive soak cannot dislodge. Omitting the rub is the most common cause of deposit-related discomfort and blurry vision."
+  },
+
+  {
+    question: "A patient cleans lenses with tap water to save money. Which early complication is most likely?",
+    options: [
+      "Acanthamoeba keratitis",
+      "Corneal neovascularization",
+      "Giant papillary conjunctivitis",
+      "Contact lens–induced conjunctivitis"
+    ],
+    answer: 0,
+    explanation: "Tap water may contain Acanthamoeba cysts that adhere to lenses and cause severe, sight-threatening keratitis. Even brief rinsing can seed the organism under the lens, so only sterile solutions are safe."
+  },
+
+  {
+    question: "When teaching insertion, which cue best helps a new wearer overcome the blink reflex?",
+    options: [
+      "Tell the patient to look straight ahead while inserting",
+      "Ask the patient to hold the upper lashes against the brow",
+      "Suggest inserting the lens under water",
+      "Advise breathing through the mouth"
+    ],
+    answer: 1,
+    explanation: "Stabilizing the upper lashes against the brow immobilizes the strongest blinking muscle (orbicularis oculi), giving the patient time to place the lens gently on the cornea without flinching."
+  },
+
+  {
+    question: "Which preservative is MOST likely to trigger a delayed hypersensitivity reaction on conjunctiva?",
+    options: [
+      "Polyquad",
+      "Polyhexamethylene biguanide (PHMB)",
+      "Benzalkonium chloride (BAK)",
+      "Hydrogen peroxide"
+    ],
+    answer: 2,
+    explanation: "BAK is a quaternary ammonium compound that disrupts epithelial cell membranes and can provoke toxic or allergic conjunctivitis with chronic exposure. Modern soft lens solutions avoid BAK for this reason."
+  },
+
+  {
+    question: "After one month of daily-wear silicone hydrogel use, a patient shows limbal hyperemia (grade 2) but no staining. The first management step is to:",
+    options: [
+      "Advise longer lens-free intervals each day",
+      "Switch to a peroxide care system",
+      "Refit with a higher-Dk lens material",
+      "Discontinue lenses permanently"
+    ],
+    answer: 2,
+    explanation: "Limbal hyperemia signals marginal hypoxia. Moving the patient to a material with greater oxygen transmissibility (higher Dk/t) usually resolves the redness without altering lifestyle or discontinuing wear."
+  },
+
+  {
+    question: "Which follow-up schedule is ideal for a patient beginning overnight orthokeratology?",
+    options: [
+      "1 day, 1 week, 1 month, then every 6 months",
+      "3 days, 2 weeks, every 12 months thereafter",
+      "1 week only, unless problems arise",
+      "Daily visits for the first month"
+    ],
+    answer: 0,
+    explanation: "Overnight corneal reshaping can create rapid curvature changes and epithelial disturbance. A 1-day visit confirms safe adaptation; a 1-week visit checks treatment effect and hygiene; a 1-month visit ensures stability before extending to 6-month intervals."
+  },
+
+  {
+    question: "Which slit-lamp illumination best distinguishes infiltrative keratitis from sterile marginal infiltrate?",
+    options: [
+      "Diffuse white light",
+      "Direct focal with 1 mm beam and medium magnification",
+      "Retro-illumination from iris",
+      "Specular reflection"
+    ],
+    answer: 1,
+    explanation: "A narrow, bright focal beam highlights stromal infiltrates and any overlying epithelial defect. An epithelial break plus pain suggests infectious keratitis; an intact epithelium and asymptomatic eye indicates sterile marginal infiltrate."
+  },
+
+  {
+    question: "A scleral lens demonstrates 400 µm central vault at dispense. At the 4-hour follow-up, the vault measures 250 µm. This settling pattern is:",
+    options: [
+      "Normal and acceptable",
+      "Excessive, indicating the lens is too loose",
+      "Insufficient, causing corneal touch",
+      "A sign of conjunctival prolapse"
+    ],
+    answer: 0,
+    explanation: "Scleral lenses commonly lose 100–200 µm of sagittal height as tear meniscus compresses conjunctiva. Starting at ~400 µm ensures a long-term vault of 200–250 µm, well within the safe range (150–250 µm)."
+  },
+
+  {
+    question: "Which ISO tolerance applies to a finished soft lens power of –6.00 D?",
+    options: [
+      "±0.12 D",
+      "±0.25 D",
+      "±0.50 D",
+      "±0.75 D"
+    ],
+    answer: 1,
+    explanation: "ISO 18369-2 specifies a power tolerance of ±0.25 D for powers between ±5.00 and ±6.50 D. A –6.00 D lens must test between –5.75 D and –6.25 D on a calibrated lensometer."
+  },
+
+  {
+    question: "A radiuscope reads 7.90 mm at one meridian and 7.98 mm at the perpendicular meridian on a rigid lens ordered as spherical. This indicates:",
+    options: [
+      "Manufacturing warp",
+      "Back surface toric design",
+      "Front surface toric design",
+      "Edge bevel error only"
+    ],
+    answer: 0,
+    explanation: "A true spherical back surface shows a single radius on all meridians. Two radii separated by 0.08 mm (~0.50 D) reveal lens warpage, often from improper heat disinfection or rough handling."
+  },
+
+  {
+    question: "Which statement is TRUE about ANSI Z80 diameter tolerance for RGPs?",
+    options: [
+      "Total diameter must be within ±0.02 mm of the order",
+      "Optic zone diameter must be within ±0.10 mm",
+      "Total diameter tolerance increases with lens size",
+      "Diameter is not regulated under ANSI"
+    ],
+    answer: 2,
+    explanation: "ANSI Z80.20 allows ±0.05 mm for diameters ≤8.5 mm and ±0.07 mm for larger lenses. The tolerance widens slightly because larger blanks are harder to edge-finish to micron precision."
+  },
+
+  {
+    question: "Under the Fairness to Contact Lens Consumers Act, how long do practitioners have to release a copy of a finalized prescription after fitting completion?",
+    options: [
+      "Immediately at completion",
+      "Within 24 hours",
+      "Within 48 hours",
+      "Within 7 days"
+    ],
+    answer: 0,
+    explanation: "The FCLCA requires automatic release to the patient or any retail seller immediately after the fitting concludes and without extra fees, ensuring consumer access to lens supply options."
+  },
+
+  {
+    question: "Which OSHA standard specifically applies to handling contaminated lens cases in the clinic?",
+    options: [
+      "Hazard Communication Standard",
+      "Bloodborne Pathogens Standard",
+      "Respiratory Protection Standard",
+      "Ionizing Radiation Standard"
+    ],
+    answer: 1,
+    explanation: "Used lens cases can be contaminated with patient tear fluid and microorganisms. The Bloodborne Pathogens Standard governs disposal, glove use, and disinfecting procedures for any potentially infectious material."
+  },
+
+  {
+    question: "During case history, which systemic medication is MOST important to note for a potential dry-eye-related intolerance to contact lenses?",
+    options: [
+      "Statins",
+      "Antihypertensives",
+      "Isotretinoin",
+      "Proton-pump inhibitors"
+    ],
+    answer: 2,
+    explanation: "Isotretinoin (Accutane) reduces meibomian gland secretion, often inducing severe evaporative dry eye that compromises lens comfort and wear time."
+  },
+
+  {
+    question: "A patient complains lenses dry around 3 p.m. with increasing blur. Which first action best isolates cause?",
+    options: [
+      "Perform tear break-up time before lens insertion",
+      "Measure pre-lens break-up time with lenses on",
+      "Change to peroxide care system",
+      "Decrease lens water content"
+    ],
+    answer: 1,
+    explanation: "Measuring pre-lens TBUT while the lenses are on shows how fast the tear film evaporates over the material and pinpoints whether instability—not refractive shift—is driving late-day blur."
+  },
+
+  {
+    question: "Which numeric value represents minimal acceptable lens case replacement frequency recommended by the CDC?",
+    options: [
+      "Every 1 month",
+      "Every 3 months",
+      "Every 6 months",
+      "Once per year"
+    ],
+    answer: 1,
+    explanation: "Studies link microbial biofilm accumulation to serious keratitis. The CDC endorses discarding and replacing lens cases at least every 3 months—or sooner if visibly soiled—to reduce infection risk."
+  },
+
+  {
+    question: "What is the primary purpose of lint-free towel drying after handwashing before lens handling?",
+    options: [
+      "Eliminate chemical residue",
+      "Prevent towel fibers transferring to lens",
+      "Increase moisture for easier lens adhesion",
+      "Warm the lens for comfort"
+    ],
+    answer: 1,
+    explanation: "Lint or micro-fibers carried onto the lens surface act as foreign bodies, causing immediate discomfort and epithelial micro-abrasions. A lint-free towel ensures a debris-free fingertip."
+  },
+
+  {
+    question: "Which finding suggests tight-lens syndrome rather than infectious keratitis?",
+    options: [
+      "Severe pain, photophobia, mucopurulent discharge",
+      "Diffuse circular corneal staining beneath the lens after removal",
+      "Small peripheral corneal infiltrates with intact epithelium",
+      "Central ulcer with overlying epithelial defect"
+    ],
+    answer: 2,
+    explanation: "Tight lenses can cause sterile peripheral infiltrates where inflammatory cells collect without epithelial break. Infectious keratitis usually presents with an epithelial defect, central ulcer, pain, and discharge."
+  },
+
+  {
+    question: "A patient’s prism ballast toric lens rotates left (counter-clockwise) 5° on eye. According to LARS, what axis is ordered?",
+    options: [
+      "Add 5°: axis 185°",
+      "Subtract 5°: axis 175°",
+      "Add 10°: axis 190°",
+      "Keep same axis"
+    ],
+    answer: 0,
+    explanation: "LARS: Left Add, Right Subtract. A left/counter-clockwise rotation needs the lens axis increased by the same amount to align properly; 180° + 5° = 185°."
+  },
+
+  {
+    question: "A multipurpose solution bottle shows ‘solution osmolarity 300 mOsm/kg’. Why is this important?",
+    options: [
+      "Prevents lens dehydration",
+      "Matches normal tear osmolarity to minimize epithelial stress",
+      "Increases preservative efficacy",
+      "Thickens the solution for lubrication"
+    ],
+    answer: 1,
+    explanation: "Iso-osmolar solutions (~290–310 mOsm/kg) avoid drawing water out of epithelial cells or the lens matrix, preserving comfort and corneal integrity."
+  },
+
+  {
+    question: "Which instrument verifies center-thickness of a high-plus soft lens to ensure it meets manufacturer specifications?",
+    options: [
+      "Digital caliper",
+      "Optical pachymeter",
+      "Thickness gauge with dial indicator",
+      "Lens clock"
+    ],
+    answer: 2,
+    explanation: "A mechanical or digital thickness gauge measures soft lens central thickness to ±0.01 mm resolution, ensuring high-plus lenses are not excessively thick, which would reduce Dk/t."
+  },
+
+  {
+    question: "When evaluating lens fit with keratometer mires, blurred mires that clear only after a blink indicate:",
+    options: [
+      "Flat soft lens fit",
+      "Steep soft lens fit",
+      "Adequate movement",
+      "Lens warpage"
+    ],
+    answer: 0,
+    explanation: "A flat lens decentrates and flexes, distorting the mires until the tear film is redistributed during the blink. A steep lens usually shows minimal movement and stable mires."
+  },
+
+  {
+    question: "A patient reports halos at night with new silicone hydrogel lenses. The MOST likely optical cause is:",
+    options: [
+      "Edge thickness causing flare",
+      "Center thickness variability",
+      "High spherical aberration",
+      "Lens dehydration"
+    ],
+    answer: 2,
+    explanation: "Silicone hydrogel designs may increase positive spherical aberration in larger pupils. An aspheric or aberration-controlled design can reduce night halos."
+  },
+
+  {
+    question: "During slit-lamp exam you note fluorescein pooling superior-temporal on a scleral lens, and blanching inferior-nasal. The next logical modification is:",
+    options: [
+      "Decrease total diameter",
+      "Order a toric haptic with increased sagittal depth superior-temporal",
+      "Flatten central base curve",
+      "Increase central vault"
+    ],
+    answer: 1,
+    explanation: "Uneven landing indicates scleral toricity. Adding a toric or quadrant-specific haptic redistributes pressure evenly, relieving blanching without altering central clearance."
+  },
+
+  {
+    question: "Which single instruction has been shown to reduce microbial keratitis incidence the MOST in soft lens users?",
+    options: [
+      "Avoid swimming with lenses",
+      "Replace case every month",
+      "Never sleep in lenses not approved for overnight wear",
+      "Use rewetting drops hourly"
+    ],
+    answer: 2,
+    explanation: "Sleeping in lenses multiplies infection risk 5- to 8-fold. Strict adherence to daily-wear use is the most effective risk-reduction measure for soft lens wearers."
+  },
+
+  {
+    question: "If a patient must swim with lenses, what is the BEST evidence-based recommendation?",
+    options: [
+      "Use daily disposable lenses and discard them immediately after swimming",
+      "Add tight-sealing goggles over reusable lenses",
+      "Apply antibiotic drops before and after swimming",
+      "Rinse lenses with tap water post-swim"
+    ],
+    answer: 0,
+    explanation: "Daily disposables minimize exposure duration of any water-borne pathogen; discarding them eliminates contamination. Goggles reduce but do not eliminate risk, and antibiotics do not prevent Acanthamoeba infection."
+  },
+
+  {
+    question: "Which in-office modification can tighten an RGP lens that exhibits edge standoff?",
+    options: [
+      "Flatten peripheral curves",
+      "Add minus carrier lenticulation",
+      "Reduce overall diameter by 0.3 mm",
+      "Add a peripheral bevel to steepen edge"
+    ],
+    answer: 3,
+    explanation: "Steepening the peripheral ‘edge lift’ with a light bevel reduces edge standoff and improves lid interaction without changing optic zone power."
+  },
+
+  {
+    question: "A soft lens wearer removes her lenses nightly but uses the same solution for an entire week without topping up. This practice primarily risks:",
+    options: [
+      "Solution hypersensitivity",
+      "Reduced preservative efficacy leading to microbial growth",
+      "Lens dehydration and parameter change",
+      "Optical zone warpage"
+    ],
+    answer: 1,
+    explanation: "Preservatives dissipate rapidly once a lens is stored. Re-using old solution allows bacterial proliferation in the case and on the lens, dramatically increasing infection risk."
+  },
+
+  {
+    question: "Which type of soft lens is most suitable for a firefighter exposed to dusty environments?",
+    options: [
+      "Monthly reusable silicone hydrogel",
+      "Daily disposable hydrogel",
+      "Quarterly replacement hydrogel",
+      "Annual replacement silicone hydrogel"
+    ],
+    answer: 1,
+    explanation: "Daily disposables eliminate the need to clean dust deposits and reduce risk of lens-related irritation or infection after smoky shifts."
+  },
+
+  {
+    question: "Why do high-water (group IV) hydrogel lenses often feel dry by late afternoon?",
+    options: [
+      "They swell in hypotonic tears",
+      "They dehydrate faster, decreasing water content and lens flexibility",
+      "They absorb more protein, increasing oxygen permeability",
+      "They are thicker centrally"
+    ],
+    answer: 1,
+    explanation: "High water content materials lose water in low-humidity or high-evaporation conditions, becoming stiffer and less wettable, leading to awareness and dryness."
+  },
+
+  {
+    question: "A rigid lens with a base curve 0.10 mm steeper than K will generally:",
+    options: [
+      "Show central pooling and decrease corneal astigmatism",
+      "Show central touch and increase tear exchange",
+      "Ride high under the upper lid",
+      "Immediately decenter inferiorly"
+    ],
+    answer: 0,
+    explanation: "A lens steeper than the cornea vaults centrally, producing fluorescein pooling. It masks some corneal cylinder but risks hypoxia if excessively steep."
+  },
+
+  {
+    question: "Which parameter change will MOST increase tear exchange beneath a steep scleral lens?",
+    options: [
+      "Decrease landing zone angle",
+      "Incorporate micro-ventilation channels",
+      "Flatten central base curve",
+      "Reduce lens diameter"
+    ],
+    answer: 1,
+    explanation: "Adding micro-vent or fenestration channels through the haptic allows fresh tears to flow behind the lens with each blink, improving oxygen delivery without altering fit geometry."
+  },
+
+  {
+    question: "Under ANSI, what is the acceptable cylinder power tolerance for a toric soft lens ordered –2.75 cyl?",
+    options: [
+      "±0.10 D",
+      "±0.20 D",
+      "±0.25 D",
+      "±0.50 D"
+    ],
+    answer: 2,
+    explanation: "ISO/ANSI allow ±0.25 D on cylinder powers ≤2.00 D and ±0.25 D on powers >2.00 D up to –3.00 D. Thus –2.75 D must remain within ±0.25 D."
+  },
+
+  {
+    question: "A pyrexia (fever) episode increases tear osmolarity. In contact lens wearers this may cause:",
+    options: [
+      "Spontaneous lens splits",
+      "Shortened pre-lens TBUT leading to blur",
+      "Rapid lens rotation",
+      "Steepening of lens base curve"
+    ],
+    answer: 1,
+    explanation: "Higher osmolarity accelerates tear evaporation and destabilizes the tear film, causing quicker break-up over the lens surface and blurry vision."
+  },
+
+  {
+    question: "Which contact lens solution component neutralizes residual peroxide without adding preservatives to the eye?",
+    options: [
+      "Platinum disc catalyst",
+      "Sodium edetate (EDTA)",
+      "Polyquad",
+      "Poloxamer"
+    ],
+    answer: 0,
+    explanation: "A platinum-coated disc catalyzes hydrogen peroxide into water and oxygen, leaving no preservative residue and making peroxide systems ideal for sensitive eyes."
+  },
+
+  {
+    question: "The most common patient-reported symptom of giant papillary conjunctivitis is:",
+    options: [
+      "Sharp ocular pain",
+      "Itching upon lens removal",
+      "Intermittent diplopia",
+      "Sudden vision loss"
+    ],
+    answer: 1,
+    explanation: "GPC manifests as itching, mucus discharge, and lens awareness, particularly during removal when mechanical friction stimulates inflamed papillae."
+  },
+
+  {
+    question: "Which management step helps resolve mild 3-and-9 staining in RGP wearers?",
+    options: [
+      "Flatten peripheral curves further",
+      "Reduce overall diameter",
+      "Increase blinking frequency and prescribe unpreserved lubricants",
+      "Steepen base curve by 0.50 D"
+    ],
+    answer: 2,
+    explanation: "3-and-9 staining is often due to inadequate tear coverage; blink training and frequent lubricants re-wet the exposed zones without altering an otherwise good fit."
+  },
+
+  {
+    question: "During lens removal instruction you observe a patient pinching the cornea with fingernails. The immediate corrective advice is:",
+    options: [
+      "Use a DMV silicone-tipped suction remover",
+      "Slide the lens temporally before pinching eyelids together",
+      "Add more lubricating drops first",
+      "Shorten the lens wear time"
+    ],
+    answer: 1,
+    explanation: "Sliding the lens off-center breaks suction, allowing the lids—not fingertips—to pinch the lens edges safely, protecting the cornea from trauma."
+  },
+
+  {
+    question: "Which cosmetic product is MOST likely to clog meibomian glands and destabilize the tear film when worn with lenses?",
+    options: [
+      "Water-based mascara",
+      "Kohl pencil applied inside lid margin",
+      "Powder eye shadow",
+      "Oil-free foundation"
+    ],
+    answer: 1,
+    explanation: "Applying eyeliner on the mucocutaneous junction blocks meibomian orifices, disrupting lipid secretion and accelerating tear break-up under a lens."
+  },
+
+  {
+    question: "Which step should be repeated if digital photography shows lens case biofilm despite proper rubbing and rinsing?",
+    options: [
+      "Switch to daily disposable lenses",
+      "Boil the lens case weekly for 5 minutes",
+      "Add a drop of dish soap to soaking solution",
+      "Air-dry the case upside-down on a clean tissue each morning"
+    ],
+    answer: 3,
+    explanation: "Cases should be emptied, rinsed with solution, and air-dried face-down to prevent stagnant fluid that fosters biofilm growth. Boiling is impractical; dish soap residues damage lenses."
+  },
+
+  {
+    question: "Which oxygen-related metric best predicts corneal swelling under a soft lens?",
+    options: [
+      "Material Dk alone",
+      "Material water content",
+      "Lens Dk/t at the minimum center-thickness point",
+      "Surface modulus"
+    ],
+    answer: 2,
+    explanation: "Dk/t (oxygen transmissibility, factoring thickness) governs how much oxygen reaches the cornea; higher values correspond to less overnight edema."
+  },
+
+  {
+    question: "Your patient has diabetes with reduced corneal sensitivity. You should:",
+    options: [
+      "Encourage extended wear to simplify routine",
+      "Schedule follow-ups every 3 years",
+      "Use high-Dk daily disposables and shorter replacement interval for safety",
+      "Avoid fluorescein to protect cornea"
+    ],
+    answer: 2,
+    explanation: "Reduced corneal sensation delays detection of hypoxic or infectious damage. A safe strategy is daily disposables in a high-oxygen material plus more frequent follow-ups."
+  },
+
+  {
+    question: "Which patient-education technique improves compliance MOST in teenage lens wearers?",
+    options: [
+      "Providing written instructions only",
+      "Demonstrating each step and having the teen perform a return demonstration",
+      "Relying on parent reminders at home",
+      "Using technical jargon to emphasize seriousness"
+    ],
+    answer: 1,
+    explanation: "Active return demonstration confirms understanding and skill, fostering ownership of the regimen and significantly improving adherence compared with passive instruction."
+  },
+
+  {
+    question: "A toric soft lens rotates 15° right. According to LARS, you will:",
+    options: [
+      "Add 15° to prescribed axis",
+      "Subtract 15° from prescribed axis",
+      "Leave axis unchanged",
+      "Order prism-ballast removed"
+    ],
+    answer: 1,
+    explanation: "Right (clockwise) rotation → subtract degrees: new axis = prescribed axis minus 15°."
+  },
+
+  {
+    question: "A patient with rigid scleral lenses reports foggy vision after 4 hours that clears briefly with non-preserved saline instillation. The likely cause is:",
+    options: [
+      "Tight landing causing endothelial edema",
+      "Tear debris accumulation in the fluid reservoir",
+      "Lens flexure inducing astigmatism",
+      "Protein film on front surface"
+    ],
+    answer: 1,
+    explanation: "Cells, lipid, and mucus collect in the post-lens tear reservoir, scattering light. Mid-day lens removal, rinsing, and refilling or adding a mid-day plunger refill relieves fogging."
+  },
+
+  {
+    question: "Which measurement confirms suspected lens flexure on eye?",
+    options: [
+      "Over-keratometry mires becoming toric",
+      "Retinoscopy reflex becoming distorted",
+      "Lensometer power change when lens removed",
+      "Radiuscope measurement off the eye"
+    ],
+    answer: 0,
+    explanation: "Over-K showing toricity that disappears when lens is removed indicates on-eye bending (flexure). Radiuscope off-eye would remain spherical if flexure only occurs during blinking forces."
+  },
+
+  {
+    question: "Which follow-up interval is recommended after dispensing a peroxide system to a first-time user?",
+    options: [
+      "24 hours to verify neutralization safety",
+      "1 week to evaluate compliance and ocular response",
+      "3 months for routine check",
+      "Only if symptoms arise"
+    ],
+    answer: 1,
+    explanation: "A one-week visit lets you confirm the patient is neutralizing correctly, address any burning events, and reinforce instructions before bad habits are set."
+  },
+
+  {
+    question: "The key parameter distinguishing a ‘loose’ versus ‘flat’ soft lens is:",
+    options: [
+      "Edge lift visibility",
+      "Amount of post-blink lag movement",
+      "Central fluorescein pooling",
+      "Lid interaction"
+    ],
+    answer: 2,
+    explanation: "A flat lens often appears loose but shows peripheral pooling and central touch on fluorescein, whereas a truly loose lens flares at the edge yet maintains normal central alignment."
+  },
+
+  {
+    question: "Which slit-lamp filter combination enhances detection of lipid deposits on silicone hydrogel lenses?",
+    options: [
+      "White light plus cobalt blue",
+      "Low-angle sclerotic scatter",
+      "White light plus fluorescein",
+      "Diffuse green filter"
+    ],
+    answer: 1,
+    explanation: "A tangential sclerotic scatter beam highlights surface irregularities and light-scattering lipid films, making early deposits easier to spot than under diffuse lighting."
+  },
+
+  {
+    question: "What is the PRIMARY counseling point for a patient fitted in aspheric multifocal lenses to manage expectations?",
+    options: [
+      "Reading vision will be crystal-clear immediately",
+      "Some compromise in extreme near or far vision is normal until brain adapts",
+      "Halos at night are a sign of poor fit",
+      "Distance clarity will be identical to single-vision glasses"
+    ],
+    answer: 1,
+    explanation: "Simultaneous-vision optics split light for multiple focal points; neural adaptation is required. Managing this expectation improves satisfaction and reduces premature discontinuation."
+  },
+
+  {
+    question: "Which disinfection regimen is LEAST compatible with plasma-treated fluorosilicone-acrylate RGPs?",
+    options: [
+      "Alcohol-based daily cleaner plus conditioning solution",
+      "Non-preserved peroxide system",
+      "Abrasive surfactant paste scrub",
+      "Disinfect/soak in multipurpose conditioner overnight"
+    ],
+    answer: 2,
+    explanation: "Abrasive pastes scuff and remove the hydrophilic plasma coating, reducing lens wettability. The other options preserve surface treatments."
+  },
+
+  {
+    question: "Why is EDTA often combined with PHMB in multipurpose solutions?",
+    options: [
+      "EDTA increases PHMB’s viscosity",
+      "EDTA chelates calcium and magnesium, weakening microbial cell walls and enhancing PHMB efficacy",
+      "EDTA neutralizes peroxide",
+      "EDTA serves as a lubricating agent"
+    ],
+    answer: 1,
+    explanation: "EDTA binds divalent cations vital for bacterial membrane stability, allowing PHMB preservatives to penetrate and kill microbes more effectively."
+  },
+
+  {
+    question: "In a disposable silicone hydrogel toric, which design feature primarily stabilizes the lens?",
+    options: [
+      "Low water content",
+      "Prism ballast at 6 o’clock",
+      "Three o’clock and nine o’clock thin zones",
+      "High modulus material"
+    ],
+    answer: 2,
+    explanation: "Accelerated Stabilisation Designs (ASD) employ dual thin zones at 3- and 9-o’clock. Lid pressure during blinking keeps the lens orientated with minimal rotational lag."
+  },
+
+  {
+    question: "A patient develops contact lens acute red eye (CLARE). The initial management is to:",
+    options: [
+      "Refit in daily disposables immediately",
+      "Stop lens wear and start preservative-free artificial tears qid",
+      "Intensify lens cleaning routine",
+      "Increase wearing time gradually"
+    ],
+    answer: 1,
+    explanation: "CLARE is an inflammatory response to overnight bacterial endotoxin exposure. Discontinuing wear and using non-preserved lubricants reduces inflammation; antibiotic drops may be added if infiltrates threaten vision."
+  },
+
+  {
+    question: "Which single material property MOST influences lens modulus?",
+    options: [
+      "Water content",
+      "Silicone content",
+      "UV-blocking additive",
+      "Pigment density"
+    ],
+    answer: 1,
+    explanation: "Higher silicone fractions stiffen the polymer lattice, raising modulus. Water content adjusts flexibility secondarily, but silicone proportion is the dominant factor."
+  },
+
+  {
+    question: "While verifying a toric RGP, you find the axis off by 5°. ANSI tolerance for axis at –2.50 cylinder is:",
+    options: [
+      "±5°",
+      "±3°",
+      "±2°",
+      "±1°"
+    ],
+    answer: 0,
+    explanation: "ANSI allows ±5° for cylinder powers ≤–2.00 D and ±3° for >–2.00 D; at –2.50 D the limit is ±3°. The lens therefore exceeds tolerance and should be remade."
+  },
+
+  {
+    question: "Which change best addresses edge fluting on a scleral lens landing zone?",
+    options: [
+      "Flatten haptic by 1°",
+      "Steepen haptic by 1°",
+      "Decrease overall diameter",
+      "Add central vault"
+    ],
+    answer: 1,
+    explanation: "Edge fluting (excess lift) occurs when the landing zone is too flat. Slightly steepening the haptic allows the skirt to drape smoothly and eliminate peripheral lift."
+  },
+
+  {
+    question: "A patient cleans lenses with hydrogen peroxide but inserts before neutralization completes. The immediate ocular response is:",
+    options: [
+      "Diffuse epithelial staining and severe burning",
+      "Sterile infiltrates after 24 hours",
+      "No reaction because peroxide is tear-diluted",
+      "Gradual redness over a week"
+    ],
+    answer: 0,
+    explanation: "Un-neutralized peroxide causes intense chemical keratitis and instant stinging, requiring copious irrigation and follow-up for epithelial damage."
+  },
+
+  {
+    question: "Which record is REQUIRED by the FDA for all contact lenses dispensed in the U.S.?",
+    options: [
+      "UDI (Unique Device Identifier) noted in the patient file",
+      "Manufacturer’s batch number recorded",
+      "Patient’s PD measurement",
+      "Insurance information"
+    ],
+    answer: 0,
+    explanation: "The FDA’s UDI rule mandates that each medical device’s identifier be documented to facilitate recalls and adverse-event tracking."
+  },
+
+  {
+    question: "What visual complaint is typical of lens flexure rather than rotation?",
+    options: [
+      "Intermittent ghosting on blink",
+      "Consistent blur in one meridian",
+      "Halos around lights at night",
+      "Sudden loss of near vision"
+    ],
+    answer: 0,
+    explanation: "Flexure bends the lens differently each blink, creating transient ghost images that clear quickly, unlike constant rotational mis-alignment."
+  },
+
+  {
+    question: "Which patient factor increases risk of superior epithelial arcuate lesion (SEAL) with silicone hydrogels?",
+    options: [
+      "Low blink rate",
+      "Large palpebral aperture",
+      "High water content lenses",
+      "Low modulus material"
+    ],
+    answer: 1,
+    explanation: "A large palpebral aperture and tight upper lid rub the superior cornea under stiff silicone hydrogel edges, predisposing to SEAL."
+  },
+
+  {
+    question: "In lens verification, optic zone diameter is measured with a:",
+    options: [
+      "Lensometer",
+      "Radiuscope",
+      "Shadowgraph projector",
+      "Thickness gauge"
+    ],
+    answer: 2,
+    explanation: "A shadowgraph projects the lens outline, allowing direct measurement of the optic zone and total diameter against a calibrated grid."
+  },
+
+  {
+    question: "A daily disposable toric wearer notes lenses feel ‘sticky’ at end of day. The cause is MOST likely:",
+    options: [
+      "Peroxide residue",
+      "Lens dehydration reducing surface lubricity",
+      "Protein deposits built over weeks",
+      "Edge nicks from handling"
+    ],
+    answer: 1,
+    explanation: "Daily disposables avoid long-term deposits, but they still lose water late in the day, increasing coefficient of friction and the ‘sticky’ sensation."
+  },
+
+  {
+    question: "When transposing +2.25 -1.00 × 090 into minus-cylinder form you get:",
+    options: [
+      "+1.25 +1.00 × 180",
+      "+1.25 -1.00 × 180",
+      "+3.25 -1.00 × 180",
+      "+3.25 -1.00 × 090"
+    ],
+    answer: 2,
+    explanation: "Add sphere and cylinder (+2.25 + –1.00 = +1.25), change cyl sign to minus (-1.00 → +1.00), add 90° to axis (90 + 90 = 180). Correct minus-cyl form: +1.25 −1.00 × 180."
+  },
+
+  {
+    question: "Which single metric best indicates microbial contamination risk in a lens case?",
+    options: [
+      "Case material (plastic vs metal)",
+      "Age of the case",
+      "Frequency of solution topping-up",
+      "Presence of vent holes"
+    ],
+    answer: 1,
+    explanation: "Case age correlates with biofilm accumulation; replacing every 3 months significantly lowers microbial load compared to older cases, regardless of material."
+  },
+
+  {
+    question: "Which communication strategy is MOST effective when a non-English-speaking parent must instill lenses in a child?",
+    options: [
+      "Provide written instructions in English only",
+      "Use pictorial step-by-step instruction sheets in the parent’s language",
+      "Demonstrate once and rely on the child to translate",
+      "Ask the parent to watch an English video online"
+    ],
+    answer: 1,
+    explanation: "Visual pictorial guides transcend language barriers and improve comprehension compared with text or second-hand translations."
+  },
+
+  {
+    question: "Why do low-modulus silicone hydrogels often include internal wetting agents?",
+    options: [
+      "Compensate for reduced water content and improve surface wettability",
+      "Increase oxygen permeability",
+      "Stiffen the lens",
+      "Enhance UV protection"
+    ],
+    answer: 0,
+    explanation: "Silicone is hydrophobic. Incorporating hydrophilic monomers (e.g., PVP) or internal wetting agents maintains lens surface moisture and comfort without sacrificing modulus benefits."
+  },
+
+  {
+    question: "A patient presents with central corneal abrasion after attempting to remove a stuck soft lens on waking. The safest immediate recommendation is:",
+    options: [
+      "Gently blink until the lens moves",
+      "Instill copious sterile saline, then slide the lens off",
+      "Use rewetting drops and pinch the lens",
+      "Sleep in lenses less often"
+    ],
+    answer: 2,
+    explanation: "Rewetting drops re-hydrate the lens, breaking suction. Attempting removal without lubrication risks shearing the epithelium, as occurred here."
+  },
+
+  {
+    question: "Which instrument verifies back vertex power of a soft lens hydrated in saline?",
+    options: [
+      "Standard lensometer alone",
+      "Lensometer with soft lens holder (wet cell)",
+      "Radiuscope",
+      "Keratometer"
+    ],
+    answer: 1,
+    explanation: "Soft lenses must be measured hydrated in a specially designed wet cell to maintain shape and refractive index during power verification."
+  },
+
+  {
+    question: "A patient’s RGP continually rides low. To raise it under the upper lid, you would:",
+    options: [
+      "Flatten base curve 0.50 D",
+      "Increase overall diameter and edge lift",
+      "Add upper-lid stabilizing bevel or superior-heavy lenticulation",
+      "Decrease center thickness"
+    ],
+    answer: 2,
+    explanation: "A lid-attached fit uses a superior-heavy design or up-bevel to let the upper lid pick up and center the lens higher."
+  },
+
+  {
+    question: "Which home remedy should be discouraged because it degrades silicone hydrogel lenses?",
+    options: [
+      "Rinsing with bottled distilled water",
+      "Soaking overnight in hydrogen peroxide",
+      "Using saline prepared from salt tablets and tap water",
+      "Rinsing with non-preserved saline ampoules"
+    ],
+    answer: 2,
+    explanation: "Home-mixed saline lacks sterility and proper buffering, contains trace impurities, and encourages microbial growth that can bind to the lens surface."
+  },
+
+  {
+    question: "What constitutes an ‘extended follow-up’ scenario under FDA guidelines?",
+    options: [
+      "Fitting daily disposable lenses",
+      "Wearing any lens >7 consecutive days without removal",
+      "Switching from monthly to two-week replacement",
+      "Changing from hydrogel to silicone hydrogel material"
+    ],
+    answer: 1,
+    explanation: "Extended wear (overnight over 7 days) requires more frequent follow-up due to higher infection risk compared with daily wear, per FDA post-market surveillance."
+  },
+
+  {
+    question: "Which complication is MOST strongly linked to overnight orthokeratology in teens?",
+    options: [
+      "Progressive myopia control failure",
+      "Microbial keratitis caused by Gram-negative rods",
+      "Corneal warpage permanent scarring",
+      "Allergic conjunctivitis"
+    ],
+    answer: 1,
+    explanation: "Numerous case reports connect overnight ortho-k and Gram-negative Acanthamoeba or Pseudomonas infections, emphasizing strict hygiene and follow-up."
+  },
+
+  {
+    question: "A patient complains of lens awareness at 6 p.m. On inspection the lens edge digs into inferior conjunctiva. Your first modification is:",
+    options: [
+      "Flatten peripheral curve radius",
+      "Reduce total diameter",
+      "Steepen base curve",
+      "Thin the edge profile"
+    ],
+    answer: 3,
+    explanation: "Thick or sharp edges press into conjunctiva late-day when tear film thins. Edge-thinning reduces lid interaction without changing overall fit."
+  },
+
+  {
+    question: "Which parameter does NOT directly influence the sagittal depth of a soft lens?",
+    options: [
+      "Base curve radius",
+      "Overall diameter",
+      "Edge thickness",
+      "Material modulus"
+    ],
+    answer: 3,
+    explanation: "Sagittal depth is a geometric function of base curve and diameter. Modulus determines how the lens drapes but does not alter inherent sagittal height."
+  },
+
+  {
+    question: "Why can saline solution alone NOT disinfect contact lenses?",
+    options: [
+      "Saline lacks chelating agents",
+      "Saline does not contain antimicrobial preservatives",
+      "Saline is hypotonic",
+      "Saline alters lens power"
+    ],
+    answer: 1,
+    explanation: "Saline replicates tear electrolyte balance for rinsing but has no antimicrobial ingredients; lenses stored in saline develop heavy microbial counts within hours."
+  },
+
+  {
+    question: "A patient uses oil-based makeup remover. The MOST likely lens symptom is:",
+    options: [
+      "Power fluctuation",
+      "Increased surface slickness",
+      "Smear-like vision from lipid film on lens front surface",
+      "Faster oxygen transmission"
+    ],
+    answer: 2,
+    explanation: "Oil residues migrate onto the lens, creating a hydrophobic smear that blurs vision and resists water-based cleaners."
+  },
+
+  {
+    question: "Which single manufacturing parameter guarantees UV protection in a contact lens?",
+    options: [
+      "Adding benzophenone to polymer matrix",
+      "Using high-water content material",
+      "Increasing base curve steepness",
+      "Applying plasma surface treatment"
+    ],
+    answer: 0,
+    explanation: "Benzophenone and similar UV-absorbers incorporated into the lens bulk block UV-A/B wavelengths without affecting optics or oxygen permeability."
+  },
+
+  {
+    question: "You detect a 20 µm scratch in the optical zone of an RGP before dispensing. According to ANSI, you should:",
+    options: [
+      "Dispense; scratch <60 µm is acceptable",
+      "Polish out scratch and re-verify power",
+      "Ignore if patient is asymptomatic",
+      "Increase lens thickness"
+    ],
+    answer: 1,
+    explanation: "Surface scratches scatter light and reduce VA. The lens should be repolished or remade; ANSI does not permit scratches in the central optic zone."
+  },
+
+  {
+    question: "Which step helps prevent stuck-lens syndrome on waking?",
+    options: [
+      "Decrease overnight room humidity",
+      "Use high-water hydrogel lenses",
+      "Instill rewetting drops before sleep and on waking",
+      "Increase lens modulus"
+    ],
+    answer: 2,
+    explanation: "Lubrication maintains post-lens tear film and reduces adherence from dehydration during sleep, preventing suction-related stuck lenses."
+  },
+
+  {
+    question: "A myope wearing –9.00 D spectacles wants contacts. Vertex-adjusted soft lens power is approximately:",
+    options: [
+      "-8.25 D",
+      "-8.50 D",
+      "-9.25 D",
+      "-9.50 D"
+    ],
+    answer: 1,
+    explanation: "Using vertex formula: F_CL ≈ –9 / (1 + 0.012×–9) ≈ –8.47 D. Rounded to the nearest 0.25 step → –8.50 D."
+  },
+
+  {
+    question: "Which lens property should be increased to reduce mechanical chafing on the superior cornea in high-modulus silicone hydrogels?",
+    options: [
+      "Edge lift",
+      "Coefficient of friction",
+      "Water gradient surface",
+      "Center thickness"
+    ],
+    answer: 2,
+    explanation: "A water-gradient or surface coating lowers coefficient of friction, reducing lid-induced mechanical chafing that causes superior epithelial arcuate lesions."
+  },
+
+  {
+    question: "An elderly patient with arthritis struggles to remove RGPs. The BEST adaptation is to:",
+    options: [
+      "Switch to larger scleral lenses with plunger removal",
+      "Prescribe monthly soft lenses",
+      "Reduce lens diameter",
+      "Add prism ballast"
+    ],
+    answer: 0,
+    explanation: "Scleral lenses are inserted and removed with a suction plunger, requiring less fine pinch dexterity than corneal RGP manipulation."
+  },
+
+  {
+    question: "Which regulatory agency enforces contact lens prescription verification by online sellers?",
+    options: [
+      "FDA",
+      "FTC",
+      "OSHA",
+      "CDC"
+    ],
+    answer: 1,
+    explanation: "The Federal Trade Commission (FTC) implements the Contact Lens Rule, ensuring retailers verify prescriptions before dispensing."
+  },
+
+  {
+    question: "Tight-lens syndrome is characterized by which slit-lamp finding after lens removal?",
+    options: [
+      "Radial keratoneuritis",
+      "Conjunctival impression ring",
+      "Corneal dimple veiling",
+      "Inferior arcuate staining"
+    ],
+    answer: 2,
+    explanation: "A tight lens prevents tear exchange, trapping bubbles that create pinpoint depressions (dimple veiling) in the corneal epithelium visible with fluorescein."
+  },
+
+  {
+    question: "Which material property difference explains lower protein deposition on silicone hydrogels compared with Group IV hydrogels?",
+    options: [
+      "Lower ionic charge",
+      "Higher water content",
+      "Higher modulus",
+      "Surface roughness"
+    ],
+    answer: 0,
+    explanation: "Silicone hydrogels are non-ionic; proteins carry net charge and bind readily to ionic Group IV materials, leading to heavier deposits."
+  },
+
+  {
+    question: "For high-DK fluorosilicone acrylate lenses, which cleaning regimen maintains optimal wettability?",
+    options: [
+      "Weekly enzyme, daily alcohol cleaner",
+      "Daily surfactant rub, nightly conditioner soak",
+      "Peroxide only",
+      "Isopropyl alcohol wipe"
+    ],
+    answer: 1,
+    explanation: "Surfactant cleansers remove lipid while nightly conditioning soaks ‘re-wet’ the hydrophobic surface. Alcohol cleaners may strip wetting agents from high-DK fluorinated materials."
+  },
+
+  {
+    question: "Which patient complaint suggests lens warpage rather than corneal warpage?",
+    options: [
+      "VA fluctuates immediately after lens removal but stabilizes in ten minutes",
+      "VA remains blurred all day even without lenses",
+      "K readings show new irregularity without lens on",
+      "Shadowgraph reveals two base curves"
+    ],
+    answer: 0,
+    explanation: "If blur disappears minutes after lens removal, the cornea was not molded; instead the lens itself is deformed, re-flexing off eye quickly."
+  },
+
+  {
+    question: "Which soft lens care practice MOST increases risk of Fusarium keratitis?",
+    options: [
+      "Overnight soaking in non-neutralized peroxide",
+      "‘Topping off’ solutions in lens case",
+      "Daily replacement of solution",
+      "Switching to hydrogen-peroxide systems"
+    ],
+    answer: 1,
+    explanation: "Re-using old solution dilutes preservatives, allowing Fusarium and other fungi to multiply and adhere to lenses."
+  },
+
+  {
+    question: "Which single parameter influences both the rate and extent of lens dehydration?",
+    options: [
+      "Edge thickness",
+      "Water content",
+      "UV blocker concentration",
+      "Modulus"
+    ],
+    answer: 1,
+    explanation: "High water-content lenses lose water faster in dry air, leading to greater dehydration compared with lower water-content materials."
+  },
+
+  {
+    question: "You order a 15.8 mm scleral lens but laboratory returns a 16.0 mm lens. The ANSI diameter tolerance for >15 mm scleral lenses is:",
+    options: [
+      "±0.10 mm (lens acceptable)",
+      "±0.20 mm (lens acceptable)",
+      "±0.05 mm (lens unacceptable)",
+      "No tolerance specified"
+    ],
+    answer: 2,
+    explanation: "ANSI standards for large scleral lenses allow ±0.05 mm. A 0.2 mm oversize exceeds tolerance and can alter landing; the lens should be remade."
+  },
+
+  {
+    question: "The MOST effective way to demonstrate proper case cleaning to patients is to:",
+    options: [
+      "Show a video during the visit",
+      "Give written handouts",
+      "Perform and have the patient mimic each step with water and solution in office",
+      "Provide manufacturer’s instructions"
+    ],
+    answer: 2,
+    explanation: "Hands-on demonstration with immediate patient practice cements muscle memory and ensures understanding, outperforming passive methods."
+  },
+
+  {
+    question: "Which lens replacement schedule has the LOWEST annual incidence of contact lens-related microbial keratitis according to large cohort studies?",
+    options: [
+      "Daily disposable",
+      "Two-week disposable",
+      "Monthly disposable",
+      "Rigid gas permeable"
+    ],
+    answer: 3,
+    explanation: "Rigid lenses exhibit the lowest microbial keratitis rate due to greater tear exchange and overnight removal despite less frequent replacement than daily disposables."
+  },
+
+  {
+    question: "Which cleaning agent is contraindicated for plasma-coated scleral lenses?",
+    options: [
+      "Isopropyl alcohol-based cleaner",
+      "Surfactant cleaner without abrasives",
+      "Hydrogen peroxide system",
+      "Conditioning solution with wetting polymers"
+    ],
+    answer: 0,
+    explanation: "Alcohol dissolves or crazes plasma coatings, reducing the hydrophilic surface and leading to fogging and wettability problems."
+  },
+
+  {
+    question: "Which symptom strongly indicates preservative hypersensitivity rather than mechanical irritation?",
+    options: [
+      "Late-day dryness relieved by drops",
+      "Itching and redness 10 minutes after insertion",
+      "Foreign-body sensation on upward gaze",
+      "Mild blur cleared by blinking"
+    ],
+    answer: 1,
+    explanation: "Immediate burning or itching after insertion suggests solution toxicity or allergy, whereas mechanical issues worsen gradually with wear."
+  },
+
+  {
+    question: "Which edge design reduces awareness for a patient sensitive to lid interaction in soft lenses?",
+    options: [
+      "Thick square edge",
+      "Tapered knife-edge",
+      "Heavy prism ballast",
+      "High-modulus laser-cut edge"
+    ],
+    answer: 1,
+    explanation: "A knife-edge tapers smoothly into the conjunctival surface, minimizing lid catch and awareness compared to square edges."
+  },
+
+  {
+    question: "A teenage ortho-k patient uses tap water to rinse lenses. Parent education should emphasize:",
+    options: [
+      "Tap water is fine if boiled first",
+      "Only bottled drinking water is acceptable",
+      "Use sterile saline or multipurpose solution exclusively",
+      "Leave lenses dry during the day"
+    ],
+    answer: 2,
+    explanation: "Non-sterile water introduces Acanthamoeba risk; only sterile rinsing solutions are safe. Boiling and bottled water are not sterile once opened."
+  },
+
+  {
+    question: "Which measurement helps differentiate corneal edema from lens-induced steepening?",
+    options: [
+      "Central corneal thickness via pachymetry",
+      "Topography inferior-superior (I-S) asymmetry",
+      "Keratometry power change",
+      "Specular endothelial cell count"
+    ],
+    answer: 0,
+    explanation: "Pachymetry directly quantifies swelling. Steepening alters curvature (K), but edema primarily increases thickness first."
+  },
+
+  {
+    question: "Why are Group IV ionic hydrogel lenses ill-suited for extended wear?",
+    options: [
+      "They have low oxygen permeability",
+      "They dry too quickly overnight",
+      "Ionic surface promotes bacterial adhesion",
+      "All of the above"
+    ],
+    answer: 3,
+    explanation: "High-water ionic lenses combine low Dk/t with dehydration and increased microbial binding, making them poor choices for overnight wear."
+  },
+
+  {
+    question: "Which follow-up interval is typical after corneal refractive surgery before fitting new soft lenses?",
+    options: [
+      "1 week post-op",
+      "1 month post-op",
+      "3 months post-op",
+      "6 months post-op"
+    ],
+    answer: 1,
+    explanation: "Most surgeons allow soft lens fitting once epithelial healing and refractive stability are documented at 1 month; specialty RGPs may be delayed longer."
+  },
+
+  {
+    question: "A patient under-fills scleral lenses, leaving 50 µm vault. The risk is:",
+    options: [
+      "Lens flexure",
+      "Conjunctival prolapse",
+      "Corneal bearing and epithelial abrasion",
+      "Excess fogging"
+    ],
+    answer: 2,
+    explanation: "Minimal clearance allows lens touch during settling, abrading epithelium and inducing pannus or scarring."
+  },
+
+  {
+    question: "Which step eliminates superfluous preservatives before lens insertion for sensitive patients?",
+    options: [
+      "Rinsing lenses with sterile saline after soaking",
+      "Using tap water rinse",
+      "Blotting lenses with tissue",
+      "Increasing soak time to 24 hours"
+    ],
+    answer: 0,
+    explanation: "A final sterile saline rinse removes residual solution and preservatives, reducing exposure and comfort problems."
+  },
+
+  {
+    question: "Which single patient habit correlates most with lens case biofilm?",
+    options: [
+      "Storing case in bathroom",
+      "Flushing case with tap water",
+      "Leaving lenses in sunlight",
+      "Using daily disposables"
+    ],
+    answer: 1,
+    explanation: "Tap water introduces microbes and minerals, boosting biofilm; bathroom storage raises airborne contamination but less than direct water exposure."
+  },
+
+  {
+    question: "If a toric soft lens with –2.25 × 180 cylinder dries in low humidity, what optical change often occurs?",
+    options: [
+      "Cylinder power decreases (lens flattens)",
+      "Axis rotates unpredictably",
+      "Sphere power becomes more plus",
+      "No optical change"
+    ],
+    answer: 1,
+    explanation: "Drying increases lens stiffness and lid drag, destabilizing orientation and causing axis rotation that fluctuates vision."
+  },
+
+  {
+    question: "Which systemic disease demands strict daily-wear only policy with frequent follow-ups?",
+    options: [
+      "Hypertension",
+      "Sleep apnea",
+      "Sjögren syndrome",
+      "Hyperthyroidism"
+    ],
+    answer: 2,
+    explanation: "Sjögren’s causes severe aqueous tear deficiency; overnight lens wear drastically worsens dryness and infection risk."
+  },
+
+  {
+    question: "Which component of a multipurpose solution primarily provides lens lubrication upon insertion?",
+    options: [
+      "Preservative",
+      "Chelating agent",
+      "Demulcent (e.g., HPMC or PVP)",
+      "Buffering salts"
+    ],
+    answer: 2,
+    explanation: "Demulcents coat lens and ocular surface, improving initial comfort by reducing friction."
+  },
+
+  {
+    question: "What does the yellow Wratten #12 filter accomplish when used with cobalt blue for fluorescein?",
+    options: [
+      "Blocks green fluorescence",
+      "Enhances contrast by filtering reflected blue light",
+      "Increases tear break-up time",
+      "Reduces phototoxicity"
+    ],
+    answer: 1,
+    explanation: "The yellow filter blocks back-scattered blue, making green fluorescein emission appear brighter and clearer against a dark background."
+  },
+
+  {
+    question: "What is the primary purpose of counselor-led ‘teach-back’ during lens care instruction?",
+    options: [
+      "Assess patient literacy",
+      "Document informed consent",
+      "Ensure patient can accurately repeat and demonstrate critical steps",
+      "Shorten chair time"
+    ],
+    answer: 2,
+    explanation: "Teach-back confirms comprehension and performance of tasks, a proven method to improve adherence and reduce errors."
+  },
+
+  {
+    question: "Which finding warrants discontinuation of silicone hydrogel extended-wear lenses even if asymptomatic?",
+    options: [
+      "Grade 2 microcystic edema",
+      "0.5 mm peripheral pannus",
+      "0.2 mm neovascularisation into cornea",
+      "Slight 3-and-9 staining"
+    ],
+    answer: 0,
+    explanation: "Microcystic edema indicates chronic corneal hypoxia; continued extended wear risks vision-threatening complications."
+  },
+
+  {
+    question: "A patient wearing monthly lenses loses one lens after 10 days. Best recommendation is to:",
+    options: [
+      "Open a new pair and discard both after the normal schedule",
+      "Wear the remaining lens and use a spare lens from an old box",
+      "Skip wearing a lens on that eye until the month ends",
+      "Switch to daily disposables temporarily"
+    ],
+    answer: 0,
+    explanation: "Using a fresh, matched pair maintains symmetric lens age, material integrity, and comfort; wearing mismatched or extended-age lenses increases problems."
+  },
+
+  {
+    question: "Which cleaning instruction prevents abrasive scratches on RGP lenses?",
+    options: [
+      "Use circular fingertip motions, no back-and-forth rubs",
+      "Rinse lens with hot water",
+      "Dry lens with tissue",
+      "Store lens dry in case"
+    ],
+    answer: 0,
+    explanation: "Circular strokes evenly distribute pressure without scraping sharp edges; tissues, hot water, or dry storage risk scratches and warpage."
+  },
+
+  {
+    question: "According to the Global Specialty Lens Symposium, which complication is most common in novice scleral wearers within first month?",
+    options: [
+      "Lens breakage",
+      "Mid-day fogging",
+      "Conjunctival hyperemia >grade 2",
+      "Microbial keratitis"
+    ],
+    answer: 1,
+    explanation: "Mid-day fogging affects up to 65 % of new wearers and is managed with midday lens rinse/refill or improved edge alignment."
+  },
+
+  {
+    question: "Which ANSI tolerance applies to center thickness of a soft lens power +8.00 D?",
+    options: [
+      "±0.02 mm",
+      "±0.05 mm",
+      "±0.10 mm",
+      "±0.15 mm"
+    ],
+    answer: 1,
+    explanation: "ANSI permits ±0.05 mm for center thickness evaluations in soft lenses of any power, balancing manufacturing capability with optical consistency."
+  },
+
+  {
+    question: "A lens with plus carrier lenticulation is primarily designed to:",
+    options: [
+      "Add near power for presbyopia",
+      "Reduce edge thickness in high-plus lenses",
+      "Increase minus edge for lid attachment",
+      "Improve oxygen permeability"
+    ],
+    answer: 2,
+    explanation: "Plus carrier (thick edge) mimics minus lens edge profile, improving lid engagement for high-minus lenses that otherwise have thin edges."
+  },
+
+  {
+    question: "Which follow-up measure detects incipient corneal warpage from poorly centered ortho-k lenses?",
+    options: [
+      "Central corneal thickness",
+      "Keratometry difference map vs baseline",
+      "Specular microscopy",
+      "Endothelial pleomorphism index"
+    ],
+    answer: 1,
+    explanation: "Difference maps reveal unintended asymmetric curvature changes signalling decentration before vision is affected."
+  },
+
+  {
+    question: "Which step lowers infection risk when patient must shower with contact lenses?",
+    options: [
+      "Closing eyes tightly",
+      "Applying unpreserved saline before shower",
+      "Disinfecting immediately after shower then re-inserting lenses",
+      "Wearing tight-sealing swim goggles over lenses"
+    ],
+    answer: 3,
+    explanation: "Goggles act as a physical barrier preventing tap water from contacting the lens; other measures are insufficient to block contamination."
+  },
+
+  {
+    question: "High-flow automatic contact-lens cleaners are often discouraged because they:",
+    options: [
+      "Change refractive index of the lens",
+      "Increase temperature damaging lens polymers",
+      "Scratch lens surface via turbulent current and debris",
+      "Fail to disinfect lenses"
+    ],
+    answer: 2,
+    explanation: "Mechanical agitation with abrasive particles in the cleaning chamber can micro-scratch the lens, degrading optics and wettability."
+  },
+
+  {
+    question: "Which material parameter directly controls ionic charge of hydrogel lenses?",
+    options: [
+      "HEMA content",
+      "Methacrylic acid (MAA) incorporation",
+      "Siloxane chain length",
+      "UV-absorber concentration"
+    ],
+    answer: 1,
+    explanation: "MAA monomers introduce negative charge sites, making the polymer ionic (Groups III & IV). Ionic charge influences deposit profile and solution compatibility."
+  }
+];
+
     
