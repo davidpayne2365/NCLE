@@ -28,24 +28,24 @@
             padding: 10px;
             max-width: 100%;
             margin: 0 auto;
-            font-size: 16px; /* increased from 14px */
+            font-size: 16px;
             height: 100vh;
             display: flex;
             flex-direction: column;
         }
         h1 {
-            font-size: 1.5rem; /* increased from 1.3rem */
+            font-size: 1.5rem;
             margin-bottom: 10px;
             color: var(--primary-color);
             text-align: center;
         }
         h2 {
-            font-size: 1.4rem; /* increased from 1.2rem */
+            font-size: 1.4rem;
             color: var(--primary-color);
             margin: 8px 0;
         }
         h3 {
-            font-size: 1.2rem; /* increased from 1rem */
+            font-size: 1.2rem;
             margin: 5px 0;
         }
         p {
@@ -90,11 +90,11 @@
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 4px;
-            padding: 8px 10px; /* slightly increased for better readability */
+            padding: 8px 10px;
             margin-bottom: 6px;
             cursor: pointer;
             transition: background-color 0.3s;
-            font-size: 1rem; /* ensure options text scales */
+            font-size: 1rem;
         }
         .option:hover {
             background-color: #f5f5f5;
@@ -131,12 +131,12 @@
             margin-top: 10px;
         }
         button {
-            padding: 8px 14px; /* increased padding */
+            padding: 8px 14px;
             border: none;
             border-radius: 4px;
             background-color: var(--primary-color);
             color: white;
-            font-size: 1rem; /* increased from 0.9rem */
+            font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -150,10 +150,6 @@
         .progress-container {
             margin-top: 10px;
             text-align: center;
-        }
-        .progress-text {
-            margin-bottom: 5px;
-            font-size: 1rem; /* increased from 0.85rem */
         }
         .progress-bar {
             height: 6px;
@@ -171,7 +167,7 @@
             text-align: center;
             margin-top: 10px;
             font-weight: bold;
-            font-size: 1rem; /* increased from 0.9rem */
+            font-size: 1rem;
         }
         .hide {
             display: none !important;
@@ -187,8 +183,8 @@
         }
         .start-btn {
             margin: 0 auto;
-            padding: 10px 24px; /* increased padding */
-            font-size: 1.2rem; /* slightly larger */
+            padding: 10px 24px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -207,7 +203,6 @@
                 <div class="question-container">
                     <p class="question" id="question-text">Question text will appear here</p>
                     <ul class="options" id="options-list">
-                        <!-- Options will be added dynamically -->
                     </ul>
                     <div class="explanation" id="explanation-box">
                         <h3>Explanation:</h3>
@@ -221,7 +216,6 @@
                 </div>
                 
                 <div class="progress-container">
-                    <p class="progress-text" id="progress-text">Question 1 of 25</p>
                     <div class="progress-bar">
                         <div class="progress" id="progress-bar"></div>
                     </div>
@@ -248,17 +242,14 @@
         </div>
     </main>
     
-    <!-- Load the questions data first -->
     <script src="quiz-questions.js"></script>
-    
     <script>
-        // Initialize variables
         let questions = [];
         let currentQuestionIndex = 0;
         let score = 0;
         let selectedOption = null;
         let answeredQuestions = [];
-        // DOM elements
+
         const startScreen = document.getElementById("start-screen");
         const quizScreen = document.getElementById("quiz-screen");
         const resultsScreen = document.getElementById("results-screen");
@@ -270,19 +261,18 @@
         const optionsList = document.getElementById("options-list");
         const explanationBox = document.getElementById("explanation-box");
         const explanationText = document.getElementById("explanation-text");
-        const progressText = document.getElementById("progress-text");
         const progressBar = document.getElementById("progress-bar");
         const scoreDisplay = document.getElementById("score");
         const totalDisplay = document.getElementById("total");
         const finalScoreDisplay = document.getElementById("final-score");
         const finalTotalDisplay = document.getElementById("final-total");
         const percentageDisplay = document.getElementById("percentage");
-        // Event listeners
+
         startBtn.addEventListener("click", startQuiz);
         prevBtn.addEventListener("click", showPreviousQuestion);
         nextBtn.addEventListener("click", showNextQuestion);
         restartBtn.addEventListener("click", restartQuiz);
-        // Functions
+
         function startQuiz() {
             questions = getRandomQuestions(quizQuestions, 25);
             currentQuestionIndex = 0;
@@ -297,6 +287,7 @@
             resultsScreen.classList.add("hide");
             loadQuestion();
         }
+
         function loadQuestion() {
             const question = questions[currentQuestionIndex];
             questionText.textContent = `${currentQuestionIndex + 1}. ${question.question}`;
@@ -329,84 +320,8 @@
             prevBtn.disabled = currentQuestionIndex === 0;
             nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Finish Quiz" : "Next";
         }
+
         function handleOptionClick(e) {
             if (answeredQuestions[currentQuestionIndex]) return;
             selectedOption = parseInt(e.target.dataset.index);
-            answeredQuestions[currentQuestionIndex] = true;
-            const correctOption = questions[currentQuestionIndex].answer;
-            if (selectedOption === correctOption) {
-                score++;
-                updateScoreDisplay();
-            }
-            const options = optionsList.querySelectorAll(".option");
-            options.forEach((option, index) => {
-                option.removeEventListener("click", handleOptionClick);
-                if (index === correctOption) {
-                    option.classList.add("correct");
-                } else if (index === selectedOption && selectedOption !== correctOption) {
-                    option.classList.add("incorrect");
-                }
-            });
-            explanationText.textContent = questions[currentQuestionIndex].explanation;
-            explanationBox.classList.add("show");
-            nextBtn.disabled = false;
-        }
-        function showPreviousQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion();
-            }
-        }
-        function showNextQuestion() {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion();
-            } else {
-                finishQuiz();
-            }
-        }
-        function updateProgress() {
-            progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
-            const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
-            progressBar.style.width = `${progressPercentage}%`;
-        }
-        function updateScoreDisplay() {
-            scoreDisplay.textContent = score;
-            totalDisplay.textContent = questions.length;
-        }
-        function finishQuiz() {
-            finalScoreDisplay.textContent = score;
-            finalTotalDisplay.textContent = questions.length;
-            percentageDisplay.textContent = Math.round((score / questions.length) * 100);
-            quizScreen.classList.remove("show");
-            quizScreen.classList.add("hide");
-            resultsScreen.classList.remove("hide");
-            resultsScreen.classList.add("show");
-        }
-        function restartQuiz() {
-            questions = getRandomQuestions(quizQuestions, 25);
-            currentQuestionIndex = 0;
-            score = 0;
-            answeredQuestions = Array(questions.length).fill(false);
-            updateScoreDisplay();
-            resultsScreen.classList.remove("show");
-            resultsScreen.classList.add("hide");
-            quizScreen.classList.remove("hide");
-            quizScreen.classList.add("show");
-            loadQuestion();
-        }
-        function getRandomQuestions(array, count) {
-            const shuffled = [...array];
-            shuffleArray(shuffled);
-            return shuffled.slice(0, count);
-        }
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-    </script>
-</body>
-</html>
+            answered
