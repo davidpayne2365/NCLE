@@ -1,263 +1,1167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NCLE Contact Lens Exam Trainer</title>
-  <style>
-    :root {
-      --primary-color: #57c4e5;
-      --secondary-color: #1a5f7a;
-      --accent-color: #333;
-      --text-color: #f9f9f9;
-      --background-color: #1e1e1e;
-      --neutral-color: #2e2e2e;
-      --incorrect-color: #b5302e; /* darker red for dark mode */
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    html, body { height: 100%; }
-    body { background-color: var(--background-color); color: var(--text-color); line-height: 1.6; padding: 10px; display: flex; flex-direction: column; }
-    h1 { font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-color); text-align: center; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCLE Exam Prep: Contact Lens Mathematics</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+            --text: #333;
+            --bg: #f9f9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            background-color: var(--dark);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            position: sticky;
+            top: 60px;
+            z-index: 99;
+        }
+        
+        nav button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        nav button.active {
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .section {
+            display: none;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .formula-box {
+            background-color: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tip-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .warning-box {
+            background-color: #fdecea;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .quiz-container {
+            margin-top: 2rem;
+        }
+        
+        .question {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .question.active {
+            display: block;
+        }
+        
+        .options {
+            margin: 1rem 0;
+        }
+        
+        .option {
+            background-color: var(--light);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #e3e3e3;
+        }
+        
+        .option.selected {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .option.correct {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .option.incorrect {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .feedback {
+            margin-top: 1rem;
+            display: none;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: var(--light);
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+        
+        .calculator {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .calculator input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .calculator-btn {
+            background-color: var(--light);
+            border: 1px solid #ddd;
+            padding: 0.75rem 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .calculator-btn:hover {
+            background-color: #e3e3e3;
+        }
+        
+        .calculator-btn.operator {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .calculator-btn.equals {
+            background-color: var(--secondary);
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .calculator-btn.clear {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .diagram {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav button {
+                flex: 1 0 auto;
+                font-size: 0.8rem;
+                padding: 0.5rem 0.25rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
 
-    .quiz-container { background: var(--neutral-color); border-radius: 8px; padding: 16px; margin: 40px auto 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); flex: 1; max-width: 500px; display: flex; flex-direction: column; }
-    .question-container, .explanation-container { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
-    .question-container { padding: 12px; background: var(--accent-color); border-radius: 8px; }
-    .question { font-weight: bold; margin-bottom: 12px; }
-    .options { list-style: none; padding: 0; flex: 1; overflow: auto; }
-    .option { background: var(--background-color); border: 1px solid #444; border-radius: 4px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: background-color .3s; color: var(--text-color);}    
-    .option:hover { background: #333; }
-    .option.correct { background: var(--primary-color); color: white; }
-    .option.incorrect { background: var(--incorrect-color); color: white; }
+        /* Canvas for drawing */
+        canvas {
+            border: 1px solid #ddd;
+            margin: 1rem 0;
+            max-width: 100%;
+            background-color: white;
+        }
 
-    .explanation-container { display: none; padding: 12px; background: var(--neutral-color); border-radius: 8px; }
-    .explanation-container.wrong { background: var(--incorrect-color); color: white; }
-    .explanation-container h3 { margin: 8px 0; color: var(--primary-color); }
-    .explanation-container .correct-answer { font-weight: bold; margin-bottom: 12px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
 
-    .buttons { display: flex; justify-content: space-between; margin-top: 12px; }
-    button { padding: 12px; border: none; border-radius: 4px; background: var(--primary-color); color: white; font-size: 1rem; cursor: pointer; transition: background-color .3s; flex: 1; margin: 0 4px; }
-    button:hover { background: var(--secondary-color); }
-    button:disabled { background: #555; cursor: not-allowed; }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
 
-    #results-screen { display: none; text-align: center; margin-top: 20px; }
-    #results-screen h2 { margin-bottom: 10px; }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
 
-    @media (max-width: 600px) {
-      .quiz-container { margin: 5px; padding: 12px; }
-      h1 { font-size: 1.8rem; }
-      .option, button { font-size: 1.1rem; padding: 14px; }
-    }
-  </style>
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--light);
+        }
+    </style>
 </head>
 <body>
-  <main style="flex:1; display:flex; flex-direction:column; position: relative;">
-    <div class="quiz-container" id="quiz-container">
-      <div class="question-container" id="question-container">
-        <p class="question" id="question-text"></p>
-        <ul class="options" id="options-list"></ul>
-      </div>
-      <div class="explanation-container" id="explanation-container">
-        <div class="correct-answer" id="correct-answer"></div>
-        <h3>Explanation:</h3>
-        <p id="explanation-text"></p>
-      </div>
-      <div class="buttons">
-        <button id="prev-btn" disabled style="display:none;">Previous</button>
-        <button id="next-btn" disabled>Next</button>
-      </div>
-      <div id="results-screen">
-        <h2>Quiz Complete</h2>
-        <p>You've completed all questions correctly!</p>
-        <button id="restart-btn">Restart Quiz</button>
-      </div>
-    </div>
-  </main>
-
-  <script src="quiz-questions.js"></script>
-  <script>
-    let remainingIndexes = [];
-    let wrongIndexes = [];
-    let currentQuestionIdx = null;
-    let isFailed = false;
-    let viewingExplanation = false;
-    let questionAnswered = false;
-    let selectedOption = null;
-
-    const questionContainer = document.getElementById('question-container');
-    const explanationContainer = document.getElementById('explanation-container');
-    const nextBtn = document.getElementById('next-btn');
-    const restartBtn = document.getElementById('restart-btn');
-    const questionText = document.getElementById('question-text');
-    const optionsList = document.getElementById('options-list');
-    const explanationText = document.getElementById('explanation-text');
-    const correctAnswerDiv = document.getElementById('correct-answer');
-    const resultsScreen = document.getElementById('results-screen');
-
-    nextBtn.addEventListener('click', () => {
-      // Save that we're not viewing explanation anymore
-      localStorage.setItem('viewingExplanation', 'false');
-      localStorage.setItem('questionAnswered', 'false');
-      localStorage.setItem('selectedOption', '');
-      loadQuestion();
-    });
+    <header>
+        <h1>NCLE Exam Prep</h1>
+        <p>Master Contact Lens Mathematics</p>
+    </header>
     
-    restartBtn.addEventListener('click', () => {
-      localStorage.removeItem('remainingIndexes');
-      localStorage.removeItem('wrongIndexes');
-      localStorage.removeItem('currentQuestionIdx');
-      localStorage.removeItem('viewingExplanation');
-      localStorage.removeItem('questionAnswered');
-      localStorage.removeItem('selectedOption');
-      remainingIndexes = quizQuestions.map((_, i) => i);
-      wrongIndexes = [];
-      resultsScreen.style.display = 'none';
-      startQuiz();
-    });
-
-    function loadState() {
-      const rem = localStorage.getItem('remainingIndexes');
-      const wrong = localStorage.getItem('wrongIndexes');
-      const current = localStorage.getItem('currentQuestionIdx');
-      viewingExplanation = localStorage.getItem('viewingExplanation') === 'true';
-      questionAnswered = localStorage.getItem('questionAnswered') === 'true';
-      selectedOption = localStorage.getItem('selectedOption');
-      
-      if (rem && wrong) {
-        remainingIndexes = JSON.parse(rem);
-        wrongIndexes = JSON.parse(wrong);
-      } else {
-        remainingIndexes = quizQuestions.map((_, i) => i);
-        wrongIndexes = [];
-        localStorage.setItem('remainingIndexes', JSON.stringify(remainingIndexes));
-        localStorage.setItem('wrongIndexes', JSON.stringify(wrongIndexes));
-      }
-      
-      if (current) {
-        currentQuestionIdx = parseInt(current);
-      }
-    }
-
-    function startQuiz() {
-      loadState();
-      resultsScreen.style.display = 'none';
-      
-      if (remainingIndexes.length === 0 && wrongIndexes.length === 0) {
-        questionContainer.style.display = 'none';
-        explanationContainer.style.display = 'none';
-        resultsScreen.style.display = 'block';
-        return;
-      }
-      
-      if (currentQuestionIdx !== null) {
-        displayQuestion(currentQuestionIdx);
+    <nav>
+        <button id="btn-intro" class="nav-btn active">Introduction</button>
+        <button id="btn-cylinder" class="nav-btn">Cylinder Form</button>
+        <button id="btn-vertex" class="nav-btn">Vertex Distance</button>
+        <button id="btn-k-reading" class="nav-btn">K Readings</button>
+        <button id="btn-quiz" class="nav-btn">Practice Quiz</button>
+    </nav>
+    
+    <div class="container">
+        <!-- Introduction Section -->
+        <div id="section-intro" class="section active">
+            <h2>Introduction to NCLE Mathematics</h2>
+            <p>Welcome to the NCLE Exam Prep application! This interactive tool will help you understand and master the mathematical concepts required for the National Contact Lens Exam.</p>
+            
+            <p>The NCLE exam tests your knowledge of contact lens fitting, including:</p>
+            <ul>
+                <li>Understanding and converting between minus and plus cylinder forms</li>
+                <li>Compensating for vertex distance</li>
+                <li>Interpreting keratometry (K) readings</li>
+                <li>Determining the appropriate contact lens parameters</li>
+                <li>Understanding different types of astigmatism</li>
+            </ul>
+            
+            <p>This application breaks down these concepts into digestible sections, provides step-by-step guides, and offers practice questions to test your understanding.</p>
+            
+            <div class="tip-box">
+                <h3>Study Tip</h3>
+                <p>For the NCLE exam, practice is key. Work through as many example problems as possible to build your confidence and speed. Remember the acronyms and shortcuts presented here to save time during the actual exam.</p>
+            </div>
+            
+            <h3>Getting Started</h3>
+            <p>Use the navigation bar above to move between topics. We recommend going through them in order, but feel free to jump to specific areas you need to review.</p>
+            <p>Make sure to complete the practice quiz to test your understanding!</p>
+        </div>
         
-        if (viewingExplanation) {
-          showExplanation();
-        } else {
-          questionContainer.style.display = 'flex';
-          explanationContainer.style.display = 'none';
-          
-          if (questionAnswered && selectedOption) {
-            // Re-select the option that was previously selected
-            setTimeout(() => {
-              const options = document.querySelectorAll('.option');
-              const selectedIdx = parseInt(selectedOption);
-              if (!isNaN(selectedIdx) && options[selectedIdx]) {
-                handleOptionClick({ target: options[selectedIdx] });
-              }
-            }, 100);
-          }
-        }
-      } else {
-        loadQuestion();
-      }
-    }
+        <!-- Cylinder Form Section -->
+        <div id="section-cylinder" class="section">
+            <h2>Cylinder Form Conversion</h2>
+            <p>Contact lenses are always fit in minus cylinder form. If you encounter a prescription in plus cylinder form, you must transpose it to minus cylinder form before proceeding.</p>
+            
+            <h3>Transposition Steps</h3>
+            <ol>
+                <li>Add the sphere and cylinder powers algebraically</li>
+                <li>Change the sign of the cylinder</li>
+                <li>Change the axis by 90 degrees (add or subtract 90)</li>
+            </ol>
+            
+            <div class="formula-box">
+                <strong>Plus to Minus Cylinder Conversion Formula:</strong><br>
+                New Sphere = Old Sphere + Old Cylinder<br>
+                New Cylinder = -Old Cylinder<br>
+                New Axis = Old Axis ± 90°
+            </div>
+            
+            <h3>Example</h3>
+            <p>Convert +1.75 +2.00 x 45 to minus cylinder form.</p>
+            
+            <div class="tip-box">
+                <h4>Solution:</h4>
+                <p>Step 1: New Sphere = +1.75 + (+2.00) = +3.75</p>
+                <p>Step 2: New Cylinder = -(+2.00) = -2.00</p>
+                <p>Step 3: New Axis = 45 + 90 = 135</p>
+                <p>Result: +3.75 -2.00 x 135</p>
+            </div>
+            
+            <h3>Practice Problem</h3>
+            <p>Convert -4.75 +1.25 x 90 to minus cylinder form.</p>
+            <button id="show-cylinder-answer" class="btn">Show Answer</button>
+            <div id="cylinder-answer" style="display: none;" class="tip-box">
+                <p>Step 1: New Sphere = -4.75 + (+1.25) = -3.50</p>
+                <p>Step 2: New Cylinder = -(+1.25) = -1.25</p>
+                <p>Step 3: New Axis = 90 + 90 = 180</p>
+                <p>Result: -3.50 -1.25 x 180</p>
+            </div>
+            
+            <div class="warning-box">
+                <h3>Common Errors</h3>
+                <p>Be careful with the signs when adding sphere and cylinder powers. Remember that -4.75 + (+1.25) = -3.50, not -6.00.</p>
+                <p>For axis calculation, if the result exceeds 180, subtract 180 to get the correct axis.</p>
+            </div>
+        </div>
+        
+        <!-- Vertex Distance Section -->
+        <div id="section-vertex" class="section">
+            <h2>Vertex Distance Compensation</h2>
+            <p>When the power of a lens exceeds ±4.00 diopters, you need to compensate for vertex distance when fitting contact lenses. This accounts for the difference between the spectacle plane (usually 12-14mm from the eye) and the contact lens (directly on the cornea).</p>
+            
+            <h3>When to Compensate</h3>
+            <p>Always check both major meridians (sphere power and sphere + cylinder power) to determine if either exceeds ±4.00 diopters.</p>
+            
+            <div class="formula-box">
+                <strong>Vertex Distance Compensation Formula:</strong><br>
+                Fc = F / (1 - d × F)<br>
+                Where:<br>
+                Fc = Contact lens power<br>
+                F = Spectacle lens power (in diopters)<br>
+                d = Vertex distance (in meters, typically 0.012 or 0.014)
+            </div>
+            
+            <h3>Quick Rules of Thumb</h3>
+            <ul>
+                <li>Around 5 diopters: Compensate by about 0.25D</li>
+                <li>Around 8 diopters: Compensate by about 0.50D</li>
+                <li>Around 10 diopters: Compensate by about 1.00D</li>
+            </ul>
+            
+            <p>All contact lens prescriptions when compensated for vertex distance become:</p>
+            <ul>
+                <li>Less minus power (or more plus power)</li>
+                <li>This is because the lens is moving closer to the eye</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <p>For a prescription of -3.50 -1.25 x 180, we need to check both meridians:</p>
+            <ul>
+                <li>At 180° (horizontal): -3.50D</li>
+                <li>At 90° (vertical): -3.50D + (-1.25D) = -4.75D</li>
+            </ul>
+            
+            <p>Since the vertical meridian exceeds -4.00D, we need to compensate. Using our rule of thumb for approximately 5 diopters, we'll compensate by about 0.25D, making it -4.50D in that meridian.</p>
+            
+            <div class="tip-box">
+                <h4>Optical Cross Method:</h4>
+                <p>Draw an optical cross with powers in both major meridians:</p>
+                <div style="text-align: center; margin: 1rem 0;">
+                    <div style="display: inline-block; border: 1px solid #ccc; padding: 1rem;">
+                        <div style="font-weight: bold;">180° → -3.50D</div>
+                        <div style="font-weight: bold; margin-top: 0.5rem;">90° → -4.75D → -4.50D (compensated)</div>
+                    </div>
+                </div>
+                <p>This gives us a compensated prescription of -3.50 -1.00 x 180</p>
+            </div>
+            
+            <div class="warning-box">
+                <h3>Important Note</h3>
+                <p>On the NCLE exam, you won't need to use calculators for complex formulas. Learn the rules of thumb and practice applying them to save time.</p>
+            </div>
+        </div>
+        
+        <!-- K Reading Section -->
+        <div id="section-k-reading" class="section">
+            <h2>K Readings & Astigmatism</h2>
+            <p>Keratometry (K) readings measure the corneal curvature and reveal the dioptric power of the cornea in its steepest and flattest meridians.</p>
+            
+            <h3>Understanding K Readings</h3>
+            <p>K readings are typically presented as:</p>
+            <p>43.00@180 / 44.25@90</p>
+            <p>This means:</p>
+            <ul>
+                <li>43.00 diopters of power along the 180° meridian (horizontal)</li>
+                <li>44.25 diopters of power along the 90° meridian (vertical)</li>
+            </ul>
+            
+            <h3>Types of Astigmatism</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>K Reading Example</th>
+                    </tr>
+                    <tr>
+                        <td>With-the-Rule (WTR)</td>
+                        <td>Steeper in the vertical meridian (±30° of 90°)</td>
+                        <td>43.00@180 / 44.25@90</td>
+                    </tr>
+                    <tr>
+                        <td>Against-the-Rule (ATR)</td>
+                        <td>Steeper in the horizontal meridian (±30° of 180°)</td>
+                        <td>44.25@180 / 43.00@90</td>
+                    </tr>
+                    <tr>
+                        <td>Oblique</td>
+                        <td>Steepest meridian between the zones defined by WTR and ATR</td>
+                        <td>43.00@45 / 44.25@135</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <h3>Corneal vs. Lenticular Astigmatism</h3>
+            <p>By comparing K readings with the manifest refraction, you can determine the source of astigmatism:</p>
+            <ul>
+                <li><strong>Corneal astigmatism:</strong> When the difference in K readings matches the cylinder power in the refraction</li>
+                <li><strong>Lenticular astigmatism:</strong> When there's a discrepancy between K readings and refractive astigmatism</li>
+                <li><strong>Mixed astigmatism:</strong> When both corneal and lenticular components are present</li>
+            </ul>
+            
+            <h3>Lens Selection Based on Astigmatism</h3>
+            <div class="tip-box">
+                <h4>Gas Permeable (GP) Lenses:</h4>
+                <p>GP lenses can mask corneal astigmatism by creating a tear lens between the lens and cornea. They can be fitted as spherical lenses if:</p>
+                <ul>
+                    <li>All astigmatism is corneal</li>
+                    <li>With-the-rule astigmatism is less than 3.00D</li>
+                    <li>Against-the-rule astigmatism is less than 2.00D</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box">
+                <h4>Soft Toric Lenses:</h4>
+                <p>Soft lenses conform to the corneal shape and cannot mask corneal astigmatism. A toric design is needed if:</p>
+                <ul>
+                    <li>Total astigmatism (corneal + lenticular) is 0.75D or greater</li>
+                    <li>The patient experiences visual symptoms with spherical lenses</li>
+                </ul>
+            </div>
+            
+            <h3>Fitting Philosophies: SAM & FAP</h3>
+            <div class="formula-box">
+                <strong>SAM = Steeper Add Minus</strong><br>
+                When fitting steeper than K, add minus power to the final lens power.
+                <br><br>
+                <strong>FAP = Flatter Add Plus</strong><br>
+                When fitting flatter than K, add plus power to the final lens power.
+            </div>
+            
+            <p>Example: If you're fitting 0.50D steeper than K with a -3.50D spherical GP lens, your final power would be -4.00D (add 0.50D of minus).</p>
+            
+            <div class="warning-box">
+                <h3>NCLE Exam Tip</h3>
+                <p>SAM and FAP are always the final step in your calculation process, after transposing to minus cylinder and compensating for vertex distance.</p>
+            </div>
+        </div>
+        
+        <!-- Quiz Section -->
+        <div id="section-quiz" class="section">
+            <h2>Practice Quiz</h2>
+            <p>Test your understanding of contact lens mathematics with these multiple-choice questions.</p>
+            
+            <div class="progress-container">
+                <div id="quiz-progress" class="progress-bar"></div>
+            </div>
+            
+            <div id="score-display" class="score-display">Question 1 of 10</div>
+            
+            <div id="quiz-container" class="quiz-container">
+                <!-- Question 1 -->
+                <div id="question-1" class="question active">
+                    <h3>Question 1</h3>
+                    <p>Convert the following prescription to minus cylinder form: +2.25 +1.50 x 75</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) +3.75 -1.50 x 165</div>
+                        <div class="option" data-value="b">b) +3.75 -1.50 x 75</div>
+                        <div class="option" data-value="c">c) +0.75 -1.50 x 165</div>
+                        <div class="option" data-value="d">d) +2.25 -1.50 x 165</div>
+                    </div>
+                    <div id="feedback-1" class="feedback"></div>
+                </div>
+                
+                <!-- Question 2 -->
+                <div id="question-2" class="question">
+                    <h3>Question 2</h3>
+                    <p>A patient has a spectacle prescription of -5.75 -1.00 x 180. What would be the compensated contact lens prescription, assuming a 12mm vertex distance?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) -5.75 -1.00 x 180 (no change needed)</div>
+                        <div class="option" data-value="b">b) -5.50 -1.00 x 180</div>
+                        <div class="option" data-value="c">c) -5.25 -0.75 x 180</div>
+                        <div class="option" data-value="d">d) -6.00 -1.00 x 180</div>
+                    </div>
+                    <div id="feedback-2" class="feedback"></div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div id="question-3" class="question">
+                    <h3>Question 3</h3>
+                    <p>A patient has K readings of 43.50@180 / 45.00@90 and a refraction of -2.75 -1.50 x 180. What type of astigmatism does this patient have?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) With-the-rule corneal astigmatism</div>
+                        <div class="option" data-value="b">b) Against-the-rule corneal astigmatism</div>
+                        <div class="option" data-value="c">c) With-the-rule lenticular astigmatism</div>
+                        <div class="option" data-value="d">d) Mixed astigmatism (both corneal and lenticular)</div>
+                    </div>
+                    <div id="feedback-3" class="feedback"></div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div id="question-4" class="question">
+                    <h3>Question 4</h3>
+                    <p>You decide to fit a spherical GP lens 0.50D steeper than K for a patient with a compensated prescription of -3.75D. What should the final lens power be?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) -3.25D</div>
+                        <div class="option" data-value="b">b) -3.75D</div>
+                        <div class="option" data-value="c">c) -4.25D</div>
+                        <div class="option" data-value="d">d) -4.00D</div>
+                    </div>
+                    <div id="feedback-4" class="feedback"></div>
+                </div>
+                
+                <!-- Question 5 -->
+                <div id="question-5" class="question">
+                    <h3>Question 5</h3>
+                    <p>A patient has K readings of 42.00@180 / 42.50@90 and a refraction of -1.75 -1.00 x 180. Which lens would be most appropriate?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) Spherical soft lens</div>
+                        <div class="option" data-value="b">b) Toric soft lens</div>
+                        <div class="option" data-value="c">c) Spherical GP lens</div>
+                        <div class="option" data-value="d">d) Front-toric GP lens</div>
+                    </div>
+                    <div id="feedback-5" class="feedback"></div>
+                </div>
+                
+                <!-- Question 6 -->
+                <div id="question-6" class="question">
+                    <h3>Question 6</h3>
+                    <p>Convert the following prescription to minus cylinder form: -3.00 +2.00 x 30</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) -1.00 -2.00 x 120</div>
+                        <div class="option" data-value="b">b) -5.00 -2.00 x 120</div>
+                        <div class="option" data-value="c">c) -1.00 -2.00 x 30</div>
+                        <div class="option" data-value="d">d) -3.00 -2.00 x 120</div>
+                    </div>
+                    <div id="feedback-6" class="feedback"></div>
+                </div>
+                
+                <!-- Question 7 -->
+                <div id="question-7" class="question">
+                    <h3>Question 7</h3>
+                    <p>A patient has a prescription of -7.00 -1.50 x 90. What would be the compensated contact lens prescription, assuming a 12mm vertex distance?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) -6.50 -1.50 x 90</div>
+                        <div class="option" data-value="b">b) -6.50 -1.25 x 90</div>
+                        <div class="option" data-value="c">c) -7.00 -1.25 x 90</div>
+                        <div class="option" data-value="d">d) -6.75 -1.00 x 90</div>
+                    </div>
+                    <div id="feedback-7" class="feedback"></div>
+                </div>
+                
+                <!-- Question 8 -->
+                <div id="question-8" class="question">
+                    <h3>Question 8</h3>
+                    <p>A patient has K readings of 44.00@175 / 46.00@85 and a refraction of -2.00 -2.00 x 175. What type of astigmatism does this patient have?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) With-the-rule corneal astigmatism</div>
+                        <div class="option" data-value="b">b) Against-the-rule corneal astigmatism</div>
+                        <div class="option" data-value="c">c) Oblique corneal astigmatism</div>
+                        <div class="option" data-value="d">d) With-the-rule lenticular astigmatism</div>
+                    </div>
+                    <div id="feedback-8" class="feedback"></div>
+                </div>
+                
+                <!-- Question 9 -->
+                <div id="question-9" class="question">
+                    <h3>Question 9</h3>
+                    <p>You are fitting a GP lens 0.75D flatter than K. Your patient's compensated prescription is -2.50D. What should the final lens power be?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) -3.25D</div>
+                        <div class="option" data-value="b">b) -2.50D</div>
+                        <div class="option" data-value="c">c) -1.75D</div>
+                        <div class="option" data-value="d">d) -3.00D</div>
+                    </div>
+                    <div id="feedback-9" class="feedback"></div>
+                </div>
+                
+                <!-- Question 10 -->
+                <div id="question-10" class="question">
+                    <h3>Question 10</h3>
+                    <p>A patient has a prescription of -3.50 -1.25 x 180 and K readings of 43.00@180 / 44.25@90. Which of the following statements is correct?</p>
+                    <div class="options">
+                        <div class="option" data-value="a">a) The patient has with-the-rule corneal astigmatism only</div>
+                        <div class="option" data-value="b">b) The patient has against-the-rule corneal astigmatism only</div>
+                        <div class="option" data-value="c">c) The patient has both corneal and lenticular astigmatism</div>
+                        <div class="option" data-value="d">d) The patient has no astigmatism</div>
+                    </div>
+                    <div id="feedback-10" class="feedback"></div>
+                </div>
+                
+                <div class="quiz-nav">
+                    <button id="prev-btn" class="btn" disabled>Previous</button>
+                    <button id="check-btn" class="btn">Check Answer</button>
+                    <button id="next-btn" class="btn" disabled>Next</button>
+                </div>
+                
+                <div id="quiz-results" style="display: none;">
+                    <h3>Quiz Results</h3>
+                    <p>You scored <span id="final-score">0</span> out of 10 questions correctly.</p>
+                    <p id="quiz-feedback"></p>
+                    <button id="retry-btn" class="btn">Retry Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    function loadQuestion() {
-      explanationContainer.classList.remove('wrong');
-      explanationContainer.style.display = 'none';
-      questionContainer.style.display = 'flex';
-      nextBtn.disabled = true;
-      optionsList.innerHTML = '';
-      viewingExplanation = false;
-      questionAnswered = false;
-      selectedOption = '';
-
-      if (remainingIndexes.length === 0) {
-        if (wrongIndexes.length > 0) {
-          remainingIndexes = wrongIndexes.slice();
-          wrongIndexes = [];
-          localStorage.setItem('remainingIndexes', JSON.stringify(remainingIndexes));
-          localStorage.setItem('wrongIndexes', JSON.stringify(wrongIndexes));
-        } else {
-          questionContainer.style.display = 'none';
-          explanationContainer.style.display = 'none';
-          resultsScreen.style.display = 'block';
-          return;
-        }
-      }
-
-      currentQuestionIdx = remainingIndexes.shift();
-      localStorage.setItem('currentQuestionIdx', currentQuestionIdx);
-      localStorage.setItem('remainingIndexes', JSON.stringify(remainingIndexes));
-      localStorage.setItem('viewingExplanation', 'false');
-      
-      displayQuestion(currentQuestionIdx);
-    }
+    <!-- Interactive Calculator -->
+    <div class="container">
+        <div class="calculator">
+            <h3>Contact Lens Calculator</h3>
+            <div class="calculator-section">
+                <h4>Cylinder Conversion</h4>
+                <div>
+                    <label>Sphere:</label>
+                    <input type="number" step="0.25" id="cyl-sphere" placeholder="e.g., +2.25">
+                </div>
+                <div>
+                    <label>Cylinder:</label>
+                    <input type="number" step="0.25" id="cyl-cylinder" placeholder="e.g., +1.50">
+                </div>
+                <div>
+                    <label>Axis:</label>
+                    <input type="number" id="cyl-axis" placeholder="e.g., 75">
+                </div>
+                <button id="convert-cylinder" class="btn">Convert</button>
+                <div id="cylinder-result" class="result-box"></div>
+            </div>
+            
+            <div class="calculator-section" style="margin-top: 1rem;">
+                <h4>Vertex Distance Compensation</h4>
+                <div>
+                    <label>Sphere:</label>
+                    <input type="number" step="0.25" id="vertex-sphere" placeholder="e.g., -5.75">
+                </div>
+                <div>
+                    <label>Cylinder (if applicable):</label>
+                    <input type="number" step="0.25" id="vertex-cylinder" placeholder="e.g., -1.00">
+                </div>
+                <div>
+                    <label>Axis (if applicable):</label>
+                    <input type="number" id="vertex-axis" placeholder="e.g., 180">
+                </div>
+                <div>
+                    <label>Vertex Distance (mm):</label>
+                    <input type="number" step="1" id="vertex-distance" value="12">
+                </div>
+                <button id="calculate-vertex" class="btn">Calculate</button>
+                <div id="vertex-result" class="result-box"></div>
+            </div>
+            
+            <div class="calculator-section" style="margin-top: 1rem;">
+                <h4>SAM/FAP Calculator</h4>
+                <div>
+                    <label>Lens Power:</label>
+                    <input type="number" step="0.25" id="lens-power" placeholder="e.g., -3.50">
+                </div>
+                <div>
+                    <label>Fit (compared to K):</label>
+                    <select id="fit-type">
+                        <option value="steeper">Steeper than K</option>
+                        <option value="flatter">Flatter than K</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Difference (D):</label>
+                    <input type="number" step="0.25" id="fit-difference" placeholder="e.g., 0.50">
+                </div>
+                <button id="calculate-sam-fap" class="btn">Calculate</button>
+                <div id="sam-fap-result" class="result-box"></div>
+            </div>
+        </div>
+    </div>
     
-    function displayQuestion(idx) {
-      const q = quizQuestions[idx];
-      questionText.textContent = q.question;
-      optionsList.innerHTML = '';
-      
-      q.options.forEach((opt, i) => {
-        const li = document.createElement('li');
-        li.className = 'option';
-        li.textContent = opt;
-        li.dataset.index = i;
-        li.addEventListener('click', handleOptionClick);
-        optionsList.appendChild(li);
-      });
-    }
-
-    function handleOptionClick(e) {
-      const selected = +e.target.dataset.index;
-      selectedOption = selected;
-      localStorage.setItem('selectedOption', selected);
-      questionAnswered = true;
-      localStorage.setItem('questionAnswered', 'true');
-      
-      const q = quizQuestions[currentQuestionIdx];
-      const correctIndex = q.answer;
-      isFailed = selected !== correctIndex;
-
-      document.querySelectorAll('.option').forEach((optEl, idx) => {
-        optEl.removeEventListener('click', handleOptionClick);
-        if (idx === correctIndex) optEl.classList.add('correct');
-        else if (idx === selected) optEl.classList.add('incorrect');
-      });
-
-      correctAnswerDiv.textContent = 'Correct Answer: ' + q.options[correctIndex];
-      explanationText.textContent = q.explanation;
-
-      if (isFailed) {
-        wrongIndexes.push(currentQuestionIdx);
-        explanationContainer.classList.add('wrong');
-        localStorage.setItem('wrongIndexes', JSON.stringify(wrongIndexes));
-      }
-
-      showExplanation();
-    }
-    
-    function showExplanation() {
-      questionContainer.style.display = 'none';
-      explanationContainer.style.display = 'flex';
-      nextBtn.disabled = false;
-      viewingExplanation = true;
-      localStorage.setItem('viewingExplanation', 'true');
-    }
-
-    document.addEventListener('DOMContentLoaded', startQuiz);
-  </script>
-</body>
-</html>
+    <script>
+        // Navigation Logic
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.section');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.id.replace('btn-', 'section-');
+                
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show target section
+                document.getElementById(targetId).classList.add('active');
+                
+                // Update active button
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            });
+        });
+        
+        // Cylinder Form Answer Toggle
+        const showCylinderAnswerBtn = document.getElementById('show-cylinder-answer');
+        const cylinderAnswer = document.getElementById('cylinder-answer');
+        
+        showCylinderAnswerBtn.addEventListener('click', () => {
+            if (cylinderAnswer.style.display === 'none') {
+                cylinderAnswer.style.display = 'block';
+                showCylinderAnswerBtn.textContent = 'Hide Answer';
+            } else {
+                cylinderAnswer.style.display = 'none';
+                showCylinderAnswerBtn.textContent = 'Show Answer';
+            }
+        });
+        
+        // Quiz Logic
+        const questions = document.querySelectorAll('.question');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const checkBtn = document.getElementById('check-btn');
+        const progressBar = document.getElementById('quiz-progress');
+        const scoreDisplay = document.getElementById('score-display');
+        const quizResults = document.getElementById('quiz-results');
+        const finalScore = document.getElementById('final-score');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const retryBtn = document.getElementById('retry-btn');
+        
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = Array(questions.length).fill(false);
+        
+        const correctAnswers = {
+            1: 'a',
+            2: 'c',
+            3: 'a',
+            4: 'c',
+            5: 'b',
+            6: 'a',
+            7: 'b',
+            8: 'a',
+            9: 'c',
+            10: 'a'
+        };
+        
+        const explanations = {
+            1: 'To convert to minus cylinder: +2.25 + (+1.50) = +3.75 sphere, -1.50 cylinder, and the axis changes by 90° (75 + 90 = 165).',
+            2: 'For -5.75 -1.00 x 180, check both meridians: At 180° is -5.75D, and at 90° is -6.75D. Both exceed 4D, so compensation is needed. Using the rules of thumb, the compensated prescription is approximately -5.25 -0.75 x 180.',
+            3: 'The K readings show a steeper vertical meridian (45.00 at 90°) than horizontal (43.50 at 180°), which is with-the-rule astigmatism. The difference (1.50D) matches the refractive cylinder, indicating purely corneal astigmatism.',
+            4: 'Using SAM (Steeper Add Minus): When fitting 0.50D steeper than K with -3.75D, add 0.50D of minus power: -3.75 - 0.50 = -4.25D.',
+            5: 'The patient has 0.50D of corneal astigmatism (42.00 to 42.50) but 1.00D of refractive astigmatism. With soft lenses, all astigmatism must be corrected with a toric design when it\'s ≥0.75D.',
+            6: 'To convert to minus cylinder: -3.00 + (+2.00) = -1.00 sphere, -2.00 cylinder, and the axis changes by 90° (30 + 90 = 120).',
+            7: 'For -7.00 -1.50 x 90, both meridians exceed 4D: -7.00D at 180° and -8.50D at 90°. The compensated prescription is approximately -6.50 -1.25 x 90.',
+            8: 'The K readings show a steeper vertical meridian (46.00 at 85°) than horizontal (44.00 at 175°), which is with-the-rule astigmatism. The difference (2.00D) matches the refractive cylinder, indicating purely corneal astigmatism.',
+            9: 'Using FAP (Flatter Add Plus): When fitting 0.75D flatter than K with -2.50D, add 0.75D of plus power: -2.50 + 0.75 = -1.75D.',
+            10: 'The K readings show a steeper vertical meridian (44.25 at 90°) than horizontal (43.00 at 180°), which is with-the-rule astigmatism. The difference (1.25D) matches the refractive cylinder, indicating purely corneal astigmatism.'
+        };
+        
+        function updateQuestion() {
+            questions.forEach((q, index) => {
+                q.classList.remove('active');
+                if (index === currentQuestion) {
+                    q.classList.add('active');
+                }
+            });
+            
+            progressBar.style.width = `${(currentQuestion + 1) * 10}%`;
+            scoreDisplay.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = currentQuestion === questions.length - 1;
+            
+            // Reset check button if already answered
+            if (answered[currentQuestion]) {
+                checkBtn.disabled = true;
+                checkBtn.textContent = 'Answered';
+            } else {
+                checkBtn.disabled = false;
+                checkBtn.textContent = 'Check Answer';
+            }
+        }
+        
+        function checkAnswer() {
+            const questionNum = currentQuestion + 1;
+            const selectedOption = document.querySelector(`#question-${questionNum} .option.selected`);
+            
+            if (!selectedOption) {
+                alert('Please select an answer before checking.');
+                return;
+            }
+            
+            const selectedValue = selectedOption.getAttribute('data-value');
+            const feedback = document.getElementById(`feedback-${questionNum}`);
+            
+            if (selectedValue === correctAnswers[questionNum]) {
+                selectedOption.classList.add('correct');
+                feedback.textContent = `Correct! ${explanations[questionNum]}`;
+                feedback.classList.add('correct');
+                score++;
+            } else {
+                selectedOption.classList.add('incorrect');
+                const correctOption = document.querySelector(`#question-${questionNum} .option[data-value="${correctAnswers[questionNum]}"]`);
+                correctOption.classList.add('correct');
+                feedback.textContent = `Incorrect. ${explanations[questionNum]}`;
+                feedback.classList.add('incorrect');
+            }
+            
+            feedback.style.display = 'block';
+            checkBtn.disabled = true;
+            checkBtn.textContent = 'Answered';
+            answered[currentQuestion] = true;
+            
+            // Enable next button if not the last question
+            if (currentQuestion < questions.length - 1) {
+                nextBtn.disabled = false;
+            }
+            
+            // Check if all questions are answered
+            if (answered.every(a => a)) {
+                showResults();
+            }
+        }
+        
+        function showResults() {
+            document.querySelector('.quiz-container').style.display = 'none';
+            quizResults.style.display = 'block';
+            finalScore.textContent = score;
+            
+            let feedbackMessage = '';
+            if (score === 10) {
+                feedbackMessage = 'Perfect! You\'re ready for the NCLE exam!';
+            } else if (score >= 8) {
+                feedbackMessage = 'Great job! You have a strong understanding of contact lens mathematics.';
+            } else if (score >= 6) {
+                feedbackMessage = 'Good effort! Review the areas you missed and try again.';
+            } else {
+                feedbackMessage = 'You might need more practice. Review the learning materials and try again.';
+            }
+            
+            quizFeedback.textContent = feedbackMessage;
+        }
+        
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = Array(questions.length).fill(false);
+            
+            // Reset all questions
+            questions.forEach((q, index) => {
+                const qNum = index + 1;
+                document.querySelectorAll(`#question-${qNum} .option`).forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+                document.getElementById(`feedback-${qNum}`).textContent = '';
+                document.getElementById(`feedback-${qNum}`).className = 'feedback';
+                document.getElementById(`feedback-${qNum}`).style.display = 'none';
+            });
+            
+            document.querySelector('.quiz-container').style.display = 'block';
+            quizResults.style.display = 'none';
+            
+            updateQuestion();
+        }
+        
+        // Attach event listeners for quiz
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                if (answered[currentQuestion]) return;
+                
+                const questionNum = currentQuestion + 1;
+                document.querySelectorAll(`#question-${questionNum} .option`).forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                option.classList.add('selected');
+            });
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                updateQuestion();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                updateQuestion();
+            }
+        });
+        
+        checkBtn.addEventListener('click', checkAnswer);
+        retryBtn.addEventListener('click', resetQuiz);
+        
+        // Initialize quiz
+        updateQuestion();
+        
+        // Calculator Functions
+        // Cylinder Conversion Calculator
+        document.getElementById('convert-cylinder').addEventListener('click', () => {
+            const sphere = parseFloat(document.getElementById('cyl-sphere').value) || 0;
+            const cylinder = parseFloat(document.getElementById('cyl-cylinder').value) || 0;
+            const axis = parseInt(document.getElementById('cyl-axis').value) || 0;
+            
+            if (cylinder > 0) {
+                // Converting from plus to minus cylinder
+                const newSphere = sphere + cylinder;
+                const newCylinder = -cylinder;
+                const newAxis = (axis + 90) % 180;
+                
+                document.getElementById('cylinder-result').innerHTML = `
+                    <p><strong>Conversion to Minus Cylinder:</strong></p>
+                    <p>Sphere: ${newSphere.toFixed(2)}</p>
+                    <p>Cylinder: ${newCylinder.toFixed(2)}</p>
+                    <p>Axis: ${newAxis}</p>
+                `;
+            } else if (cylinder < 0) {
+                // Converting from minus to plus cylinder
+                const newSphere = sphere + cylinder;
+                const newCylinder = -cylinder;
+                const newAxis = (axis + 90) % 180;
+                
+                document.getElementById('cylinder-result').innerHTML = `
+                    <p><strong>Conversion to Plus Cylinder:</strong></p>
+                    <p>Sphere: ${newSphere.toFixed(2)}</p>
+                    <p>Cylinder: ${newCylinder.toFixed(2)}</p>
+                    <p>Axis: ${newAxis}</p>
+                `;
+            } else {
+                document.getElementById('cylinder-result').innerHTML = `
+                    <p>No conversion needed for spherical prescriptions.</p>
+                `;
+            }
+        });
+        
+        // Vertex Distance Calculator
+        document.getElementById('calculate-vertex').addEventListener('click', () => {
+            const sphere = parseFloat(document.getElementById('vertex-sphere').value) || 0;
+            const cylinder = parseFloat(document.getElementById('vertex-cylinder').value) || 0;
+            const axis = parseInt(document.getElementById('vertex-axis').value) || 0;
+            const vertexDistance = parseFloat(document.getElementById('vertex-distance').value) || 12;
+            
+            // Check if compensation is needed (either meridian > ±4.00D)
+            const meridian1 = sphere;
+            const meridian2 = sphere + cylinder;
+            
+            let needsCompensation = false;
+            if (Math.abs(meridian1) >= 4.00 || Math.abs(meridian2) >= 4.00) {
+                needsCompensation = true;
+            }
+            
+            if (!needsCompensation) {
+                document.getElementById('vertex-result').innerHTML = `
+                    <p>No compensation needed. Neither meridian exceeds ±4.00D.</p>
+                    <p>Original Rx: ${sphere.toFixed(2)} ${cylinder ? cylinder.toFixed(2) + ' x ' + axis : ''}</p>
+                `;
+                return;
+            }
+            
+            // Simple approximation for vertex compensation
+            // Based on rule of thumb: 5D ≈ 0.25D compensation, 10D ≈ 1.00D compensation
+            const compensateMeridian = (power) => {
+                if (Math.abs(power) < 4.00) return power;
+                
+                // Simplified compensation calculation
+                if (power > 0) {
+                    // For plus powers
+                    if (power >= 4.00 && power < 6.00) return power - 0.25;
+                    if (power >= 6.00 && power < 8.00) return power - 0.50;
+                    if (power >= 8.00 && power < 9.00) return power - 0.75;
+                    if (power >= 9.00) return power - 1.00;
+                } else {
+                    // For minus powers
+                    if (power <= -4.00 && power > -6.00) return power + 0.25;
+                    if (power <= -6.00 && power > -8.00) return power + 0.50;
+                    if (power <= -8.00 && power > -9.00) return power + 0.75;
+                    if (power <= -9.00) return power + 1.00;
+                }
+                
+                return power;
+            };
+            
+            const compMeridian1 = compensateMeridian(meridian1);
+            const compMeridian2 = compensateMeridian(meridian2);
+            
+            // Recompute sphere and cylinder
+            const compSphere = compMeridian1;
+            const compCylinder = compMeridian2 - compMeridian1;
+            
+            document.getElementById('vertex-result').innerHTML = `
+                <p><strong>Vertex Compensation:</strong></p>
+                <p>Original Rx: ${sphere.toFixed(2)} ${cylinder ? cylinder.toFixed(2) + ' x ' + axis : ''}</p>
+                <p>Compensated Rx: ${compSphere.toFixed(2)} ${compCylinder ? compCylinder.toFixed(2) + ' x ' + axis : ''}</p>
+                <p class="tip-box">Note: This is an approximation using clinical rules of thumb.</p>
+            `;
+        });
+        
+        // SAM/FAP Calculator
+        document.getElementById('calculate-sam-fap').addEventListener('click', () => {
+            const lensPower = parseFloat(document.getElementById('lens-power').value) || 0;
+            const fitType = document.getElementById('fit-type').value;
+            const difference = parseFloat(document.getElementById('fit-difference').value) || 0;
+            
+            let finalPower;
+            if (fitType === 'steeper') {
+                // SAM: Steeper Add Minus
+                finalPower = lensPower - difference;
+            } else {
+                // FAP: Flatter Add Plus
+                finalPower = lensPower + difference;
+            }
+            
+            document.getElementById('sam-fap-result').innerHTML = `
+                <p><strong>${fitType === 'steeper' ? 'SAM (Steeper Add Minus)' : 'FAP (Flatter Add Plus)'} Result:</strong></p>
+                <p>Original Lens Power: ${lensPower.toFixed(2)}D</p>
+                <p>Fit: ${fitType === 'steeper' ? 'Steeper' : 'Flatter'} than K by ${difference.toFixed(2)}D</p>
+                <p>Final Lens Power: ${finalPower.toFixed(2)}D</p>
+            `;
+        });
+        
+        // Mobile menu toggle
+        if (window.innerWidth < 768) {
+            const navButtonsContainer = document.querySelector('nav');
+            const toggleButton = document.createElement('button');
+            toggleButton.textContent = 'Menu';
+            toggleButton.classList.add('btn');
+            toggleButton.style.width = '100%';
+            toggleButton.style.margin = '0.5rem 0';
+            
+            document.body.insertBefore(toggleButton, navButtonsContainer);
+            
+            toggleButton.addEventListener('click', () => {
+                navButtonsContainer.style.display = navButtonsContainer.style.display === 'none' ? 'flex' : 'none';
+            });
+            
+            navButtonsContainer.style.display = 'none';
+        }
+    </script>
