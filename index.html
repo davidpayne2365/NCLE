@@ -321,8 +321,219 @@
             ],
             correctAnswer: "a",
             explanation: "The K readings show a steeper vertical meridian (44.25 at 90°) than horizontal (43.00 at 180°), which is with-the-rule astigmatism. The difference (1.25D) matches the refractive cylinder, indicating purely corneal astigmatism."
-        }
-        // ADD MORE QUIZ QUESTIONS HERE
+        },
+            
+        // New questions to add to quizData array
+{
+    question: "A patient has a prescription of +1.25 +2.50 x 30. What is this prescription in minus cylinder form?",
+    options: [
+        {text: "+3.75 -2.50 x 120", value: "a"},
+        {text: "+1.25 -2.50 x 120", value: "b"},
+        {text: "+3.75 -2.50 x 30", value: "c"},
+        {text: "+3.75 +2.50 x 120", value: "d"}
+    ],
+    correctAnswer: "a",
+    explanation: "To convert to minus cylinder: +1.25 + (+2.50) = +3.75 sphere, -2.50 cylinder, and the axis changes by 90° (30 + 90 = 120)."
+},
+{
+    question: "Convert the following prescription to minus cylinder form: -2.00 +1.00 x 135",
+    options: [
+        {text: "-1.00 -1.00 x 45", value: "a"},
+        {text: "-2.00 -1.00 x 45", value: "b"},
+        {text: "-1.00 -1.00 x 135", value: "c"},
+        {text: "-3.00 -1.00 x 45", value: "d"}
+    ],
+    correctAnswer: "a",
+    explanation: "To convert to minus cylinder: -2.00 + (+1.00) = -1.00 sphere, -1.00 cylinder, and the axis changes by 90° (135 - 90 = 45)."
+},
+{
+    question: "A patient has a spectacle prescription of -6.25 -1.75 x 90. What would be the compensated contact lens prescription, assuming a 12mm vertex distance?",
+    options: [
+        {text: "-6.25 -1.75 x 90 (no change needed)", value: "a"},
+        {text: "-5.75 -1.50 x 90", value: "b"},
+        {text: "-6.00 -1.50 x 90", value: "c"},
+        {text: "-5.50 -1.75 x 90", value: "d"}
+    ],
+    correctAnswer: "b",
+    explanation: "For -6.25 -1.75 x 90, both meridians exceed 4D: -6.25D at 180° and -8.00D at 90°. Using the rule of thumb, for around 6D compensate by 0.5D and for 8D compensate by 0.5D to 0.75D, resulting in approximately -5.75 -1.50 x 90."
+},
+{
+    question: "A patient's spectacle prescription is -8.75D sphere. What would be the compensated contact lens power, assuming a 14mm vertex distance?",
+    options: [
+        {text: "-8.75D", value: "a"},
+        {text: "-8.25D", value: "b"},
+        {text: "-7.75D", value: "c"},
+        {text: "-8.00D", value: "d"}
+    ],
+    correctAnswer: "c",
+    explanation: "For a high minus prescription of -8.75D with a 14mm vertex distance, the rule of thumb suggests compensation of approximately 1.00D. Therefore, the compensated contact lens power would be -7.75D."
+},
+{
+    question: "A patient has K readings of 42.50@180 / 44.00@90 and a refraction of -1.50 -1.50 x 180. What type of astigmatism does this patient have?",
+    options: [
+        {text: "With-the-rule corneal astigmatism", value: "a"},
+        {text: "Against-the-rule corneal astigmatism", value: "b"},
+        {text: "Oblique corneal astigmatism", value: "c"},
+        {text: "Lenticular astigmatism", value: "d"}
+    ],
+    correctAnswer: "a",
+    explanation: "The K readings show a steeper vertical meridian (44.00 at 90°) than horizontal (42.50 at 180°), which is with-the-rule astigmatism. The difference (1.50D) matches the refractive cylinder, indicating purely corneal astigmatism."
+},
+{
+    question: "A patient has K readings of 45.00@15 / 43.50@105. What type of astigmatism does this patient have?",
+    options: [
+        {text: "With-the-rule corneal astigmatism", value: "a"},
+        {text: "Against-the-rule corneal astigmatism", value: "b"},
+        {text: "Oblique corneal astigmatism", value: "c"},
+        {text: "No astigmatism", value: "d"}
+    ],
+    correctAnswer: "c",
+    explanation: "The K readings show the steepest meridian at 15° which is neither within 30° of 90° (with-the-rule) nor within 30° of 180° (against-the-rule). This pattern indicates oblique corneal astigmatism."
+},
+{
+    question: "You decide to fit a spherical GP lens 0.25D steeper than K for a patient with a compensated prescription of -2.25D. What should the final lens power be?",
+    options: [
+        {text: "-2.00D", value: "a"},
+        {text: "-2.25D", value: "b"},
+        {text: "-2.50D", value: "c"},
+        {text: "-2.75D", value: "d"}
+    ],
+    correctAnswer: "c",
+    explanation: "Using SAM (Steeper Add Minus): When fitting 0.25D steeper than K with -2.25D, add 0.25D of minus power: -2.25 - 0.25 = -2.50D."
+},
+{
+    question: "You are fitting a GP lens 0.50D flatter than K. Your patient's compensated prescription is -4.75D. What should the final lens power be?",
+    options: [
+        {text: "-5.25D", value: "a"},
+        {text: "-4.75D", value: "b"},
+        {text: "-4.25D", value: "c"},
+        {text: "-5.00D", value: "d"}
+    ],
+    correctAnswer: "c",
+    explanation: "Using FAP (Flatter Add Plus): When fitting 0.50D flatter than K with -4.75D, add 0.50D of plus power: -4.75 + 0.50 = -4.25D."
+},
+{
+    question: "A patient has K readings of 44.00@170 / 46.00@80 and a refraction of -2.50 -1.25 x 170. What type of lens would be most appropriate?",
+    options: [
+        {text: "Spherical soft lens", value: "a"},
+        {text: "Toric soft lens", value: "b"},
+        {text: "Spherical GP lens", value: "c"},
+        {text: "Toric GP lens", value: "d"}
+    ],
+    correctAnswer: "c",
+    explanation: "The patient has 2.00D of corneal astigmatism (44.00 to 46.00) but only 1.25D of refractive astigmatism at the same axis. A spherical GP lens would vault the cornea and mask the corneal astigmatism without needing a toric design."
+},
+{
+    question: "A patient has a manifest refraction of -3.75 -2.25 x 45. The K readings are 43.00@135 / 45.25@45. What is the most appropriate type of contact lens?",
+    options: [
+        {text: "Spherical soft lens", value: "a"},
+        {text: "Toric soft lens", value: "b"},
+        {text: "Spherical GP lens", value: "c"},
+        {text: "Toric GP lens", value: "d"}
+    ],
+    correctAnswer: "b",
+    explanation: "The K readings show 2.25D of corneal astigmatism that matches the refractive cylinder amount. For a soft lens, all astigmatism must be corrected with a toric design when it's ≥0.75D, so a toric soft lens is required."
+},
+{
+    question: "Convert the following spectacle prescription to contact lens prescription, assuming a 12mm vertex distance: -5.00 -1.00 x 90",
+    options: [
+        {text: "-5.00 -1.00 x 90", value: "a"},
+        {text: "-4.75 -0.75 x 90", value: "b"},
+        {text: "-4.50 -1.00 x 90", value: "c"},
+        {text: "-4.75 -1.00 x 90", value: "d"}
+    ],
+    correctAnswer: "d",
+    explanation: "For -5.00 -1.00 x 90, we need to check both meridians: At 180° is -5.00D (above 4D threshold), and at 90° is -6.00D. For the -5.00D meridian, approximate compensation would be 0.25D, resulting in -4.75D. For the -6.00D meridian, compensation would be about 0.25D to 0.50D, making it approximately -5.50D to -5.75D. This results in -4.75 -1.00 x 90."
+},
+{
+    question: "A patient has K readings of 41.75@10 / 43.25@100 and a refraction of -1.00 -1.50 x 10. What type of astigmatism does this patient have?",
+    options: [
+        {text: "With-the-rule corneal astigmatism", value: "a"},
+        {text: "Against-the-rule corneal astigmatism", value: "b"},
+        {text: "Oblique corneal astigmatism", value: "c"},
+        {text: "Both corneal and lenticular astigmatism", value: "d"}
+    ],
+    correctAnswer: "c",
+    explanation: "The K readings show the steepest meridian at 100° and flattest at 10°. Since these are not within 30° of the principal meridians, this pattern indicates oblique corneal astigmatism. The K reading difference matches the refractive cylinder, indicating purely corneal astigmatism."
+},
+{
+    question: "A patient has K readings of 42.00@180 / 43.00@90 and a refraction of -2.00 -2.00 x 180. What is the likely source of astigmatism?",
+    options: [
+        {text: "Purely corneal astigmatism", value: "a"},
+        {text: "Purely lenticular astigmatism", value: "b"},
+        {text: "Both corneal and lenticular astigmatism", value: "c"},
+        {text: "No significant astigmatism", value: "d"}
+    ],
+    correctAnswer: "c",
+    explanation: "The K readings show 1.00D of corneal astigmatism, but the refraction shows 2.00D of refractive astigmatism. This suggests the astigmatism is coming from both corneal (1.00D) and lenticular (1.00D) sources."
+},
+{
+    question: "You are fitting a GP lens for a patient with K readings of 44.50@180 / 46.50@90. Their refraction is -3.00 -2.00 x 180. If you fit 0.75D steeper than K, what will be the final lens power?",
+    options: [
+        {text: "-3.00D", value: "a"},
+        {text: "-3.75D", value: "b"},
+        {text: "-2.25D", value: "c"},
+        {text: "-2.50D", value: "d"}
+    ],
+    correctAnswer: "b",
+    explanation: "Using SAM (Steeper Add Minus): When fitting 0.75D steeper than K with -3.00D, add 0.75D of minus power: -3.00 - 0.75 = -3.75D."
+},
+{
+    question: "A patient has a spectacle Rx of +4.50 +2.00 x 75. What is the equivalent in minus cylinder form?",
+    options: [
+        {text: "+6.50 -2.00 x 165", value: "a"},
+        {text: "+4.50 -2.00 x 165", value: "b"},
+        {text: "+6.50 -2.00 x 75", value: "c"},
+        {text: "+2.50 -2.00 x 165", value: "d"}
+    ],
+    correctAnswer: "a",
+    explanation: "To convert to minus cylinder: +4.50 + (+2.00) = +6.50 sphere, -2.00 cylinder, and the axis changes by 90° (75 + 90 = 165)."
+},
+{
+    question: "A patient has a spectacle prescription of +5.50 sphere. What would be the compensated contact lens power, assuming a 12mm vertex distance?",
+    options: [
+        {text: "+5.50D", value: "a"},
+        {text: "+5.25D", value: "b"},
+        {text: "+5.00D", value: "c"},
+        {text: "+4.75D", value: "d"}
+    ],
+    correctAnswer: "b",
+    explanation: "For a high plus prescription of +5.50D with a 12mm vertex distance, the rule of thumb suggests compensation of approximately 0.25D. Therefore, the compensated contact lens power would be +5.25D."
+},
+{
+    question: "A patient has K readings of 42.00@45 / 43.50@135 and a refraction of -1.00 -1.50 x 45. Which statement is correct?",
+    options: [
+        {text: "The patient has with-the-rule corneal astigmatism", value: "a"},
+        {text: "The patient has oblique corneal astigmatism", value: "b"},
+        {text: "The patient has lenticular astigmatism", value: "c"},
+        {text: "The patient has against-the-rule corneal astigmatism", value: "d"}
+    ],
+    correctAnswer: "b",
+    explanation: "The K readings show the steepest meridian at 135° and flattest at 45°. Since these are not within 30° of 90° or 180°, this is oblique corneal astigmatism. The K reading difference matches the refractive cylinder, indicating purely corneal astigmatism."
+},
+{
+    question: "A patient has K readings of 45.00@180 / 43.00@90. What type of astigmatism does this cornea exhibit?",
+    options: [
+        {text: "With-the-rule corneal astigmatism", value: "a"},
+        {text: "Against-the-rule corneal astigmatism", value: "b"},
+        {text: "Oblique corneal astigmatism", value: "c"},
+        {text: "No corneal astigmatism", value: "d"}
+    ],
+    correctAnswer: "b",
+    explanation: "The K readings show a steeper horizontal meridian (45.00 at 180°) than vertical (43.00 at 90°). When the horizontal meridian is steeper, this is against-the-rule astigmatism."
+},
+{
+    question: "A patient has a refraction of -2.00 -1.00 x 180 and K readings of 43.00@180 / 44.00@90. If you are fitting a GP lens 0.50D flatter than K, what would be the final lens power?",
+    options: [
+        {text: "-2.00D", value: "a"},
+        {text: "-1.50D", value: "b"},
+        {text: "-2.50D", value: "c"},
+        {text: "-3.00D", value: "d"}
+    ],
+    correctAnswer: "b",
+    explanation: "Using FAP (Flatter Add Plus): When fitting 0.50D flatter than K with -2.00D, add 0.50D of plus power: -2.00 + 0.50 = -1.50D."
+}// ADD MORE QUIZ QUESTIONS HERE
+                
     ];
 
     // Navigation Logic
@@ -446,6 +657,7 @@
         if (answered.every(a => a)) {
             showResults();
         }
+    
     }
     
     function showResults() {
